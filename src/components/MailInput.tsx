@@ -6,9 +6,9 @@ const MailInput: React.FC = () => {
     formState: { errors },
   } = useFormContext()
   return (
-    <div className="input">
+    <div className="mt-5 mb-5">
       <input
-        className="m-5 py-2 pl-7  text-gray-900 ring-2 ring-inset ring-black placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
+        className="ml-5  py-2 pl-7 w-6/12 text-gray-900 text-xl ring-1 ring-inset ring-black placeholder:text-black placeholder: font-thin focus:ring-2 focus:ring-inset focus:ring-indigo-800"
         type="text"
         placeholder="Email"
         {...register("email", {
@@ -19,11 +19,13 @@ const MailInput: React.FC = () => {
       <div>
         {errors.email?.type === "required" && (
           <>
-            <span style={{ color: "red" }}>Email field is required</span>
+            <span className="text-red-500 font-light ">
+              Email field is required
+            </span>
           </>
         )}
         {errors.email?.type === "pattern" && (
-          <span style={{ color: "red" }}> Invalid Email Adress</span>
+          <span className="text-red-500 font-light ">Invalid Email Adress</span>
         )}
       </div>
     </div>
