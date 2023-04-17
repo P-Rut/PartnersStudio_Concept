@@ -4,8 +4,10 @@ const FormOfContact: React.FC = () => {
   const { register } = useFormContext()
   return (
     <div className="input">
-      <input type="checkbox" />
-      <p>Online Metting</p>
+      <label className="checkbox">
+        <input type="checkbox" disabled />
+        Online Metting
+      </label>
       <input type="checkbox" />
       <p>Phone Call</p>
       <input type="checkbox" />
