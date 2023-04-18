@@ -10,7 +10,7 @@ const FilesUpload: React.FC = () => {
       >
         Please upload project drawings or photos ↓
       </label>
-      <div className="m-5 border-dashed border border-gray-400 py-5 flex flex-col justify-center items-center">
+      <div className=" border-gray-400 py-5 flex flex-col justify-center items-center">
         <input
           {...register("project_files")}
           type="file"

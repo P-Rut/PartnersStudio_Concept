@@ -1,5 +1,6 @@
 import { useForm, FormProvider } from "react-hook-form"
 import InputsWrapper from "./InputsWrapper"
+import Navbar from "../Navbar"
 
 interface FormData {
   name: string
@@ -40,7 +41,7 @@ const Form: React.FC = () => {
   const { handleSubmit, reset } = FormMethods
 
   const onFormSubmit = (data: FormData) => {
-    console.log("data", data)
+    console.log("Form Data", data)
   }
 
   //   const name = watch("name")
@@ -51,6 +52,7 @@ const Form: React.FC = () => {
 
   return (
     <>
+      <Navbar />
       <FormProvider {...FormMethods}>
         <form onSubmit={handleSubmit(onFormSubmit)}>
           <div className="">
