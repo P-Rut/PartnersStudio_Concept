@@ -1,6 +1,9 @@
+import { useFormContext } from "react-hook-form"
+
 const FilesUpload: React.FC = () => {
+  const { register } = useFormContext()
   return (
-    <div className="border-solid border m-5 w-6/12 border-black bg-white">
+    <div className="border-solid border mb-5 w-full border-black bg-white">
       <label
         className="block text-xl font-thin ml-7 mt-5 mb-2 "
         htmlFor="files_upload"
@@ -8,7 +11,12 @@ const FilesUpload: React.FC = () => {
         Please upload project drawings or photos ↓
       </label>
       <div className="m-5 border-dashed border border-gray-400 py-5 flex flex-col justify-center items-center">
-        <input type="file" className="font-thin text-sm" />
+        <input
+          {...register("project_files")}
+          type="file"
+          className="font-thin text-sm"
+          multiple
+        />
       </div>
     </div>
   )

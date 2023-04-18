@@ -2,8 +2,8 @@ import logo from "../assets/Desktop - 1.png"
 
 const Navbar: React.FC = () => {
   return (
-    <nav className="border-gray-900 border-b w-screen ">
-      <div className="max-w-screen flex flex-wrap items-center justify-between  p-4">
+    <nav className="border-gray-900 flex border-b w-screen ">
+      <div className="flex-1 flex justify-center mr-auto py-4 px-10">
         <button className="flex-1 space-y-1.5">
           <span className="block w-8 h-0.5 bg-indigo-800"></span>
           <span className="block w-8 h-0.5 bg-indigo-800"></span>
@@ -11,11 +11,11 @@ const Navbar: React.FC = () => {
           <span className="block w-8 h-0.5 bg-indigo-800"></span>
         </button>
 
-        <div className="flex-1 items-center invisible lg:visible">
+        <div className="mx-36 invisible lg:visible">
           <img src={logo} className="h-9" alt="Logo" />
         </div>
-        <span className=" text-indigo-800 underline self-center text-2xl font-light whitespace-nowrap">
-          How does it work ?
+        <span className="flex flex-1 justify-end ml-auto text-indigo-800 underline  text-xl font-light whitespace-nowrap">
+          How it works ?
         </span>
       </div>
     </nav>

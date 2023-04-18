@@ -8,10 +8,14 @@ interface FormData {
   city: string
   adress: string
   form_of_contact: string[]
+  project_files: {
+    url: string
+    name: string
+  }
   project_type: string
   project_level: string
-  constructor: string
-  descirption: string
+  description: string
+  construction: string
 }
 const defaultData = {
   name: "",
@@ -20,10 +24,14 @@ const defaultData = {
   city: "",
   adress: "",
   form_of_contact: [],
+  project_files: {
+    url: "",
+    name: "",
+  },
   project_type: "",
   project_stage: "",
-  constructor: "",
-  descirption: "",
+  description: "",
+  construction: "",
 }
 
 const Form: React.FC = () => {
@@ -45,11 +53,11 @@ const Form: React.FC = () => {
     <>
       <FormProvider {...FormMethods}>
         <form onSubmit={handleSubmit(onFormSubmit)}>
-          <div className="form">
+          <div className="">
             <InputsWrapper />
-            <div className="mx-5">
+            <div className="mx-28">
               <button
-                className="bg-indigo-800 tracking-widest text-2xl border border-black text-gray-50 p-2 w-full hover:bg-gray-400"
+                className="w-full mb-5 tracking-widest text-2xl border border-black text-gray-50 p-2 hover:bg-gray-400 bg-indigo-800"
                 type="submit"
               >
                 SUBMIT
