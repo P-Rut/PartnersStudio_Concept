@@ -1,5 +1,6 @@
 import hero_logo from "../assets/Hero_Logo.png"
 import AboutUs from "./AboutUs"
+import HowItWorks from "./HowItWorks"
 
 const HomePage: React.FC = () => {
   const background = {
@@ -17,6 +18,7 @@ const HomePage: React.FC = () => {
         </div>
       </div>
       <AboutUs />
+      <HowItWorks />
     </>
   )
 }
