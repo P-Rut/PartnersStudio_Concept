@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
             <img src={logo} className="h-9" alt="Logo" />
           </button>
         </div>
-        <span className="flex flex-1 justify-end ml-auto text-indigo-800 underline  text-xl font-light whitespace-nowrap">
+        <span className="flex flex-1 justify-end ml-auto  decoration-indigo-800 underline-offset-8 underline  text-xl font-light whitespace-nowrap">
           How it works ?
         </span>
       </div>
