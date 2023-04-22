@@ -31,7 +31,7 @@ const FormOfContact: React.FC = () => {
             {...register("form_of_contact")}
             id="checkbox"
             type="checkbox"
-            value="Phone Call"
+            value="phone_call"
             className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-600 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 "
           />
           <label htmlFor="checkbox" className="ml-2 font-thin  text-gray-900">
