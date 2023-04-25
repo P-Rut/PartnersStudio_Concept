@@ -7,8 +7,7 @@ const img = {
 
 const AboutUs: React.FC = () => {
   return (
-    <div className="min-h-full ">
-      <Navbar />
+    <div className="min-h-full">
       <div className="grid grid-cols-5  h-full mx-10 my-14">
         <div className=" mt-28 col-span-3 ">
           <p className="text-5xl tracking-tight line-clamp-4 mr-10 font-light leading-tight ">

@@ -16,7 +16,7 @@ interface FormData {
   project_type: string
   project_level: string
   description: string
-  construction: string
+  construction: string[]
 }
 const defaultData = {
   name: "",
@@ -32,7 +32,7 @@ const defaultData = {
   project_type: "",
   project_stage: "",
   description: "",
-  construction: "",
+  construction: [],
 }
 
 const Form: React.FC = () => {
@@ -55,7 +55,7 @@ const Form: React.FC = () => {
       <Navbar />
       <FormProvider {...FormMethods}>
         <form onSubmit={handleSubmit(onFormSubmit)}>
-          <div className="">
+          <div>
             <InputsWrapper />
             <div className="mx-28">
               <button
