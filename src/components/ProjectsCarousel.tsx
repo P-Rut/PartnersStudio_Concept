@@ -45,8 +45,8 @@ const ProjectsCarousel: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-full">
-        <div className="max-w-[1440px] h-[850px] py-10 px-20 w-full m-auto grid grid-cols-5 relative ">
+      <div>
+        <div className="max-w-[1440px] h-[750px] mt-5  py-10 px-20 w-full m-auto grid grid-cols-5 relative ">
           <div
             style={{ backgroundImage: `url(${projects[currentImg].URL})` }}
             className="col-span-2 h-full bg-center bg-cover duration-500"
@@ -60,7 +60,7 @@ const ProjectsCarousel: React.FC = () => {
                 {projects[currentImg].text}
               </p>
             </div>
-            <div className="flex absolute justify-center aligng-center bottom-80">
+            <div className="flex absolute justify-center aligng-center bottom-70">
               <div className="text-2xl  text-indigo-800 hover:text-indigo-200 cursor-pointer">
                 <AiOutlineArrowLeft onClick={prevImg} size={50} />
               </div>

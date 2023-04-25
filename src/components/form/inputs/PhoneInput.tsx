@@ -27,7 +27,7 @@ const PhoneInput: React.FC = () => {
         )}
         {errors.phone?.type === "minLength" && (
           <span className="ml-5 text-red-500 font-light">
-            Phone number consists
+            Phone number consists minimum 9 digits
           </span>
         )}
       </div>

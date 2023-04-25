@@ -1,10 +1,7 @@
-import Navbar from "./Navbar"
-
 const HowItWorks: React.FC = () => {
   return (
     <>
       <div className="h-[550px]">
-        <Navbar />
         <div className="h-auto">
           <div className="m-36">
             <h1 className="text-5xl tracking-normal font-light text-center">

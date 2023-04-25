@@ -1,3 +1,4 @@
+import Navbar from "./Navbar"
 import hero_logo from "../assets/Hero_Logo.png"
 import AboutUs from "./AboutUs"
 import HowItWorks from "./HowItWorks"
@@ -11,6 +12,7 @@ const HomePage: React.FC = () => {
 
   return (
     <>
+      <Navbar />
       <div className="h-[850px]">
         <div className="bg-cover bg-center h-full w-auto" style={background}>
           <div className="h-full w-full flex justify-center items-center bg-black/30">
@@ -18,9 +20,9 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </div>
-      <ProjectsCarousel />
       <AboutUs />
       <HowItWorks />
+      <ProjectsCarousel />
     </>
   )
 }
