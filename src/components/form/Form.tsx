@@ -2,7 +2,7 @@ import { useForm, FormProvider } from "react-hook-form"
 import InputsWrapper from "./InputsWrapper"
 import Navbar from "../Navbar"
 import ChoosePackage from "../ChoosePackage"
-import axios from "axios"
+//@ts-ignore
 import { Packages } from "../../types"
 
 interface FormData {

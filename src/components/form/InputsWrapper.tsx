@@ -2,23 +2,18 @@ import ConstructorInput from "./inputs/ConstructorInput"
 import DescriptionInput from "./inputs/DescriptionInput"
 import FilesUpload from "./inputs/FilesUpload"
 import FormOfContact from "./inputs/FormOfContactInput"
-import PhoneInput from "./inputs/PhoneInput"
-import ProjectStageInput from "./inputs/ProjectStageInput"
-
-import BasicInputs from "./inputs/BasicInputs"
+import BasicInputs from "./inputs/BasicInput"
 
 const InputsWrapper: React.FC = () => {
   return (
     <div className="grid grid-cols-2 gap-5 mx-10">
       <div>
-        {/* <NameInput /> */}
         <BasicInputs
           placeholder="Name"
           title="name"
           type="text"
           required={true}
         />
-        {/* <MailInput /> */}
         <BasicInputs
           placeholder="Mail"
           title="mail"
@@ -26,33 +21,30 @@ const InputsWrapper: React.FC = () => {
           required={true}
           pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
         />
-        <PhoneInput />
-        {/* <CityInput /> */}
         <BasicInputs
-          placeholder="City"
-          title="city"
+          placeholder="Phone Number"
+          title="phone"
           type="text"
-          required={false}
+          required={true}
+          minLenght={9}
+          maxLength={9}
         />
-        {/* <AdressInput /> */}
-        <BasicInputs
-          placeholder="Project Adress"
-          title="adress"
-          type="text"
-          required={false}
-        />
+        <BasicInputs placeholder="City" title="city" type="text" />
+        <BasicInputs placeholder="Project Adress" title="adress" type="text" />
         <FormOfContact />
         <FilesUpload />
       </div>
       <div>
-        {/* <ProjectTypeInput /> */}
         <BasicInputs
           placeholder="Project Type"
           title="project_type"
           type="text"
-          required={false}
         />
-        <ProjectStageInput />
+        <BasicInputs
+          placeholder="Project Stage"
+          title="project_stage"
+          type="text"
+        />
         <ConstructorInput />
         <DescriptionInput />
       </div>
