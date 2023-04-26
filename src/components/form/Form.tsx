@@ -2,6 +2,8 @@ import { useForm, FormProvider } from "react-hook-form"
 import InputsWrapper from "./InputsWrapper"
 import Navbar from "../Navbar"
 import ChoosePackage from "../ChoosePackage"
+import axios from "axios"
+import { Packages } from "../../types"
 
 interface FormData {
   name: string
@@ -18,7 +20,7 @@ interface FormData {
   project_level: string
   description: string
   construction: string[]
-  package: string[]
+  package: Packages | undefined
 }
 const defaultData = {
   name: "",
@@ -35,7 +37,7 @@ const defaultData = {
   project_stage: "",
   description: "",
   construction: [],
-  package: [],
+  package: undefined,
 }
 
 const Form: React.FC = () => {
@@ -46,12 +48,6 @@ const Form: React.FC = () => {
   const onFormSubmit = (data: FormData) => {
     console.log("Form Data", data)
   }
-
-  //   const name = watch("name")
-  //   const email = watch("email")
-  //   const phone = watch("phone")
-  //   const city = watch("city")
-  //   const adress = watch("adress")
 
   return (
     <>

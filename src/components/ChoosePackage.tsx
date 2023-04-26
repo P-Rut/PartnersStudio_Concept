@@ -1,4 +1,5 @@
 import { useFormContext } from "react-hook-form"
+import { Packages } from "../types"
 import Navbar from "./Navbar"
 import {
   PhotoIcon,
@@ -18,7 +19,7 @@ const ChoosePackage: React.FC = () => {
             <div className="flex justify-end">
               <input
                 {...register("package")}
-                value="Basic: $1500"
+                value={Packages.BASIC}
                 id="checkbox"
                 type="checkbox"
                 className="border-black border-r-0 border-t-0 border-l-1 border-b-1 cursor-pointer 
@@ -81,7 +82,7 @@ const ChoosePackage: React.FC = () => {
             <div className="flex justify-end">
               <input
                 {...register("package")}
-                value="Plus: $2500"
+                value=""
                 id="checkbox"
                 type="checkbox"
                 className="border-black border-r-0 border-t-0 border-l-1 border-b-1 cursor-pointer 
@@ -207,9 +208,9 @@ const ChoosePackage: React.FC = () => {
             </div>
           </div>
           <div className="w-full col-span-3 border border-black">
-            <p className="p-12 text-4xl font-light leading-tight">
+            <p className="p-10 text-4xl font-light leading-tight">
               After choosing a package that best suits your needs please provide
-              us with your design requirements as well as vision for the
+              us below with your design requirements as well as vision for the
               project.
             </p>
           </div>
