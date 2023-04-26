@@ -13,8 +13,21 @@ const InputsWrapper: React.FC = () => {
   return (
     <div className="grid grid-cols-2 gap-5 mx-10">
       <div>
-        <NameInput />
-        <MailInput />
+        {/* <NameInput /> */}
+        <BasicInputs
+          placeholder="Name"
+          title="name"
+          type="text"
+          required={true}
+        />
+        {/* <MailInput /> */}
+        <BasicInputs
+          placeholder="mail"
+          title="mail"
+          type="text"
+          required={true}
+          pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
+        />
         <PhoneInput />
         {/* <CityInput /> */}
         <BasicInputs

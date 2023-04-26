@@ -36,7 +36,7 @@ const ChoosePackage: React.FC = () => {
                     <p className="text-xs font-thin">Starting at $1500</p>
                   </div>
                 </div>
-                <ul className="mb-8 space-y-4 text-left  ">
+                <ul className="mb-8 space-y-4 text-left">
                   <li className="flex items-center space-x-3">
                     <div className=" bg-indigo-50 flex-shrink-0 w-6 h-6 text-indigo-900 ">
                       <CheckIcon />
