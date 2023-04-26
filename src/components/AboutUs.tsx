@@ -1,5 +1,3 @@
-import Navbar from "./Navbar"
-
 const img = {
   backgroundImage:
     "url('https://images.unsplash.com/photo-1579389083078-4e7018379f7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80')",
@@ -7,7 +5,7 @@ const img = {
 
 const AboutUs: React.FC = () => {
   return (
-    <div className="mt-5">
+    <div className="py-10 border">
       <div className="max-w-[1440px] h-[700px] grid grid-cols-5 grid-rows-2 mx-10 my-10">
         <div className=" mt-28 col-span-3 row-span-2">
           <p className="text-5xl mb-auto tracking-tight line-clamp-4 mr-10 font-light leading-tight ">

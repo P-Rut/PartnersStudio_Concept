@@ -16,11 +16,11 @@ const FormOfContact: React.FC = () => {
             id="checkbox"
             type="checkbox"
             value="Online Meeting"
-            className="w-5 h-5 "
+            className="w-5 h-5 bg-gray-100 "
           />
           <label
             htmlFor="checkbox"
-            className="ml-2 text-m font-thin  text-gray-900"
+            className="ml-2 text-m font-thin text-gray-900"
           >
             Online Metting
           </label>
@@ -32,7 +32,7 @@ const FormOfContact: React.FC = () => {
             id="checkbox"
             type="checkbox"
             value="Phone Call"
-            className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-600 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 "
+            className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-600 focus:ring-blue-500"
           />
           <label htmlFor="checkbox" className="ml-2 font-thin  text-gray-900">
             Phone Call
@@ -44,7 +44,7 @@ const FormOfContact: React.FC = () => {
             id="checkbox"
             type="checkbox"
             value="Office Meeting"
-            className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-600 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 "
+            className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-600 focus:ring-blue-500 dark:focus:ring-blue-600  "
           />
           <label htmlFor="checkbox" className="ml-2 font-thin  text-gray-900">
             Office Metting
@@ -56,7 +56,7 @@ const FormOfContact: React.FC = () => {
             id="checkbox"
             type="checkbox"
             value="Email"
-            className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-600 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 "
+            className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-600 focus:ring-blue-500 "
           />
           <label htmlFor="checkbox" className="ml-2 font-thin  text-gray-900">
             Email

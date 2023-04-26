@@ -1,5 +1,3 @@
-import AdressInput from "./inputs/AdressInput"
-import CityInput from "./inputs/CityInput"
 import ConstructorInput from "./inputs/ConstructorInput"
 import DescriptionInput from "./inputs/DescriptionInput"
 import FilesUpload from "./inputs/FilesUpload"
@@ -8,12 +6,12 @@ import MailInput from "./inputs/MailInput"
 import NameInput from "./inputs/NameInput"
 import PhoneInput from "./inputs/PhoneInput"
 import ProjectStageInput from "./inputs/ProjectStageInput"
-import ProjectTypeInput from "./inputs/ProjectTypeInput"
+
 import BasicInputs from "./inputs/BasicInputs"
 
 const InputsWrapper: React.FC = () => {
   return (
-    <div className="grid grid-cols-2 gap-5 mx-28 mt-24">
+    <div className="grid grid-cols-2 gap-5 mx-10">
       <div>
         <NameInput />
         <MailInput />

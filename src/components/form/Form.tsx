@@ -1,6 +1,7 @@
 import { useForm, FormProvider } from "react-hook-form"
 import InputsWrapper from "./InputsWrapper"
 import Navbar from "../Navbar"
+import ChoosePackage from "../ChoosePackage"
 
 interface FormData {
   name: string
@@ -17,6 +18,7 @@ interface FormData {
   project_level: string
   description: string
   construction: string[]
+  package: string[]
 }
 const defaultData = {
   name: "",
@@ -33,12 +35,13 @@ const defaultData = {
   project_stage: "",
   description: "",
   construction: [],
+  package: [],
 }
 
 const Form: React.FC = () => {
   const FormMethods = useForm<FormData>({ defaultValues: defaultData })
 
-  const { handleSubmit, reset } = FormMethods
+  const { handleSubmit } = FormMethods
 
   const onFormSubmit = (data: FormData) => {
     console.log("Form Data", data)
@@ -56,10 +59,11 @@ const Form: React.FC = () => {
       <FormProvider {...FormMethods}>
         <form onSubmit={handleSubmit(onFormSubmit)}>
           <div>
+            <ChoosePackage />
             <InputsWrapper />
-            <div className="mx-28">
+            <div className="mx-10">
               <button
-                className="w-full mb-5 tracking-widest text-2xl border border-black text-gray-50 p-2 hover:bg-gray-400 bg-indigo-800"
+                className="w-full mb-5 tracking-widest text-2xl border border-black text-gray-50 p-2 hover:bg-indigo-100 hover:text-indigo-900 bg-indigo-800"
                 type="submit"
               >
                 SUBMIT

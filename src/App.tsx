@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Form from "./components/form/Form"
 import Homepage from "./components/Homepage"
 import Offer from "./components/Offer"
+import ChoosePackage from "./components/ChoosePackage"
 
 function App() {
   return (

@@ -1,9 +1,9 @@
 const HowItWorks: React.FC = () => {
   return (
     <>
-      <div className="h-[550px]">
+      <div className="border py-10">
         <div className="h-auto">
-          <div className="m-36">
+          <div className="py-20">
             <h1 className="text-5xl tracking-normal font-light text-center">
               Modern approach to design with help of professionals.
             </h1>

@@ -10,7 +10,7 @@ const NameInput: React.FC = () => {
     <>
       <div className="mb-5">
         <input
-          className="w-full  py-2 pl-7 text-gray-900 text-xl ring-1 ring-inset ring-black placeholder:text-black placeholder: font-thin focus:ring-2 focus:ring-inset focus:ring-indigo-600"
+          className="w-full  py-2 pl-7 text-gray-900 text-xl ring-inset ring-black placeholder:text-black placeholder: font-thin focus:ring-2 focus:ring-inset focus:ring-indigo-600"
           type="text"
           placeholder="Name"
           {...register("name", {
