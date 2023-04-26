@@ -18,13 +18,23 @@ const ChoosePackage: React.FC = () => {
           <div className="row-span-2 border  border-black">
             <div className="flex justify-end">
               <input
-                {...register("package")}
+                type="radio"
+                id="basic"
                 value={Packages.BASIC}
-                id="checkbox"
-                type="checkbox"
-                className="border-black border-r-0 border-t-0 border-l-1 border-b-1 cursor-pointer 
-                w-12 h-12 "
+                {...register("package")}
+                className="hidden peer"
               />
+              <label
+                htmlFor="basic"
+                className="inline-flex items-center px-4 py-2  border-gray-800 text-indigo-800  border border-r-0 border-t-0 cursor-pointer  peer-checked:border-blue-600 peer-checked:text-white peer-checked:bg-indigo-800 hover:text-gray-600 hover:bg-gray-100"
+              >
+                <div
+                  aria-hidden="true"
+                  className="w-fit h-fit font-thin text-5xl"
+                >
+                  +
+                </div>
+              </label>
             </div>
             <div className="h-full grid grid-rows-2 gap-y-5">
               <div className="space-y-10 pb-5 px-5">
@@ -81,13 +91,23 @@ const ChoosePackage: React.FC = () => {
           <div className="row-span-2 border  border-black">
             <div className="flex justify-end">
               <input
+                type="radio"
+                id="plus"
+                value={Packages.PLUS}
+                className="hidden peer"
                 {...register("package")}
-                value=""
-                id="checkbox"
-                type="checkbox"
-                className="border-black border-r-0 border-t-0 border-l-1 border-b-1 cursor-pointer 
-                w-12 h-12 "
               />
+              <label
+                htmlFor="plus"
+                className="inline-flex items-center px-4 py-2  bg-white border-gray-800 text-indigo-800  border border-r-0 border-t-0 cursor-pointer  peer-checked:border-blue-600 peer-checked:text-white peer-checked:bg-indigo-800 hover:text-gray-600 hover:bg-gray-100"
+              >
+                <div
+                  aria-hidden="true"
+                  className="w-fit h-fit font-thin text-5xl"
+                >
+                  +
+                </div>
+              </label>
             </div>
             <div className="h-full grid grid-rows-2 gap-y-5">
               <div className="space-y-10 pb-5 px-5">
@@ -146,13 +166,23 @@ const ChoosePackage: React.FC = () => {
           <div className="row-span-2 border  border-black">
             <div className="flex justify-end">
               <input
+                type="radio"
+                id="exclusive"
+                value={Packages.EXCLUSIVE}
+                className="hidden peer"
                 {...register("package")}
-                value="Exclusive: $4500"
-                id="checkbox"
-                type="checkbox"
-                className="border-black border-r-0 border-t-0 border-l-1 border-b-1 cursor-pointer 
-                w-12 h-12 "
               />
+              <label
+                htmlFor="exclusive"
+                className="inline-flex items-center px-4 py-2 text-indigo-800 bg-white border border-r-0 border-t-0 border-gray-400  cursor-pointer  peer-checked:border-blue-600 peer-checked:text-white peer-checked:bg-indigo-800 hover:text-gray-600 hover:bg-gray-100"
+              >
+                <div
+                  aria-hidden="true"
+                  className="w-fit h-fit font-thin text-5xl"
+                >
+                  +
+                </div>
+              </label>
             </div>
             <div className="h-full grid grid-rows-2 gap-y-5">
               <div className="space-y-10 pb-5 px-5">

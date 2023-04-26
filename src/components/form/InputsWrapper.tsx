@@ -2,8 +2,6 @@ import ConstructorInput from "./inputs/ConstructorInput"
 import DescriptionInput from "./inputs/DescriptionInput"
 import FilesUpload from "./inputs/FilesUpload"
 import FormOfContact from "./inputs/FormOfContactInput"
-import MailInput from "./inputs/MailInput"
-import NameInput from "./inputs/NameInput"
 import PhoneInput from "./inputs/PhoneInput"
 import ProjectStageInput from "./inputs/ProjectStageInput"
 
@@ -22,9 +20,9 @@ const InputsWrapper: React.FC = () => {
         />
         {/* <MailInput /> */}
         <BasicInputs
-          placeholder="mail"
+          placeholder="Mail"
           title="mail"
-          type="text"
+          type="email"
           required={true}
           pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
         />
