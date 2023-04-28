@@ -4,21 +4,22 @@ import Navbar from "../Navbar"
 import ChoosePackage from "../ChoosePackage"
 //@ts-ignore
 import { Packages } from "../../types"
+import axios from "axios"
 
 interface FormData {
   name: string
   email: string
   phone: string
   city: string
-  adress: string
-  form_of_contact: string[]
-  project_files: {
+  address: string
+  contact_preference: string[]
+  photos: {
     url: string
     name: string
   }
   project_type: string
   project_level: string
-  description: string
+  additional_info: string
   construction: string[]
   package: Packages | undefined
 }
@@ -27,16 +28,16 @@ const defaultData = {
   email: "",
   phone: "",
   city: "",
-  adress: "",
-  form_of_contact: [],
-  project_files: {
+  address: "",
+  contact_preference: [],
+  photos: {
     url: "",
     name: "",
   },
   project_type: "",
   project_stage: "",
-  description: "",
-  construction: [],
+  additional_info: "",
+  contractor: [],
   package: undefined,
 }
 
@@ -45,8 +46,16 @@ const Form: React.FC = () => {
 
   const { handleSubmit } = FormMethods
 
-  const onFormSubmit = (data: FormData) => {
-    console.log("Form Data", data)
+  const onFormSubmit = async (data: FormData) => {
+    console.log(data)
+    try {
+      const response = await axios.post(
+        "https://strapi-km.herokuapp.com/api/inquiries"
+      )
+      console.log(response.data)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (

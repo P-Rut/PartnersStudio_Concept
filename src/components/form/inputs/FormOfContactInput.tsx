@@ -12,7 +12,7 @@ const FormOfContact: React.FC = () => {
       <div className="columns-2 gap-0 ml-7 mt-3">
         <div className="flex items-center">
           <input
-            {...register("form_of_contact")}
+            {...register("contact_preference")}
             id="checkbox"
             type="checkbox"
             value="Online Meeting"
@@ -28,7 +28,7 @@ const FormOfContact: React.FC = () => {
 
         <div className="flex items-center mt-3 mb-2">
           <input
-            {...register("form_of_contact")}
+            {...register("contact_preference")}
             id="checkbox"
             type="checkbox"
             value="Phone Call"
@@ -40,7 +40,7 @@ const FormOfContact: React.FC = () => {
         </div>
         <div className="flex items-center">
           <input
-            {...register("form_of_contact")}
+            {...register("contact_preference")}
             id="checkbox"
             type="checkbox"
             value="Office Meeting"
@@ -52,7 +52,7 @@ const FormOfContact: React.FC = () => {
         </div>
         <div className="flex items-center mt-3 mb-2">
           <input
-            {...register("form_of_contact")}
+            {...register("contact_preference")}
             id="checkbox"
             type="checkbox"
             value="Email"

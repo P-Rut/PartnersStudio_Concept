@@ -6,7 +6,7 @@ const DescriptionInput: React.FC = () => {
   return (
     <div className="px-7 py-2 border-solid border mb-5 w-full border-black bg-white">
       <textarea
-        {...register("description")}
+        {...register("additional_info")}
         className="block h-full w-full rounded-none border-none  text-black text-xl font-thin placeholder:text-black "
         id="description"
         rows={6}

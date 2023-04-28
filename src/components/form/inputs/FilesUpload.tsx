@@ -12,7 +12,7 @@ const FilesUpload: React.FC = () => {
       </label>
       <div className=" border-gray-400 py-5 flex flex-col mx-8">
         <input
-          {...register("project_files")}
+          {...register("photos")}
           type="file"
           className="font-thin text-medium file:hover:bg-indigo-200 file:cursor-pointer file:px-4 file:py-2 file:border-0 file:text-indigo-900 file:font-light file:text-lg file:bg-indigo-50 file:mr-6"
           multiple

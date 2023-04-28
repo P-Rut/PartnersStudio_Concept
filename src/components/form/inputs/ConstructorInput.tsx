@@ -13,7 +13,7 @@ const ConstructorInput: React.FC = () => {
       <div className="columns-3 gap-0 ml-7 mt-3">
         <div className="flex items-center">
           <input
-            {...register("construction")}
+            {...register("contractor")}
             id="checkbox"
             type="checkbox"
             value="yes"
@@ -29,7 +29,7 @@ const ConstructorInput: React.FC = () => {
 
         <div className="flex items-center mt-3 mb-2">
           <input
-            {...register("construction")}
+            {...register("contractor")}
             id="checkbox"
             type="checkbox"
             value="no"
@@ -41,7 +41,7 @@ const ConstructorInput: React.FC = () => {
         </div>
         <div className="flex items-center">
           <input
-            {...register("construction")}
+            {...register("contractor")}
             id="checkbox"
             type="checkbox"
             value="not_sure"

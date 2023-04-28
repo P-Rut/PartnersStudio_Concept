@@ -16,7 +16,7 @@ const InputsWrapper: React.FC = () => {
         />
         <BasicInputs
           placeholder="Mail"
-          title="mail"
+          title="email"
           type="email"
           required={true}
           pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i}
@@ -30,7 +30,7 @@ const InputsWrapper: React.FC = () => {
           maxLength={9}
         />
         <BasicInputs placeholder="City" title="city" type="text" />
-        <BasicInputs placeholder="Project Adress" title="adress" type="text" />
+        <BasicInputs placeholder="Project Adress" title="address" type="text" />
         <FormOfContact />
         <FilesUpload />
       </div>

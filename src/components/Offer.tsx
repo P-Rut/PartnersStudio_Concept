@@ -110,7 +110,7 @@ const Offer: React.FC = () => {
               onClick={(e) => (window.location.href = "/form")}
               className="w-full mb-5 tracking-wide text-2xl border border-black text-gray-50 p-2 hover:bg-indigo-100 hover:text-indigo-900 bg-indigo-800"
             >
-              CHOOSE PACKAGE
+              CHOOSE A PACKAGE
             </button>
           </div>
         </div>
