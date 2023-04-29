@@ -16,11 +16,11 @@ const Offer: React.FC = () => {
   }
   return (
     <>
-      <div>
-        <Navbar />
-        <div className="h-[850px] mt-14 grid grid-cols-3 grid-rows-3 gap-x-5 gap-y-10 p-10">
+      <Navbar />
+      <div className="bg-gray-50">
+        <div className="h-[850px] grid grid-cols-3 grid-rows-3 gap-x-5 gap-y-10 p-10">
           <div className="w-full col-span-3 border border-black">
-            <p className="p-12 text-4xl font-light leading-tight">
+            <p className="p-12 text-4xl font-light leading-tight tracking-tight">
               Select the package that aligns with your requirements and share
               with us your vision. After submit your form and we will send you
               offer via email.
@@ -108,7 +108,7 @@ const Offer: React.FC = () => {
           <div className="col-span-3">
             <button
               onClick={(e) => (window.location.href = "/form")}
-              className="w-full mb-5 tracking-wide text-2xl border border-black text-gray-50 p-2 hover:bg-indigo-100 hover:text-indigo-900 bg-indigo-800"
+              className="w-full mb-5 tracking-wide text-2xl border transition-colors duration-300 border-black text-gray-50 p-2 hover:bg-indigo-100 hover:text-indigo-900 bg-indigo-800"
             >
               CHOOSE A PACKAGE
             </button>

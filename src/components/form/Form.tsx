@@ -22,6 +22,7 @@ interface FormData {
   additional_info: string
   construction: string[]
   package: Packages | undefined
+  token: string
 }
 const defaultData = {
   name: "",
@@ -39,6 +40,8 @@ const defaultData = {
   additional_info: "",
   contractor: [],
   package: undefined,
+  token:
+    "40c08a534448a91544103e934fad533513a6785a07d8a9773f4a3754e8decf6dd1190804437971b58854a3847c9c2614e90231e3392288fb14e8372411bebbdb74df58c4708f0065b0d600488bb6327187c910a9a80d2f2976c3910e7f571f597bbd12a760f4e0d8e7677c9bc95557505ad9ce42ab15cb13ab95fbbbfa1bddf1",
 }
 
 const Form: React.FC = () => {
@@ -47,10 +50,14 @@ const Form: React.FC = () => {
   const { handleSubmit } = FormMethods
 
   const onFormSubmit = async (data: FormData) => {
-    console.log(data)
     try {
       const response = await axios.post(
-        "https://strapi-km.herokuapp.com/api/inquiries"
+        "https://strapi-km.herokuapp.com/api/inquiries",
+        {
+          headers: {
+            Authorization: `Bearer: {40c08a534448a91544103e934fad533513a6785a07d8a9773f4a3754e8decf6dd1190804437971b58854a3847c9c2614e90231e3392288fb14e8372411bebbdb74df58c4708f0065b0d600488bb6327187c910a9a80d2f2976c3910e7f571f597bbd12a760f4e0d8e7677c9bc95557505ad9ce42ab15cb13ab95fbbbfa1bddf1}`,
+          },
+        }
       )
       console.log(response.data)
     } catch (error) {
@@ -68,7 +75,7 @@ const Form: React.FC = () => {
             <InputsWrapper />
             <div className="mx-10">
               <button
-                className="w-full mb-5 tracking-widest text-2xl border border-black text-gray-50 p-2 hover:bg-indigo-100 hover:text-indigo-900 bg-indigo-800"
+                className="transition-colors duration-300 w-full mb-5 tracking-widest text-2xl border border-black text-gray-50 p-2 hover:bg-indigo-100 hover:text-indigo-900 bg-indigo-800"
                 type="submit"
               >
                 SUBMIT

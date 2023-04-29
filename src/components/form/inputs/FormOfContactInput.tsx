@@ -3,13 +3,13 @@ import { useFormContext } from "react-hook-form"
 const FormOfContact: React.FC = () => {
   const { register } = useFormContext()
   return (
-    <div className="border-solid border w-full mb-5 border-black bg-white">
+    <div className="border-solid border w-full mb-5 border-black bg-gray-50">
       <h1 className="text-xl font-thin ml-7 mt-2">
         Best way for you to meet with us ?
       </h1>
 
       {/* CHECKBOXY */}
-      <div className="columns-2 gap-0 ml-7 mt-3">
+      <div className="columns-2 gap-0 ml-7 mt-3 ">
         <div className="flex items-center">
           <input
             {...register("contact_preference")}

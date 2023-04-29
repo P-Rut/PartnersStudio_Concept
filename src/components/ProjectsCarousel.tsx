@@ -45,7 +45,7 @@ const ProjectsCarousel: React.FC = () => {
 
   return (
     <>
-      <div className="border">
+      <div className="border bg-gray-50">
         <div className="max-w-[1440px] h-[750px] py-10 px-20 w-full m-auto grid grid-cols-5 relative ">
           <div
             style={{ backgroundImage: `url(${projects[currentImg].URL})` }}

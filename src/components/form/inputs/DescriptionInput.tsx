@@ -4,10 +4,10 @@ const DescriptionInput: React.FC = () => {
   const { register } = useFormContext()
 
   return (
-    <div className="px-7 py-2 border-solid border mb-5 w-full border-black bg-white">
+    <div className=" px-7 py-2 border-solid border mb-5 w-full border-black bg-gray-50">
       <textarea
         {...register("additional_info")}
-        className="block h-full w-full rounded-none border-none  text-black text-xl font-thin placeholder:text-black "
+        className="bg-gray-50 block h-full w-full rounded-none border-none  text-black text-xl font-thin placeholder:text-black "
         id="description"
         rows={6}
         placeholder="Don't see what you want ? &#10;

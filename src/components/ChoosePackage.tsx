@@ -13,9 +13,9 @@ const ChoosePackage: React.FC = () => {
   const { register } = useFormContext()
   return (
     <>
-      <div>
+      <div className="bg-gray-50">
         <Navbar />
-        <div className="h-[800px] mt-14 grid grid-cols-3 grid-rows-3 gap-x-5 gap-y-10 p-10">
+        <div className="h-[800px] grid grid-cols-3 grid-rows-3 gap-x-5 gap-y-10 p-10">
           <div className="row-span-2 border  border-black">
             <div className="flex justify-end">
               <input
@@ -27,7 +27,7 @@ const ChoosePackage: React.FC = () => {
               />
               <label
                 htmlFor="basic"
-                className="inline-flex items-center px-4 py-2  border-gray-800 text-indigo-800  border border-r-0 border-t-0 cursor-pointer  peer-checked:border-blue-600 peer-checked:text-white peer-checked:bg-indigo-800 hover:text-gray-600 hover:bg-gray-100"
+                className="inline-flex items-center px-4 py-2  border-gray-800 bg-gray-50 text-indigo-800  border border-r-0 border-t-0 cursor-pointer  peer-checked:border-blue-600 peer-checked:text-white peer-checked:bg-indigo-800 hover:text-gray-600 hover:bg-gray-100"
               >
                 <div
                   aria-hidden="true"
@@ -100,7 +100,7 @@ const ChoosePackage: React.FC = () => {
               />
               <label
                 htmlFor="plus"
-                className="inline-flex items-center px-4 py-2  bg-white border-gray-800 text-indigo-800  border border-r-0 border-t-0 cursor-pointer  peer-checked:border-blue-600 peer-checked:text-white peer-checked:bg-indigo-800 hover:text-gray-600 hover:bg-gray-100"
+                className="inline-flex items-center px-4 py-2   border-gray-800 bg-gray-50 text-indigo-800  border border-r-0 border-t-0 cursor-pointer  peer-checked:border-blue-600 peer-checked:text-white peer-checked:bg-indigo-800 hover:text-gray-600 hover:bg-gray-100"
               >
                 <div
                   aria-hidden="true"
@@ -175,7 +175,7 @@ const ChoosePackage: React.FC = () => {
               />
               <label
                 htmlFor="exclusive"
-                className="inline-flex items-center px-4 py-2 text-indigo-800 bg-white border border-r-0 border-t-0 border-gray-400  cursor-pointer  peer-checked:border-blue-600 peer-checked:text-white peer-checked:bg-indigo-800 hover:text-gray-600 hover:bg-gray-100"
+                className="inline-flex items-center px-4 py-2 text-indigo-800 bg-gray-50 border border-r-0 border-t-0 border-gray-400  cursor-pointer  peer-checked:border-blue-600 peer-checked:text-white peer-checked:bg-indigo-800 hover:text-gray-600 hover:bg-gray-100"
               >
                 <div
                   aria-hidden="true"

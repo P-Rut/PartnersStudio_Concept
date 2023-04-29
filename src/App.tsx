@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Form from "./components/form/Form"
 import Homepage from "./components/Homepage"
 import Offer from "./components/Offer"
-import ChoosePackage from "./components/ChoosePackage"
 
 function App() {
   return (
@@ -11,8 +10,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/Form" element={<Form />} />
-          <Route path="/Offer" element={<Offer />} />
+          <Route path="/form" element={<Form />} />
+          <Route path="/offer" element={<Offer />} />
+          <Route path="/contact" element={""} />
         </Routes>
       </BrowserRouter>
     </div>
