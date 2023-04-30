@@ -17,7 +17,7 @@ const Offer: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-gray-50">
+      <div className="bg-gray-50 h-screen">
         <div className="h-[850px] grid grid-cols-3 grid-rows-3 gap-x-5 gap-y-10 p-10">
           <div className="w-full col-span-3 border border-black">
             <p className="p-12 text-4xl font-light leading-tight tracking-tight">

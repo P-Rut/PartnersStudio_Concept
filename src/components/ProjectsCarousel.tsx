@@ -51,8 +51,8 @@ const ProjectsCarousel: React.FC = () => {
             style={{ backgroundImage: `url(${projects[currentImg].URL})` }}
             className="col-span-2 h-full bg-center bg-cover duration-500"
           ></div>
-          <div className="col-span-3 py-40 ml-24">
-            <div className="py-5 mb-10 duration-1000">
+          <div className="static col-span-3 py-40 ml-24">
+            <div className="py-5 duration-1000">
               <h1 className="text-5xl font-light mb-10">
                 {projects[currentImg].header}
               </h1>
@@ -60,11 +60,12 @@ const ProjectsCarousel: React.FC = () => {
                 {projects[currentImg].text}
               </p>
             </div>
-            <div className="flex absolute justify-center aligng-center bottom-70">
-              <div className="text-2xl  text-indigo-800 hover:text-indigo-200 cursor-pointer">
-                <AiOutlineArrowLeft onClick={prevImg} size={50} />
-              </div>
-              {/* <div className="flex mx-2">
+          </div>
+          <div className="flex absolute justify-center aligng-center top-2/3 left-2/4">
+            <div className="text-2xl  text-indigo-800 hover:text-indigo-200 hover:scale-125 transition-all cursor-pointer">
+              <AiOutlineArrowLeft onClick={prevImg} size={50} />
+            </div>
+            {/* <div className="flex mx-2">
             {projects.map((project, projectIndex) => (
               <div
                 key={projectIndex}
@@ -73,9 +74,8 @@ const ProjectsCarousel: React.FC = () => {
               ></div>
             ))}
           </div> */}
-              <div className="text-2xl ml-10  text-indigo-800  hover:text-indigo-200 cursor-pointer">
-                <AiOutlineArrowRight onClick={nextImg} size={50} className="" />
-              </div>
+            <div className="text-2xl ml-10  text-indigo-800 hover:scale-125 transition-all  hover:text-indigo-200 cursor-pointer">
+              <AiOutlineArrowRight onClick={nextImg} size={50} className="" />
             </div>
           </div>
         </div>
