@@ -20,7 +20,7 @@ interface FormData {
   project_type: string
   project_level: string
   additional_info: string
-  construction: string[]
+  contractor: boolean
   package: Packages | undefined
 }
 const defaultData = {
@@ -37,7 +37,7 @@ const defaultData = {
   project_type: "",
   project_stage: "",
   additional_info: "",
-  contractor: [],
+  contractor: true,
   package: undefined,
 }
 
@@ -47,16 +47,20 @@ const Form: React.FC = () => {
   const { handleSubmit } = FormMethods
 
   const onFormSubmit = async (data: FormData) => {
+    const token =
+      "40c08a534448a91544103e934fad533513a6785a07d8a9773f4a3754e8decf6dd1190804437971b58854a3847c9c2614e90231e3392288fb14e8372411bebbdb74df58c4708f0065b0d600488bb6327187c910a9a80d2f2976c3910e7f571f597bbd12a760f4e0d8e7677c9bc95557505ad9ce42ab15cb13ab95fbbbfa1bddf1"
+
     try {
-      const response = await axios.post(
-        "https://strapi-km.herokuapp.com/api/inquiries",
-        {
-          headers: {
-            Authorization: `Bearer {40c08a534448a91544103e934fad533513a6785a07d8a9773f4a3754e8decf6dd1190804437971b58854a3847c9c2614e90231e3392288fb14e8372411bebbdb74df58c4708f0065b0d600488bb6327187c910a9a80d2f2976c3910e7f571f597bbd12a760f4e0d8e7677c9bc95557505ad9ce42ab15cb13ab95fbbbfa1bddf1}`,
-          },
-        }
-      )
-      console.log(response)
+      const response = await axios({
+        method: "POST",
+        url: "https://strapi-km.herokuapp.com/api/inquiries",
+        data: data,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      console.log(response.data)
     } catch (error) {
       console.error(error)
     }
