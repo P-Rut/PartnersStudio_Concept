@@ -1,27 +1,27 @@
-import { useForm, FormProvider } from "react-hook-form"
-import InputsWrapper from "./InputsWrapper"
-import Navbar from "../Navbar"
-import ChoosePackage from "../ChoosePackage"
+import { useForm, FormProvider } from "react-hook-form";
+import InputsWrapper from "./InputsWrapper";
+import Navbar from "../Navbar";
+import ChoosePackage from "../ChoosePackage";
 //@ts-ignore
-import { Packages } from "../../types"
-import axios from "axios"
+import { Packages } from "../../types";
+import axios from "axios";
 
 interface FormData {
-  name: string
-  email: string
-  phone: string
-  city: string
-  address: string
-  contact_preference: string[]
+  name: string;
+  email: string;
+  phone: string;
+  city: string;
+  address: string;
+  contact_preference: string[];
   photos: {
-    url: string
-    name: string
-  }
-  project_type: string
-  project_level: string
-  additional_info: string
-  contractor: boolean
-  package: Packages | undefined
+    url: string;
+    name: string;
+  };
+  project_type: string;
+  project_level: string;
+  additional_info: string;
+  contractor: boolean;
+  package: Packages | undefined;
 }
 const defaultData = {
   name: "",
@@ -39,32 +39,32 @@ const defaultData = {
   additional_info: "",
   contractor: true,
   package: undefined,
-}
+};
 
 const Form: React.FC = () => {
-  const FormMethods = useForm<FormData>({ defaultValues: defaultData })
+  const FormMethods = useForm<FormData>({ defaultValues: defaultData });
 
-  const { handleSubmit } = FormMethods
+  const { handleSubmit } = FormMethods;
 
   const onFormSubmit = async (data: FormData) => {
     const token =
-      "40c08a534448a91544103e934fad533513a6785a07d8a9773f4a3754e8decf6dd1190804437971b58854a3847c9c2614e90231e3392288fb14e8372411bebbdb74df58c4708f0065b0d600488bb6327187c910a9a80d2f2976c3910e7f571f597bbd12a760f4e0d8e7677c9bc95557505ad9ce42ab15cb13ab95fbbbfa1bddf1"
+      "40c08a534448a91544103e934fad533513a6785a07d8a9773f4a3754e8decf6dd1190804437971b58854a3847c9c2614e90231e3392288fb14e8372411bebbdb74df58c4708f0065b0d600488bb6327187c910a9a80d2f2976c3910e7f571f597bbd12a760f4e0d8e7677c9bc95557505ad9ce42ab15cb13ab95fbbbfa1bddf1";
 
     try {
       const response = await axios({
         method: "POST",
         url: "https://strapi-km.herokuapp.com/api/inquiries",
-        data: data,
+        data: { data },
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      })
+      });
 
-      console.log(response.data)
+      console.log(response.data);
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   return (
     <>
@@ -88,7 +88,7 @@ const Form: React.FC = () => {
         </FormProvider>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Form
+export default Form;

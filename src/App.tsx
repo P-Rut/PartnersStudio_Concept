@@ -1,8 +1,8 @@
-import "./App.css"
-import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Form from "./components/form/Form"
-import Homepage from "./components/Homepage"
-import Offer from "./components/Offer"
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Form from "./components/form/Form";
+import Homepage from "./components/HomePage";
+import Offer from "./components/Offer";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
