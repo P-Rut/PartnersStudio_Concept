@@ -15,7 +15,7 @@ const ChoosePackage: React.FC = () => {
     <>
       <div className="bg-gray-50">
         <Navbar />
-        <div className="h-[800px] grid grid-cols-3 grid-rows-3 gap-x-5 gap-y-10 p-10">
+        <div className="h-[800px] grid grid-cols-3 grid-rows-3 gap-x-5 gap-y-10 pt-20 pb-10 px-10">
           <div className="row-span-2 border  border-black">
             <div className="flex justify-end">
               <input
@@ -53,7 +53,7 @@ const ChoosePackage: React.FC = () => {
                     <div className=" bg-indigo-50 flex-shrink-0 w-6 h-6 text-indigo-900 ">
                       <CheckIcon />
                     </div>
-                    <span className="font-extralight">
+                    <span className="font-extralight text-sm">
                       Work with dedicated profesional designers
                     </span>
                   </li>
@@ -61,7 +61,7 @@ const ChoosePackage: React.FC = () => {
                     <div className=" bg-indigo-50 flex-shrink-0 w-6 h-6 text-indigo-900 ">
                       <CheckIcon />
                     </div>
-                    <span className="font-extralight">
+                    <span className="font-extralight text-sm">
                       High-quality 3D visualizations and virtual walkthroughs.
                     </span>
                   </li>
@@ -69,7 +69,7 @@ const ChoosePackage: React.FC = () => {
                     <div className=" bg-indigo-50 flex-shrink-0 w-6 h-6 text-indigo-900 ">
                       <CheckIcon />
                     </div>
-                    <span className="font-extralight">
+                    <span className="font-extralight text-sm">
                       Matching visualization space where you live.
                     </span>
                   </li>
@@ -77,7 +77,7 @@ const ChoosePackage: React.FC = () => {
                     <div className=" bg-indigo-50 flex-shrink-0 w-6 h-6 text-indigo-900 ">
                       <CheckIcon />
                     </div>
-                    <span className="font-extralight">
+                    <span className="font-extralight text-sm">
                       Full shopping list of materials and furnitures included in
                       3D renderings
                     </span>
@@ -126,7 +126,7 @@ const ChoosePackage: React.FC = () => {
                     <div className=" bg-indigo-50 flex-shrink-0 w-6 h-6 text-indigo-900 ">
                       <CheckIcon />
                     </div>
-                    <span className="font-extralight">
+                    <span className="font-extralight text-sm">
                       Everything that Basic plan includes.
                     </span>
                   </li>
@@ -134,7 +134,7 @@ const ChoosePackage: React.FC = () => {
                     <div className=" bg-indigo-50 flex-shrink-0 w-6 h-6 text-indigo-900 ">
                       <CheckIcon />
                     </div>
-                    <span className="font-extralight">
+                    <span className="font-extralight text-sm">
                       Professional construction plans, blueprints, technical
                       drawings, and specifications.
                     </span>
@@ -143,7 +143,7 @@ const ChoosePackage: React.FC = () => {
                     <div className=" bg-indigo-50 flex-shrink-0 w-6 h-6 text-indigo-900 ">
                       <CheckIcon />
                     </div>
-                    <span className="font-extralight">
+                    <span className="font-extralight text-sm">
                       Meetings and advice with constructors and architects who
                       will analyze your project.
                     </span>
@@ -152,7 +152,7 @@ const ChoosePackage: React.FC = () => {
                     <div className=" bg-indigo-50 flex-shrink-0 w-6 h-6 text-indigo-900 ">
                       <CheckIcon />
                     </div>
-                    <span className="font-extralight">
+                    <span className="font-extralight text-sm">
                       All you need to obtain permits and begin the construction
                       process.
                     </span>
@@ -203,7 +203,7 @@ const ChoosePackage: React.FC = () => {
                     <div className=" bg-indigo-50 flex-shrink-0 w-6 h-6 text-indigo-900 ">
                       <CheckIcon />
                     </div>
-                    <span className="font-extralight">
+                    <span className="font-extralight text-sm">
                       End-to-end design and building supervision.
                     </span>
                   </li>
@@ -211,7 +211,7 @@ const ChoosePackage: React.FC = () => {
                     <div className=" bg-indigo-50 flex-shrink-0 w-6 h-6 text-indigo-900 ">
                       <CheckIcon />
                     </div>
-                    <span className="font-extralight">
+                    <span className="font-extralight text-sm">
                       High-quality 3D visualizations and virtual walkthroughs
                       (included in Basic package).
                     </span>
@@ -220,7 +220,7 @@ const ChoosePackage: React.FC = () => {
                     <div className=" bg-indigo-50 flex-shrink-0 w-6 h-6 text-indigo-900 ">
                       <CheckIcon />
                     </div>
-                    <span className="font-extralight">
+                    <span className="font-extralight text-sm">
                       Professional construction plans, blueprints, technical
                       drawings, and specifications (included in Plus package).
                     </span>
@@ -229,7 +229,7 @@ const ChoosePackage: React.FC = () => {
                     <div className=" bg-indigo-50 flex-shrink-0 w-6 h-6 text-indigo-900 ">
                       <CheckIcon />
                     </div>
-                    <span className="font-extralight">
+                    <span className="font-extralight text-sm">
                       Expert team guidance to ensure that the final result meets
                       your needs and exceeds your expectations.
                     </span>
@@ -238,8 +238,8 @@ const ChoosePackage: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="w-full col-span-3 border border-black">
-            <p className="p-10 text-4xl font-light leading-tight">
+          <div className="col-span-3 border flex items-center px-20 border-black">
+            <p className="text-3xl font-light leading-tight">
               After choosing a package that best suits your needs please provide
               us below with your design requirements as well as vision for the
               project.

@@ -45,8 +45,8 @@ const ProjectsCarousel: React.FC = () => {
 
   return (
     <>
-      <div className="border bg-gray-50">
-        <div className="max-w-[1440px] h-[750px] py-10 px-20 w-full m-auto grid grid-cols-5 relative ">
+      <div className=" bg-gray-50">
+        <div className="max-w-[1440px] h-[700px] py-10 px-20 w-full m-auto grid grid-cols-5 relative ">
           <div
             style={{ backgroundImage: `url(${projects[currentImg].URL})` }}
             className="col-span-2 h-full bg-center bg-cover duration-500"
@@ -61,9 +61,9 @@ const ProjectsCarousel: React.FC = () => {
               </p>
             </div>
           </div>
-          <div className="flex absolute justify-center aligng-center top-2/3 left-2/4">
+          <div className="flex absolute justify-center aligng-center top-3/4 left-2/4">
             <div className="text-2xl  text-indigo-800 hover:text-indigo-200 hover:scale-125 transition-all cursor-pointer">
-              <AiOutlineArrowLeft onClick={prevImg} size={50} />
+              <AiOutlineArrowLeft onClick={prevImg} size={40} />
             </div>
             {/* <div className="flex mx-2">
             {projects.map((project, projectIndex) => (
@@ -75,7 +75,7 @@ const ProjectsCarousel: React.FC = () => {
             ))}
           </div> */}
             <div className="text-2xl ml-10  text-indigo-800 hover:scale-125 transition-all  hover:text-indigo-200 cursor-pointer">
-              <AiOutlineArrowRight onClick={nextImg} size={50} className="" />
+              <AiOutlineArrowRight onClick={nextImg} size={40} className="" />
             </div>
           </div>
         </div>
