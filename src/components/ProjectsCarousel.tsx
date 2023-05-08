@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai"
-import Navbar from "./Navbar"
 
 const ProjectsCarousel: React.FC = () => {
   const projects = [
@@ -46,7 +45,7 @@ const ProjectsCarousel: React.FC = () => {
   return (
     <>
       <div className=" bg-gray-50">
-        <div className="max-w-[1440px] h-[700px] py-10 px-20 w-full m-auto grid grid-cols-5 relative ">
+        <div className="max-w-[1440px] h-[750px] py-10 px-20 w-full m-auto grid grid-cols-5 relative ">
           <div
             style={{ backgroundImage: `url(${projects[currentImg].URL})` }}
             className="col-span-2 h-full bg-center bg-cover duration-500"

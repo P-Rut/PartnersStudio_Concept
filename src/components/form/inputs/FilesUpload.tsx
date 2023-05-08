@@ -1,24 +1,36 @@
 import { useFormContext } from "react-hook-form"
 
 const FilesUpload: React.FC = () => {
-  const { register } = useFormContext()
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext()
   return (
-    <div className="border-solid border mb-5 w-full border-black bg-gray-50">
-      <label
-        className="block text-xl font-thin ml-7 mt-5 mb-2 "
-        htmlFor="files_upload"
-      >
-        Please upload project drawings or photos ↓
-      </label>
-      <div className=" border-gray-400 py-5 flex flex-col mx-8">
-        <input
-          {...register("photos")}
-          type="file"
-          className="font-thin text-medium file:hover:bg-indigo-200 file:cursor-pointer file:px-4 file:py-2 file:border-0 file:text-indigo-900 file:font-light file:text-lg file:bg-indigo-50 file:mr-6"
-          multiple
-        />
+    <>
+      <div className="border-solid border mb-5 w-full border-black bg-gray-50">
+        <label
+          className="block text-xl font-thin ml-7 mt-5 mb-2 "
+          htmlFor="files_upload"
+        >
+          Please upload project drawings or photos ↓
+        </label>
+        {errors.photos?.type === "required" && (
+          <>
+            <span className="ml-7 text-red-500 font-light ">
+              Photos are required
+            </span>
+          </>
+        )}
+        <div className=" border-gray-400 py-5 flex flex-col mx-8">
+          <input
+            {...register("photos", { required: true })}
+            type="file"
+            className="font-thin text-medium file:hover:bg-indigo-200 file:cursor-pointer file:px-4 file:py-2 file:border-0 file:text-indigo-900 file:font-light file:text-lg file:bg-indigo-50 file:mr-6"
+            multiple
+          />
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

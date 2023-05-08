@@ -15,8 +15,8 @@ const ConstructorInput: React.FC = () => {
           <input
             {...register("contractor")}
             id="checkbox"
-            type="checkbox"
-            value="yes"
+            type="radio"
+            value="true"
             className="w-5 h-5 bg-gray-100"
           />
           <label
@@ -31,8 +31,8 @@ const ConstructorInput: React.FC = () => {
           <input
             {...register("contractor")}
             id="checkbox"
-            type="checkbox"
-            value="no"
+            type="radio"
+            value="false"
             className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-600 focus:ring-blue-500"
           />
           <label htmlFor="checkbox" className="ml-2 font-thin  text-gray-900">
@@ -43,8 +43,8 @@ const ConstructorInput: React.FC = () => {
           <input
             {...register("contractor")}
             id="checkbox"
-            type="checkbox"
-            value="not_sure"
+            type="radio"
+            value="undefined"
             className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-600 focus:ring-blue-500"
           />
           <label htmlFor="checkbox" className="ml-2 font-thin  text-gray-900">

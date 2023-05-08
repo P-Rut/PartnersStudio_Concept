@@ -51,20 +51,26 @@ const Navbar: React.FC = () => {
               <ul className="flex flex-col mb-10 gap-10 text-3xl font-thin">
                 <li
                   onClick={(e) => (window.location.href = "/")}
-                  className=" cursor-pointer hover:scale-105 hover:pl-10 transition-all"
+                  className="cursor-pointer  hover:pl-10 transition-all hover:text-indigo-300"
                 >
                   Home
                 </li>
                 <li
                   onClick={(e) => (window.location.href = "/offer")}
-                  className=" cursor-pointer hover:scale-110 hover:pl-10 transition-all"
+                  className="cursor-pointer  hover:pl-10 transition-all hover:text-indigo-300"
                 >
                   Offer
                 </li>
-                <li className=" hover:scale-110 hover:pl-10 transition-all">
+                <li
+                  onClick={(e) => (window.location.href = "/contact")}
+                  className="cursor-pointer hover:pl-10 transition-all hover:text-indigo-300"
+                >
                   Contact
                 </li>
-                <li className=" hover:scale-110 hover:pl-10 transition-all">
+                <li
+                  onClick={(e) => (window.location.href = "/team")}
+                  className="cursor-pointer hover:pl-10 transition-all hover:text-indigo-300"
+                >
                   Team
                 </li>
               </ul>
