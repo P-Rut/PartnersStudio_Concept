@@ -47,7 +47,13 @@ const Team: React.FC = () => {
               </p>
               <div className="flex">
                 <p className="font-light mr-1">Contact : </p>
-                <p className="mr-1 font-light underline underline-offset-4 decoration-indigo-800">
+                <p
+                  onClick={() =>
+                    (window.location.href =
+                      "mailto:johnsmith@partnersstudio.com")
+                  }
+                  className="cursor-pointer hover:text-indigo-300 mr-1 font-light underline underline-offset-4 decoration-indigo-800"
+                >
                   johnsmith@partnersstudio.com
                 </p>
                 <p className="font-light">/ +1 (555) 123-4567</p>
@@ -78,7 +84,13 @@ const Team: React.FC = () => {
               </p>
               <div className="flex">
                 <p className="font-light mr-1">Contact : </p>
-                <p className="mr-1 font-light underline underline-offset-4 decoration-indigo-800">
+                <p
+                  onClick={() =>
+                    (window.location.href =
+                      "mailto:sarahlee@architecturalstudio.com")
+                  }
+                  className="cursor-pointer hover:text-indigo-300 mr-1 font-light underline underline-offset-4 decoration-indigo-800"
+                >
                   sarahlee@architecturalstudio.com
                 </p>
                 <p className="font-light">/ +1 (555) 234-5678</p>
@@ -110,7 +122,13 @@ const Team: React.FC = () => {
               </p>
               <div className="flex">
                 <p className="font-light mr-1">Contact : </p>
-                <p className="mr-1 font-light underline underline-offset-4 decoration-indigo-800">
+                <p
+                  onClick={() =>
+                    (window.location.href =
+                      "mailto:michaelchen@architecturalstudio.com")
+                  }
+                  className="cursor-pointer hover:text-indigo-300 mr-1 font-light underline underline-offset-4 decoration-indigo-800"
+                >
                   michaelchen@architecturalstudio.com
                 </p>
                 <p className="font-light">/ +1 (555) 345-6789</p>
@@ -142,7 +160,13 @@ const Team: React.FC = () => {
               </p>
               <div className="flex">
                 <p className="font-light mr-1">Contact : </p>
-                <p className="mr-1 font-light underline underline-offset-4 decoration-indigo-800">
+                <p
+                  onClick={() =>
+                    (window.location.href =
+                      "mailto:davidsingh@partnersstudio.com")
+                  }
+                  className="cursor-pointer hover:text-indigo-300 mr-1 font-light underline underline-offset-4 decoration-indigo-800"
+                >
                   davidsingh@partnersstudio.com
                 </p>
                 <p className="font-light">/ +1 (555) 456-7890</p>
@@ -173,7 +197,13 @@ const Team: React.FC = () => {
               </p>
               <div className="flex">
                 <p className="font-light mr-1">Contact : </p>
-                <p className="mr-1 font-light underline underline-offset-4 decoration-indigo-800">
+                <p
+                  onClick={() =>
+                    (window.location.href =
+                      "mailto:emilymartinez@partnersstudio.com")
+                  }
+                  className=" cursor-pointer hover:text-indigo-300 mr-1 font-light underline underline-offset-4 decoration-indigo-800"
+                >
                   emilymartinez@partnersstudio.com
                 </p>
                 <p className="font-light">/ +1 (555) 567-8901</p>

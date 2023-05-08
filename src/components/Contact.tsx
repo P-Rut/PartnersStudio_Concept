@@ -19,7 +19,12 @@ const Contact: React.FC = () => {
                   If you have questions about your project or our work status
                   you can contact as by email at
                 </p>
-                <p className="text-xl font-extralight">
+                <p
+                  onClick={() =>
+                    (window.location.href = "mailto:contact@partenrsstudio.com")
+                  }
+                  className="cursor-pointer hover:text-indigo-300 text-xl font-extralight"
+                >
                   contact@partenrsstudio.com
                 </p>
                 <p className="text-xl inline-block text-gray-300 font-extralight">
@@ -36,7 +41,7 @@ const Contact: React.FC = () => {
                 </p>
                 <p
                   onClick={(e) => (window.location.href = "/team")}
-                  className="inline-block text-xl underline underline-offset-4 decoration-indigo-900 cursor-pointer hover:text-indigo-200"
+                  className="inline-block text-xl font-extralight underline underline-offset-4 hover:decoration-indigo-300 decoration-indigo-900 cursor-pointer hover:text-indigo-200"
                 >
                   here
                 </p>
