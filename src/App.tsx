@@ -1,10 +1,11 @@
 import "./App.css"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Form from "./components/form/Form"
-import Homepage from "./components/Homepage"
+import Homepage from "./components/HomePage"
 import Offer from "./components/Offer"
 import Team from "./components/Team"
 import Contact from "./components/Contact"
+import AdministrationPanel from "./components/AdministrationPanel"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/offer" element={<Offer />} />
           <Route path="/team" element={<Team />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/admin" element={<AdministrationPanel />} />
         </Routes>
       </BrowserRouter>
     </div>

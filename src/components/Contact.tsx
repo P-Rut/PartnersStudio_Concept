@@ -3,19 +3,19 @@ import Navbar from "./Navbar"
 const Contact: React.FC = () => {
   return (
     <>
-      <div className="h-screen">
+      <div className="h-screen bg-gray-50">
         <Navbar />
-        <div className="bg-gray-50">
+        <div>
           <div className="p-32 w-4/6">
             <div>
               <h1 className="text-5xl font-light mb-3">Contact</h1>
-              <p className="text-xl text-gray-300 font-extralight">
+              <p className="text-xl text-gray-400 font-extralight">
                 Please do not hesitate to contact us !
               </p>
             </div>
             <div className="mt-10 grid gap-10">
               <div>
-                <p className="text-xl text-gray-300 font-thin">
+                <p className="text-xl text-gray-400 font-thin">
                   If you have questions about your project or our work status
                   you can contact as by email at
                 </p>
@@ -27,7 +27,7 @@ const Contact: React.FC = () => {
                 >
                   contact@partenrsstudio.com
                 </p>
-                <p className="text-xl inline-block text-gray-300 font-extralight">
+                <p className="text-xl inline-block text-gray-400 font-extralight">
                   or our office number :
                 </p>
                 <p className="ml-1 inline-block text-xl font-extralight">
@@ -35,7 +35,7 @@ const Contact: React.FC = () => {
                 </p>
               </div>
               <div>
-                <p className="text-xl text-gray-300 font-extralight">
+                <p className="text-xl text-gray-400 font-extralight">
                   Also if you would like to contact directly with one of our
                   employees you can do it by clicking
                 </p>
@@ -45,11 +45,11 @@ const Contact: React.FC = () => {
                 >
                   here
                 </p>
-                <p className="text-xl text-gray-300 font-extralight inline-block ml-2">
+                <p className="text-xl text-gray-400 font-extralight inline-block ml-2">
                   and choosing one of provided emails.
                 </p>
               </div>
-              <p className="text-xl text-gray-300 font-extralight">
+              <p className="text-xl text-gray-400 font-extralight">
                 Our office is open Monday to Friday 9am - 6pm
               </p>
             </div>
