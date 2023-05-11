@@ -2,18 +2,19 @@ import axios from "axios"
 import { XMarkIcon } from "@heroicons/react/24/outline"
 import Navbar from "./Navbar"
 import React, { useState, useEffect } from "react"
+import { Inquiriy } from "../types/FormData"
+
+const backendUrl = "https://strapi-km.herokuapp.com"
 
 function AdministrationPanel() {
-  const [inquiries, setInquiries] = useState<any[]>([])
-  const token =
-    "40c08a534448a91544103e934fad533513a6785a07d8a9773f4a3754e8decf6dd1190804437971b58854a3847c9c2614e90231e3392288fb14e8372411bebbdb74df58c4708f0065b0d600488bb6327187c910a9a80d2f2976c3910e7f571f597bbd12a760f4e0d8e7677c9bc95557505ad9ce42ab15cb13ab95fbbbfa1bddf1"
-  const getUrl = "https://strapi-km.herokuapp.com/api/inquiries?populate=*"
+  const [inquiries, setInquiries] = useState<Inquiriy[]>([])
+  const getUrl = `${process.env.REACT_APP_URL}/api/inquiries?populate=*`
 
   useEffect(() => {
     axios
       .get(getUrl, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
         },
       })
       .then((response) => {
@@ -28,9 +29,9 @@ function AdministrationPanel() {
       window.confirm("Are you sure you want to delete this client enquiry ?")
     ) {
       axios
-        .delete(`https://strapi-km.herokuapp.com/api/inquiries/${id}`, {
+        .delete(`${process.env.REACT_APP_URL}/api/inquiries/${id}`, {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
           },
         })
         .then((res) => {
@@ -49,7 +50,7 @@ function AdministrationPanel() {
       <Navbar />
 
       <>
-        {inquiries.map(({ attributes, id }) => {
+        {inquiries.map(({ attributes, id }: Inquiriy) => {
           return (
             <>
               <div className="w-screen h-screen">
@@ -69,7 +70,7 @@ function AdministrationPanel() {
                     <p className="text-gray-400 font-thin text-xs">Email</p>
                     <p
                       onClick={() =>
-                        (window.location.href = `mailto:${attributes.mail}`)
+                        (window.location.href = `mailto:${attributes.email}`)
                       }
                       className="py-2 pl-7 mb-2 bg-gray-50 text-gray-900 text-xs border-black border font-light"
                     >
@@ -93,7 +94,9 @@ function AdministrationPanel() {
                       Contact Preference
                     </p>
                     <p className="py-2 pl-7 mb-2  bg-gray-50 text-gray-900 text-xs border-black border font-light">
-                      {attributes.contact_preferences}
+                      {Array.isArray(attributes.contact_preference)
+                        ? attributes.contact_preference.join(" ")
+                        : "No contact preferences specified"}
                     </p>
                     <p className="text-gray-400 font-thin text-xs">
                       Project Level
@@ -119,14 +122,17 @@ function AdministrationPanel() {
                     <p className="py-2 px-7 mb-2  bg-gray-50 text-gray-900 text-xs border-black border font-light">
                       {attributes.additional_info}
                     </p>
-                    {/* <p className="text-gray-400 font-thin text-xs">
-                    Uploaded Photos
-                  </p>
-                  <p className="py-2 pl-7 mb-2  bg-gray-50 text-gray-900 text-xs border-black border font-light">
-                    {attributes.photos.data?.map((id: any) => (
-                      <p>{id}</p>
-                    ))}
-                  </p> */}
+                    <p className="text-gray-400 font-thin text-xs">
+                      Uploaded Photos
+                    </p>
+                    <p className="py-2 pl-7 mb-2  bg-gray-50 text-gray-900 text-xs border-black border font-light">
+                      {attributes.photos.data?.map((photo) => (
+                        <img
+                          src={`${backendUrl}${photo.attributes.url}`}
+                          alt="photo"
+                        />
+                      ))}
+                    </p>
                   </div>
                 </div>
               </div>

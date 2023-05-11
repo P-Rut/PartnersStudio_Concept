@@ -32,7 +32,7 @@ const defaultData = {
   contact_preference: [],
   photos: undefined,
   project_type: "",
-  project_stage: "",
+  project_level: "",
   additional_info: "",
   contractor: undefined,
   package: undefined,
@@ -63,8 +63,12 @@ const Form: React.FC = () => {
         },
       })
       const photoIds: number[] = res.data.map((e: { id: number }) => e.id)
-      let dataCopy: InquiryPayload = { ...data, photos: photoIds }
+      let dataCopy: InquiryPayload = {
+        ...data,
+        photos: photoIds,
+      }
 
+      console.log(dataCopy)
       const response = await axios({
         method: "POST",
         url: "https://strapi-km.herokuapp.com/api/inquiries",
