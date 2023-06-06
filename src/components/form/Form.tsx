@@ -43,7 +43,7 @@ const defaultData = {
 const Form: React.FC = () => {
   const FormMethods = useForm<FormData>({ defaultValues: defaultData })
 
-  const { handleSubmit } = FormMethods
+  const { handleSubmit, reset } = FormMethods
 
   const onFormSubmit = async (data: FormData) => {
     const token =
@@ -67,7 +67,7 @@ const Form: React.FC = () => {
         ...data,
         photos: photoIds,
       }
-
+      window.alert("Are you sure you want to submit this form ?")
       console.log(dataCopy)
       const response = await axios({
         method: "POST",
@@ -77,10 +77,14 @@ const Form: React.FC = () => {
           Authorization: `Bearer ${token}`,
         },
       })
+
       console.log("Inquiry", response.data)
     } catch (error) {
       console.log(error)
     }
+
+    reset()
+    window.alert("Form submitted")
   }
 
   return (

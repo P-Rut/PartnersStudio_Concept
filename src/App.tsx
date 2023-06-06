@@ -5,7 +5,7 @@ import Homepage from "./components/HomePage"
 import Offer from "./components/Offer"
 import Team from "./components/Team"
 import Contact from "./components/Contact"
-import AdministrationPanel from "./components/AdministrationPanel"
+import AdministrationPanel from "./components/administration/AdministrationPanel"
 
 function App() {
   return (

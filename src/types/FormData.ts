@@ -1,32 +1,32 @@
-import { Packages } from "../types";
+import { Packages } from "../types"
 
 export interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  city: string;
-  address: string;
-  contact_preference?: string[];
-  photos: Array<string | Blob>;
-  project_type: string;
-  project_level: string;
-  additional_info: string;
-  contractor: boolean;
-  package: Packages | undefined;
+  name: string
+  email: string
+  phone: string
+  city: string
+  address: string
+  contact_preference?: string[]
+  photos: Array<string | Blob>
+  project_type: string
+  project_level: string
+  additional_info: string
+  contractor: boolean
+  package: Packages | undefined
 }
 
 interface Photo {
-  attributes: PhotoAttributes;
-  id: number;
+  attributes: PhotoAttributes
+  id: number
 }
 
 interface PhotoAttributes {
-  url: string;
+  url: string
 }
 
 export interface Inquiriy {
-  id: number;
+  id: number
   attributes: Omit<FormData, "photos"> & {
-    photos: { data: Array<Photo> };
-  };
+    photos: { data: Array<Photo> }
+  }
 }
