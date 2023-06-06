@@ -67,7 +67,7 @@ const Form: React.FC = () => {
         ...data,
         photos: photoIds,
       }
-
+      window.alert("Are you sure you want to submit this form ?")
       console.log(dataCopy)
       const response = await axios({
         method: "POST",
