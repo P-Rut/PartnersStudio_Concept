@@ -3,8 +3,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline"
 import Navbar from "../Navbar"
 import React, { useState, useEffect } from "react"
 import { Inquiriy } from "../../types/FormData"
-import { DataTable } from "./table/data-table"
-import { columns } from "./table/columns"
+import Pagination from "./Pagination"
 
 const backendUrl = "https://strapi-km.herokuapp.com"
 
@@ -12,10 +11,26 @@ function AdministrationPanel() {
   const [inquiries, setInquiries] = useState<Inquiriy[]>([])
   const getUrl = `${process.env.REACT_APP_URL}/api/inquiries?populate=*`
   const [isDropdown, setIsDropdown] = useState(false)
-
   const openAdditionalInfo = (id: any) => {
     setInquiries(inquiries.filter((item) => (item.id = id)))
     setIsDropdown((prev) => !prev)
+  }
+  const [currentPage, setCurrentPage] = useState(1)
+  const [InquiryPerPage] = useState(5)
+  const indexOfLastInquiry = currentPage * InquiryPerPage
+  const indexOfFirstInquiry = indexOfLastInquiry - InquiryPerPage
+  const currentInquiry = inquiries.slice(
+    indexOfFirstInquiry,
+    indexOfLastInquiry
+  )
+
+  const paginate = (InquiryNumber: any) => setCurrentPage(InquiryNumber)
+
+  function Next() {
+    currentPage < 5 && setCurrentPage(currentPage + 1)
+  }
+  function Prev() {
+    currentPage > 1 && setCurrentPage(currentPage - 1)
   }
 
   useEffect(() => {
@@ -56,25 +71,27 @@ function AdministrationPanel() {
   return (
     <>
       <Navbar />
-      <div className="w-screen py-20 px-10 ">
-        <table className="w-full border">
-          <thead className="text-indigo-900 uppercase bg-indigo-50 pt-20 text-sm font-light underline underline-offset-2">
-            <th className="p-3">Client's id</th>
-            <th className="p-3">Name</th>
-            <th className="p-3">Email</th>
-            <th className="p-3">Phone</th>
-            <th className="p-3">City</th>
-            <th className="p-3">Address</th>
-            <th className="p-3">Contact</th>
-            <th className="p-3"> Stage</th>
-            <th className="p-3">Type</th>
-            <th className="p-3">Contructor</th>
-            <th className="p-3">Additional Info</th>
-            <th className="p-3">Photos</th>
-            <th className="p-3">CTA</th>
+      <div className="pt-12 h-screen">
+        <table className=" table-fixed border">
+          <thead className="w-full text-indigo-900 uppercase bg-indigo-50 pt-20 text-sm font-light underline underline-offset-2">
+            <tr>
+              <th className="p-3 w-30 bg-indigo-300">Client's id</th>
+              <th className="p-3 w-52 bg-red-200">Name</th>
+              <th className="p-3 w-52">Email</th>
+              <th className="p-3 w-52">Phone</th>
+              <th className="p-3 w-52">City</th>
+              <th className="p-3 w-52">Address</th>
+              <th className="p-3 w-52">Contact</th>
+              <th className="p-3 w-52"> Stage</th>
+              <th className="p-3 w-52">Type</th>
+              <th className="p-3 w-52">Contructor</th>
+              <th className="p-3 w-52">Additional Info</th>
+              <th className="p-3 w-52">Photos</th>
+              <th className="p-3 w-30">CTA</th>
+            </tr>
           </thead>
           <>
-            {inquiries.map(({ attributes, id }: Inquiriy) => {
+            {currentInquiry.map(({ attributes, id }: Inquiriy) => {
               return (
                 <>
                   <tbody className="text-xs text-center border content-center">
@@ -107,7 +124,7 @@ function AdministrationPanel() {
                           </div>
                         </div>
                       </td>
-                      <td>
+                      <td className="flex">
                         {attributes.photos.data?.map((photo) => (
                           <img
                             className="w-12 mx-auto"
@@ -129,6 +146,17 @@ function AdministrationPanel() {
             })}
           </>
         </table>
+
+        <div className="flex items-center justify-center">
+          <Pagination
+            inquiriesPerPage={InquiryPerPage}
+            totalInquiries={inquiries.length}
+            paginate={paginate}
+            next={Next}
+            prev={Prev}
+            currentPage={currentPage}
+          />
+        </div>
       </div>
     </>
   )
