@@ -10,7 +10,7 @@ function AdministrationPanel() {
   const [inquiries, setInquiries] = useState<Inquiriy[]>([])
   const getUrl = `${process.env.REACT_APP_URL}/api/inquiries?populate=*`
   const [currentPage, setCurrentPage] = useState(1)
-  const InquiryPerPage = 5
+  const InquiryPerPage = 2
   const indexOfLastInquiry = currentPage * InquiryPerPage
   const indexOfFirstInquiry = indexOfLastInquiry - InquiryPerPage
   const currentInquiry = inquiries.slice(
@@ -32,7 +32,7 @@ function AdministrationPanel() {
         setInquiries(InquiriesData.data)
         console.log(InquiriesData.data)
       })
-  })
+  }, [])
 
   //Delete Inquiry
 
@@ -69,33 +69,35 @@ function AdministrationPanel() {
 
   return (
     <>
-      <Navbar />
-      <div className="pt-12 h-screen">
-        <table className=" table-fixed border">
-          <InquiriesTable />
-          <>
-            {currentInquiry.map(({ attributes, id }: Inquiriy) => {
-              return (
-                <>
-                  <Inquiry
-                    item={attributes}
-                    id={id}
-                    deleteInquiry={deleteInquiry}
-                  />
-                </>
-              )
-            })}
-          </>
-        </table>
-        <div className="flex items-center justify-center">
-          <Pagination
-            inquiriesPerPage={InquiryPerPage}
-            totalInquiries={inquiries.length}
-            paginate={paginate}
-            next={Next}
-            prev={Prev}
-            currentPage={currentPage}
-          />
+      <div className="min-h-screen">
+        <Navbar />
+        <div className="pt-12 h-screen">
+          <table className="table-fixed border w-full">
+            <InquiriesTable />
+            <>
+              {currentInquiry.map(({ attributes, id }: Inquiriy) => {
+                return (
+                  <>
+                    <Inquiry
+                      item={attributes}
+                      id={id}
+                      deleteInquiry={deleteInquiry}
+                    />
+                  </>
+                )
+              })}
+            </>
+          </table>
+          <div className="flex items-center justify-center">
+            <Pagination
+              inquiriesPerPage={InquiryPerPage}
+              totalInquiries={inquiries.length}
+              paginate={paginate}
+              next={Next}
+              prev={Prev}
+              currentPage={currentPage}
+            />
+          </div>
         </div>
       </div>
     </>

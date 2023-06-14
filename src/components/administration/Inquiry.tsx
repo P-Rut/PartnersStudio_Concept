@@ -14,11 +14,13 @@ const Inquiry: React.FC<PropsType> = ({ item, id, deleteInquiry }) => {
     setIsDropdown((prev) => !prev)
   }
 
+  const buttonText = isDropdown ? "Close" : "Open"
+
   return (
     <tbody key={item.id} className="text-xs text-center border content-center">
       <tr>
         <td className="text-xl text-indigo-900">{id}</td>
-        <td>{item.name}</td>
+        <td className="p-4">{item.name}</td>
         <td>{item.email}</td>
         <td>{item.phone}</td>
         <td>{item.city}</td>
@@ -29,36 +31,39 @@ const Inquiry: React.FC<PropsType> = ({ item, id, deleteInquiry }) => {
         <td>{item.contractor ? "Yes" : "No"}</td>
         <td>
           <button
-            className="bg-indigo-900 text-white h-5 w-16 border"
+            className={`bg-indigo-900 text-gray-50 cursor-pointer transition-all transform  hover:font-bold mx-auto h-5 w-10 border ${
+              isDropdown ? "" : " text-indigo-900 bg-transparent"
+            }`}
             onClick={() => openAdditionalInfo(id)}
           >
-            dropdown
+            {buttonText}
           </button>
           <div
-            className={`transition ease-linear w-screen h-4/6 bg-gray-200 text-black left-0 p-1 absolute ${
+            className={`transition duration-300 ease-in-out h-3/6 left-0 mt-8 z-50 p-2 font-light bg-gray-50 text-black absolute  ${
               isDropdown ? "" : "opacity-0 invisible"
             }`}
           >
-            <div className=" mt-1">
-              {id}
-              {item.additional_info}
+            <div className="grid grid-rows-2 grid-cols-2 gap-10">
+              <div className="row-span-2 text-lg text-justify leading-7 font-extralight">
+                {item.additional_info}
+              </div>
+              <div className="flex">
+                {item.photos.data?.map((photo: any, id: number) => (
+                  <img
+                    key={item.id}
+                    className="w-3/6  mx-auto"
+                    src={`${backendUrl}${photo.attributes.url}`}
+                    alt=""
+                  />
+                ))}
+              </div>
             </div>
           </div>
-        </td>
-        <td className="flex">
-          {item.photos.data?.map((photo: any, id: number) => (
-            <img
-              key={item.id}
-              className="w-12 mx-auto"
-              src={`${backendUrl}${photo.attributes.url}`}
-              alt=""
-            />
-          ))}
         </td>
         <td>
           <XMarkIcon
             onClick={() => deleteInquiry(id)}
-            className="mx-auto bg-indigo-900 text-white h-5 w-5 hover:scale-110 hover:border hover:border-indigo-900 hover:bg-indigo-100 hover:text-indigo-900 cursor-pointer"
+            className="transition-all transform mx-auto bg-indigo-900 text-white h-5 w-5 hover:scale-110 hover:border hover:border-indigo-900 hover:bg-indigo-100 hover:text-indigo-900 cursor-pointer"
           />
         </td>
       </tr>
