@@ -1,3 +1,4 @@
+import React from "react"
 import axios from "axios"
 import Navbar from "../Navbar"
 import { useState, useEffect } from "react"
@@ -5,12 +6,14 @@ import { Inquiriy } from "../../types/FormData"
 import Pagination from "./Pagination"
 import Inquiry from "./Inquiry"
 import InquiriesTable from "./InquiriesTable"
+import Spinner from "../../assets/spin.gif"
 
 function AdministrationPanel() {
   const [inquiries, setInquiries] = useState<Inquiriy[]>([])
+  const [isLoading, setIsLoading] = useState(false)
   const getUrl = `${process.env.REACT_APP_URL}/api/inquiries?populate=*`
   const [currentPage, setCurrentPage] = useState(1)
-  const InquiryPerPage = 2
+  const InquiryPerPage = 4
   const indexOfLastInquiry = currentPage * InquiryPerPage
   const indexOfFirstInquiry = indexOfLastInquiry - InquiryPerPage
   const currentInquiry = inquiries.slice(
@@ -21,17 +24,20 @@ function AdministrationPanel() {
   //Download Inquiry
 
   useEffect(() => {
-    axios
-      .get(getUrl, {
+    const fun = async () => {
+      setIsLoading(true)
+      const response = await axios.get(getUrl, {
         headers: {
           Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
         },
       })
-      .then((response) => {
-        const InquiriesData = response.data
-        setInquiries(InquiriesData.data)
-        console.log(InquiriesData.data)
-      })
+      setIsLoading(false)
+      const InquiriesData = response.data
+      setInquiries(InquiriesData.data)
+      console.log(InquiriesData.data)
+    }
+
+    fun()
   }, [])
 
   //Delete Inquiry
@@ -67,40 +73,42 @@ function AdministrationPanel() {
     currentPage > 1 && setCurrentPage(currentPage - 1)
   }
 
-  return (
-    <>
-      <div className="min-h-screen">
-        <Navbar />
-        <div className="pt-12 h-screen">
-          <table className="table-fixed border w-full">
-            <InquiriesTable />
-            <>
-              {currentInquiry.map(({ attributes, id }: Inquiriy) => {
-                return (
-                  <>
-                    <Inquiry
-                      item={attributes}
-                      id={id}
-                      deleteInquiry={deleteInquiry}
-                    />
-                  </>
-                )
-              })}
-            </>
-          </table>
-          <div className="flex items-center justify-center">
-            <Pagination
-              inquiriesPerPage={InquiryPerPage}
-              totalInquiries={inquiries.length}
-              paginate={paginate}
-              next={Next}
-              prev={Prev}
-              currentPage={currentPage}
-            />
-          </div>
+  return isLoading ? (
+    <div className="flex justify-center">
+      <img src={Spinner} alt="Loading..." />
+    </div>
+  ) : (
+    <div className="min-h-screen">
+      <Navbar />
+      <div className="pt-12 h-screen">
+        <table className="table-fixed border w-full">
+          <InquiriesTable />
+          <tbody>
+            {currentInquiry.map(({ attributes, id }: Inquiriy) => {
+              return (
+                <React.Fragment key={id}>
+                  <Inquiry
+                    item={attributes}
+                    id={id}
+                    deleteInquiry={deleteInquiry}
+                  />
+                </React.Fragment>
+              )
+            })}
+          </tbody>
+        </table>
+        <div className="flex items-center justify-center">
+          <Pagination
+            inquiriesPerPage={InquiryPerPage}
+            totalInquiries={inquiries.length}
+            paginate={paginate}
+            next={Next}
+            prev={Prev}
+            currentPage={currentPage}
+          />
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
