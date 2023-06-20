@@ -5,6 +5,8 @@ import ChoosePackage from "../ChoosePackage"
 //@ts-ignore
 import { Packages } from "../../types"
 import axios from "axios"
+import { useState } from "react"
+import UploadProgress from "./UploadProgress"
 
 interface FormData {
   name: string
@@ -37,13 +39,14 @@ const defaultData = {
   contractor: undefined,
   package: undefined,
 }
-
 // { phone: true, online_meeting: false} as Record<string, boolean>
 
 const Form: React.FC = () => {
   const FormMethods = useForm<FormData>({ defaultValues: defaultData })
 
   const { handleSubmit, reset } = FormMethods
+  const [loading, setLoading] = useState(false)
+  const [uploadPercentage, setUploadPercentage] = useState(0)
 
   const onFormSubmit = async (data: FormData) => {
     const token =
@@ -52,7 +55,11 @@ const Form: React.FC = () => {
     Object.values(data.photos).forEach((photo: string | Blob) =>
       formData.append("files", photo)
     )
-
+    for (let i = 0; i < data.photos.length; i++) {
+      formData.append(`file${1 + i}`, data.photos[i])
+    }
+    window.alert("Are you sure you want to submit this form ?")
+    setLoading(true)
     try {
       const res = await axios({
         method: "POST",
@@ -61,14 +68,21 @@ const Form: React.FC = () => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        onUploadProgress: (progressEvent) => {
+          const { loaded, total }: any = progressEvent
+          let percent = Math.round((loaded * 100) / total)
+          setUploadPercentage(percent)
+          setTimeout(() => setUploadPercentage(0), 10000)
+        },
       })
+
       const photoIds: number[] = res.data.map((e: { id: number }) => e.id)
       let dataCopy: InquiryPayload = {
         ...data,
         photos: photoIds,
       }
-      window.alert("Are you sure you want to submit this form ?")
       console.log(dataCopy)
+
       const response = await axios({
         method: "POST",
         url: "https://strapi-km.herokuapp.com/api/inquiries",
@@ -77,12 +91,11 @@ const Form: React.FC = () => {
           Authorization: `Bearer ${token}`,
         },
       })
-
       console.log("Inquiry", response.data)
     } catch (error) {
       console.log(error)
     }
-
+    setLoading(false)
     reset()
     window.alert("Form submitted")
   }
@@ -97,12 +110,21 @@ const Form: React.FC = () => {
               <ChoosePackage />
               <InputsWrapper />
               <div className="mx-10">
-                <button
-                  className="transition-colors duration-300 w-full mb-5 tracking-widest text-2xl border border-black text-gray-50 p-2 hover:bg-indigo-100 hover:text-indigo-900 bg-indigo-800"
-                  type="submit"
-                >
-                  SUBMIT
-                </button>
+                {loading ? (
+                  <button
+                    className="pointer-events-none transition-colors duration-300 w-full mb-5 tracking-widest text-2xl border border-black text-gray-50 p-2 hover:bg-indigo-100 hover:text-indigo-900 bg-indigo-800"
+                    type="submit"
+                  >
+                    <UploadProgress percentage={uploadPercentage} />
+                  </button>
+                ) : (
+                  <button
+                    className="transition-colors duration-300 w-full mb-5 tracking-widest text-2xl border border-black text-gray-50 p-2 hover:bg-indigo-100 hover:text-indigo-900 bg-indigo-800"
+                    type="submit"
+                  >
+                    SUBMIT
+                  </button>
+                )}
               </div>
             </div>
           </form>
