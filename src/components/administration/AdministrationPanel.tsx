@@ -13,7 +13,7 @@ function AdministrationPanel() {
   const [isLoading, setIsLoading] = useState(false)
   const getUrl = `${process.env.REACT_APP_URL}/api/inquiries?populate=*`
   const [currentPage, setCurrentPage] = useState(1)
-  const InquiryPerPage = 4
+  const InquiryPerPage = 5
   const indexOfLastInquiry = currentPage * InquiryPerPage
   const indexOfFirstInquiry = indexOfLastInquiry - InquiryPerPage
   const currentInquiry = inquiries.slice(
@@ -31,12 +31,12 @@ function AdministrationPanel() {
           Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
         },
       })
+
       setIsLoading(false)
       const InquiriesData = response.data
       setInquiries(InquiriesData.data)
       console.log(InquiriesData.data)
     }
-
     fun()
   }, [])
 
@@ -74,8 +74,10 @@ function AdministrationPanel() {
   }
 
   return isLoading ? (
-    <div className="flex justify-center">
-      <img src={Spinner} alt="Loading..." />
+    <div className="flex justify-center items-center h-screen">
+      <div className="h-2/3">
+        <img className=" h-52" src={Spinner} alt="Loading..." />
+      </div>
     </div>
   ) : (
     <div className="min-h-screen">
