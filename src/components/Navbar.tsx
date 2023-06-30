@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import logo from "../assets/Desktop - 1.png"
+import logo from "../assets/Logo-black.png"
 import { Bars4Icon, XMarkIcon } from "@heroicons/react/24/outline"
 
 const Navbar: React.FC = () => {
@@ -76,14 +76,14 @@ const Navbar: React.FC = () => {
               </ul>
             </div>
           </div>
-          <div className="mx-36 invisible lg:visible transition-all hover:scale-110">
+          <div className="mx-36 flex invisible lg:visible transition-all hover:scale-110">
             <button onClick={(e) => (window.location.href = "/")}>
-              <img src={logo} className="h-7" alt="Logo" />
+              <img src={logo} className=" items-center h-9" alt="Logo" />
             </button>
           </div>
           <span
             onClick={(e) => (window.location.href = "/offer")}
-            className="flex flex-1 cursor-pointer transition-all transform hover:text-indigo-800 justify-end ml-auto  decoration-indigo-800 hover:text-xl underline-offset-8 underline font-light whitespace-nowrap"
+            className="items-center flex flex-1 cursor-pointer transition-all transform hover:text-indigo-800 decoration-1 justify-end ml-auto  decoration-indigo-800 hover:text-xl underline-offset-4 underline font-light whitespace-nowrap"
           >
             How it works ?
           </span>
