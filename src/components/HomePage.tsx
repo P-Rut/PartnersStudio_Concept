@@ -1,5 +1,5 @@
 import Navbar from "./Navbar"
-import hero_logo from "../assets/Hero_Logo.png"
+import hero_logo from "../assets/Logo-white.png"
 import AboutUs from "./AboutUs"
 import HowItWorks from "./HowItWorks"
 import ProjectsCarousel from "./ProjectsCarousel"
@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
       <div className="h-[850px]">
         <div className="bg-cover bg-center h-full w-auto" style={background}>
           <div className="h-full w-full flex justify-center items-center bg-black/30">
-            <img src={hero_logo} className="h-28" alt="Logo" />
+            <img src={hero_logo} className=" h-44" alt="Logo" />
           </div>
         </div>
       </div>
