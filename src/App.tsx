@@ -6,6 +6,7 @@ import Offer from "./components/Offer"
 import Team from "./components/Team"
 import Contact from "./components/Contact"
 import AdministrationPanel from "./components/administration/AdministrationPanel"
+import InquiryDetails from "./components/administration/InquiryDetails"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/team" element={<Team />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<AdministrationPanel />} />
+          <Route path="/admin/:id" element={<InquiryDetails />} />
         </Routes>
       </BrowserRouter>
     </div>
