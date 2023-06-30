@@ -55,10 +55,8 @@ const Form: React.FC = () => {
     Object.values(data.photos).forEach((photo: string | Blob) =>
       formData.append("files", photo)
     )
-    for (let i = 0; i < data.photos.length; i++) {
-      formData.append(`file${1 + i}`, data.photos[i])
-    }
-    window.alert("Are you sure you want to submit this form ?")
+
+    // window.alert("Are you sure you want to submit this form ?")
     setLoading(true)
     try {
       const res = await axios({
@@ -72,7 +70,6 @@ const Form: React.FC = () => {
           const { loaded, total }: any = progressEvent
           let percent = Math.round((loaded * 100) / total)
           setUploadPercentage(percent)
-          setTimeout(() => setUploadPercentage(0), 10000)
         },
       })
 
@@ -94,10 +91,12 @@ const Form: React.FC = () => {
       console.log("Inquiry", response.data)
     } catch (error) {
       console.log(error)
+    } finally {
+      setLoading(false)
+      setUploadPercentage(0)
     }
-    setLoading(false)
-    reset()
     window.alert("Form submitted")
+    reset()
   }
 
   return (
