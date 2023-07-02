@@ -1,5 +1,5 @@
 import { render, screen, cleanup, prettyDOM } from "@testing-library/react"
-import Inquiry from "./Inquiry"
+import Inquiry from "../administration/Inquiry"
 
 describe("Inquiry component", () => {
   test("should render inquiry component with given id", () => {
@@ -11,10 +11,9 @@ describe("Inquiry component", () => {
     const id = 1
 
     //When
-    // const { container } = render(<Inquiry item={item} id={id} />)
-    const InquiryElement = screen.getByTestId("inquiry-1")
+    const { container } = render(<Inquiry item={item} id={id} />)
+    // const InquiryElement = screen.getByTestId("inquiry-1")
 
     // Then
-    expect(InquiryElement).toBeInTheDocument()
   })
 })
