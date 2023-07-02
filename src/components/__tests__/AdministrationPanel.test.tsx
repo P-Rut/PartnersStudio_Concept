@@ -7,7 +7,7 @@ import {
   waitFor,
 } from "@testing-library/react"
 
-import AdministrationPanel from "./AdministrationPanel"
+import AdministrationPanel from "../administration/AdministrationPanel"
 const axios = require("axios")
 jest.mock("axios")
 
