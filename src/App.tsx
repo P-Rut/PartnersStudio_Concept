@@ -5,7 +5,7 @@ import Homepage from "./components/HomePage"
 import Offer from "./components/Offer"
 import Team from "./components/Team"
 import Contact from "./components/Contact"
-import AdministrationPanel from "./components/AdministrationPanel"
+import Chat from "./components/liveChat/Chat"
 
 function App() {
   return (
@@ -17,7 +17,8 @@ function App() {
           <Route path="/offer" element={<Offer />} />
           <Route path="/team" element={<Team />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/admin" element={<AdministrationPanel />} />
+
+          <Route path="/chat" element={<Chat />} />
         </Routes>
       </BrowserRouter>
     </div>
