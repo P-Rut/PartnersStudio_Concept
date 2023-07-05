@@ -5,19 +5,17 @@ import {
 } from "@heroicons/react/24/outline"
 const ChatWindow = () => {
   const [webSocket, setWebSocket] = useState({})
-  const [onlineUsers, setOnlineUsers] = useState([])
+  const [onlineUsers, setOnlineUsers] = useState<Set<string>>(new Set())
 
   useEffect(() => {
     const webSocket = new WebSocket("ws://localhost:7007")
     setWebSocket(webSocket)
     webSocket.addEventListener("message", handleMessage)
   }, [])
-
   function showOnlineUsers(usersArray: any) {
-    const users = {}
-    usersArray.forEach(({ userID, username }: any) => {
-      //@ts-ignore
-      users[userID] = username
+    const users = new Set()
+    usersArray.forEach(({ _, username }: any) => {
+      users.add(username)
     })
     //@ts-ignore
     setOnlineUsers(users)
@@ -37,10 +35,9 @@ const ChatWindow = () => {
           <ChatBubbleLeftRightIcon className="h-6" />
           Support Chat
         </div>
-        {Object.keys(onlineUsers).map((userID) => (
-          <div className="border-b border-indigo-200 py-2" key={userID}>
-            {/* @ts-ignore */}
-            {onlineUsers[userID]}
+        {Array.from(onlineUsers).map((username) => (
+          <div className="border-b border-indigo-200 py-2" key={username}>
+            {username}
           </div>
         ))}
       </div>
