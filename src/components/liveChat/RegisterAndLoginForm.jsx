@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { useState } from "react"
 import axios from "axios"
-import { UserContext } from "./context/UserContex"
+import { UserContext } from "./UserContex"
 
 const RegisterAndLoginForm = () => {
   const [username, setUsername] = useState("")
@@ -17,7 +17,7 @@ const RegisterAndLoginForm = () => {
     setLoggedInUsername(username)
     setId(data.id)
   }
-
+ 
   return (
     <div className="bg-indigo-100 h-screen flex items-center">
       <form className="w-72 mx-auto mb-16" onSubmit={handleSubmit}>
