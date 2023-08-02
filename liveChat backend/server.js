@@ -4,6 +4,7 @@ const mongoose = require("mongoose")
 const cookieParser = require("cookie-parser")
 const cors = require("cors")
 const User = require("./models/User")
+const Message = require("./models/Message")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const websockets = require("ws")
@@ -26,13 +27,38 @@ app.use(
   })
 )
 
+async function getUserDataFromToken(req) {
+  return new Promise((resolve, reject) => {
+    const token = req.cookies?.token
+    if (token) {
+      jwt.verify(token, jwtSecret, {}, (err, userData) => {
+        if (err) throw err
+        resolve(userData)
+      })
+    } else {
+      reject("No token !")
+    }
+  })
+}
+
 app.get("/test", (req, res) => {
   res.json("test ok")
 })
 
+app.get("/messages/:userID", async (req, res) => {
+  const { userID } = req.params
+  const userData = await getUserDataFromToken(req)
+  const ourUserID = userData.userID
+  console.log(userID, ourUserID)
+  const messages = await Message.find({
+    sender: { $in: [userID, ourUserID] },
+    recipient: { $in: [userID, ourUserID] },
+  }).sort({ createdAt: 1 })
+  res.json(messages)
+})
+
 app.get("/profile", (req, res) => {
   const token = req.cookies?.token
-
   if (token) {
     jwt.verify(token, jwtSecret, {}, (err, userData) => {
       if (err) throw err
@@ -60,7 +86,11 @@ app.post("/login", async (req, res) => {
         }
       )
     }
-  }  
+  }
+})
+
+app.post("/logout", (req, res) => {
+  res.cookie("token", "", { sameSite: "none", secure: true }).json("ok")
 })
 
 app.post("/register", async (req, res) => {
@@ -101,7 +131,37 @@ const server = app.listen(7007, () =>
 const webSocketServer = new websockets.WebSocketServer({ server })
 webSocketServer.on("connection", (connection, req) => {
   console.log("Connected to WebSocketServer !")
+  function notifyAboutOnlinePeople() {
+    ;[...webSocketServer.clients].forEach((client) => {
+      client.send(
+        JSON.stringify({
+          online: [...webSocketServer.clients].map((client) => ({
+            userID: client.userID,
+            username: client.username,
+          })),
+        })
+      )
+    })
+  }
 
+  connection.isAlive = true
+
+  connection.timer = setInterval(() => {
+    connection.ping()
+    connection.deathTimer = setTimeout(() => {
+      connection.isAlive = false
+      clearInterval(connection.timer)
+      connection.terminate()
+      notifyAboutOnlinePeople()
+      console.log("Dead")
+    }, 1000)
+  }, 1000)
+
+  connection.on("pong", () => {
+    clearTimeout(connection.deathTimer)
+  })
+
+  //read username and id from cookie for this connection
   const cookies = req.headers.cookie
   if (cookies) {
     const tokenCookieStirng = cookies
@@ -119,17 +179,32 @@ webSocketServer.on("connection", (connection, req) => {
       }
     }
   }
-  //see who is online
-  // console.log([...webSocketServer.clients].map((check) => check.username))
 
-  ;[...webSocketServer.clients].forEach((client) => {
-    client.send(
-      JSON.stringify({
-        online: [...webSocketServer.clients].map((client) => ({
-          userID: client.userID,
-          username: client.username,
-        })),
+  // sending message
+  connection.on("message", async (message) => {
+    const messageData = JSON.parse(message.toString())
+    const { recipient, text } = messageData
+    if (recipient && text) {
+      const messageDocument = await Message.create({
+        sender: connection.userID,
+        recipient,
+        text,
       })
-    )
+      ;[...webSocketServer.clients]
+        .filter((client) => client.userID === recipient)
+        .forEach((client) =>
+          client.send(
+            JSON.stringify({
+              text,
+              sender: connection.userID,
+              recipient,
+              _id: messageDocument._id,
+            })
+          )
+        )
+    }
   })
+
+  //notify everyone about online users( when someone  log in )
+  notifyAboutOnlinePeople()
 })
