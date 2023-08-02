@@ -23,7 +23,12 @@ const ChatWindow = () => {
     const webSocket = new WebSocket("ws://localhost:7007")
     setWebSocket(webSocket)
     webSocket.addEventListener("message", handleMessage)
-    webSocket.addEventListener("close", () => connectToWebSocket)
+    webSocket.addEventListener("close", () => {
+      setTimeout(() => {
+        console.log("Disconnected ! Trying to reconnect...")
+        connectToWebSocket()
+      }, 1000)
+    })
   }
 
   function showOnlineUsers(usersArray: any) {
