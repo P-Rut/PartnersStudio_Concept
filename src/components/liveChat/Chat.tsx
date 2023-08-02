@@ -1,5 +1,5 @@
 import axios from "axios"
-import { UserContextProvider } from "./context/UserContex"
+import { UserContextProvider } from "./context/UserContext"
 import Routes from "./Routes"
 
 const Chat = () => {

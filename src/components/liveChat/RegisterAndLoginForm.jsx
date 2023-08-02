@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import { useState } from "react"
 import axios from "axios"
-import { UserContext } from "./UserContex"
+import { UserContext } from "./context/UserContext"
 
 const RegisterAndLoginForm = () => {
   const [username, setUsername] = useState("")
@@ -9,15 +9,14 @@ const RegisterAndLoginForm = () => {
   const [isLoginOrRegister, setIsLoginOrRegister] = useState("register")
   const { setUsername: setLoggedInUsername, setId } = useContext(UserContext)
 
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-
     const url = isLoginOrRegister === "register" ? "register" : "login"
     const { data } = await axios.post(url, { username, password })
     setLoggedInUsername(username)
     setId(data.id)
   }
- 
+
   return (
     <div className="bg-indigo-100 h-screen flex items-center">
       <form className="w-72 mx-auto mb-16" onSubmit={handleSubmit}>
