@@ -5,6 +5,7 @@ import { PaperAirplaneIcon } from "@heroicons/react/24/outline"
 import { uniqBy } from "lodash"
 import { UserContext } from "./context/UserContext"
 import axios from "axios"
+import Users from "./Users"
 
 const ChatWindow = () => {
   const [webSocket, setWebSocket] = useState<any>()
@@ -12,6 +13,7 @@ const ChatWindow = () => {
   const [selectedUser, setSelectedUser] = useState("")
   const [messageText, setMessageText] = useState("")
   const [messagesInsideChat, setMessagesInsideChat] = useState<any[]>([])
+  const [offlineUsers, setOfflineUsers] = useState<any>({})
   const { username, id, setUsername, setId }: any = useContext(UserContext)
   const chatWindowRef = useRef<HTMLDivElement | null>(null)
 
@@ -58,7 +60,9 @@ const ChatWindow = () => {
     if ("online" in messageData) {
       showOnlineUsers(messageData.online)
     } else if ("text" in messageData) {
-      setMessagesInsideChat((prev: any) => [...prev, { ...messageData }])
+      if (messageData.sender === selectedUser) {
+        setMessagesInsideChat((prev: any) => [...prev, { ...messageData }])
+      }
     }
   }
 
@@ -89,6 +93,24 @@ const ChatWindow = () => {
   }, [messagesInsideChat])
 
   useEffect(() => {
+    interface UsersType {
+      [key: string]: string
+    }
+    axios.get("/people").then((res) => {
+      const offlineUsersArray = res.data
+        .filter((p: any) => p._id !== id)
+        .filter((p: any) => !Object.keys(onlineUsers).includes(p._id))
+
+      const offlineUsers: UsersType = {}
+      offlineUsersArray.forEach((p: any) => {
+        offlineUsers[p._id] = p
+      })
+
+      setOfflineUsers(offlineUsers)
+    })
+  }, [onlineUsers])
+
+  useEffect(() => {
     if (selectedUser) {
       axios.get(`/messages/${selectedUser}`).then((res) => {
         setMessagesInsideChat(res.data)
@@ -96,8 +118,8 @@ const ChatWindow = () => {
     }
   }, [selectedUser])
 
-  const deleteOurUserName = { ...onlineUsers }
-  delete deleteOurUserName[id]
+  const onlinePeoplewithoutOurUserName = { ...onlineUsers }
+  delete onlinePeoplewithoutOurUserName[id]
   const messagesWithoutDuplicates = uniqBy(messagesInsideChat, "_id")
 
   return (
@@ -105,31 +127,25 @@ const ChatWindow = () => {
       <div className="w-1/3 flex  flex-col">
         <div className="flex-grow">
           <Logo />
-
-          {Object.keys(deleteOurUserName).map((userID) => (
-            <div
+          {Object.keys(onlinePeoplewithoutOurUserName).map((userID) => (
+            <Users
               key={userID}
+              online={true}
               onClick={() => setSelectedUser(userID)}
-              className={
-                "cursor-pointer border-b border-t border-indigo-200 bg-indigo-200  flex items-center" +
-                (userID === selectedUser ? "" : "opacity-40 bg-white")
-              }
-            >
-              {userID === selectedUser && (
-                <div className="w-1 bg-green-500 h-14"></div>
-              )}
-              <div className="flex gap-4 py-2 pl-4">
-                <Avatar
-                  size={40}
-                  name={userID}
-                  variant="beam"
-                  colors={["#1d21a0", "#F1C93B", "#FBD85D", "#FAE392"]}
-                />
-                <span className="my-auto text-lg font-light">
-                  {onlineUsers[userID]}
-                </span>
-              </div>
-            </div>
+              id={userID}
+              username={onlinePeoplewithoutOurUserName[userID]}
+              selected={userID === selectedUser}
+            />
+          ))}
+          {Object.keys(offlineUsers).map((userID) => (
+            <Users
+              key={userID}
+              online={false}
+              onClick={() => setSelectedUser(userID)}
+              id={userID}
+              username={offlineUsers[userID].username}
+              selected={userID === selectedUser}
+            />
           ))}
         </div>
         <div className="flex items-center p-2 justify-center text-center">
@@ -138,7 +154,7 @@ const ChatWindow = () => {
               size={30}
               name={id}
               variant="beam"
-              colors={["#1d21a0", "#F1C93B", "#FBD85D", "#FAE392"]}
+              colors={["#1d21a0", "#7788e0", "#93bed3", "#9dd6fc"]}
             />
             {username}
           </span>

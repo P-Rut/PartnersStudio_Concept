@@ -122,6 +122,11 @@ app.post("/register", async (req, res) => {
   }
 })
 
+app.get("/people", async (req, res) => {
+  const users = await User.find({}, { _id: 1, username: 1 })
+  res.json(users)
+})
+
 const server = app.listen(7007, () =>
   console.log("Server is runing on port", 7007)
 )
@@ -155,7 +160,7 @@ webSocketServer.on("connection", (connection, req) => {
       notifyAboutOnlinePeople()
       console.log("Dead")
     }, 1000)
-  }, 1000)
+  }, 5000)
 
   connection.on("pong", () => {
     clearTimeout(connection.deathTimer)
