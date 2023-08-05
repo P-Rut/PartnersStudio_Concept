@@ -3,7 +3,7 @@ import Avatar from "boring-avatars"
 export default function UserAvatar({ userID, username, online }: any) {
   return (
     <>
-      <div className="flex relative items-center">
+      <div className="flex relative items-center capitalize">
         <Avatar
           size={40}
           name={userID}

@@ -148,7 +148,7 @@ const ChatWindow = () => {
             />
           ))}
         </div>
-        <div className="flex items-center p-2 justify-center text-center">
+        <div className="flex items-center p-2 justify-center text-center capitalize">
           <span className="text-sm flex items-center">
             <Avatar
               size={30}
