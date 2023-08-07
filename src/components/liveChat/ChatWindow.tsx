@@ -213,14 +213,24 @@ const ChatWindow = () => {
                       {message.file && (
                         <div>
                           <a
-                            className="border-b flex items-center gap-2"
+                            className={
+                              message.sender === id
+                                ? "border-b flex items-center gap-2"
+                                : "border-b  border-indigo-900 flex items-center gap-2"
+                            }
                             href={
                               axios.defaults.baseURL +
                               "/uploads/" +
                               message.file
                             }
                           >
-                            <PaperClipIcon className="h-4 text-white" />
+                            <PaperClipIcon
+                              className={
+                                message.sender === id
+                                  ? "h-4 text-white"
+                                  : "h-4 text-indigo-900 "
+                              }
+                            />
                             {message.file}
                           </a>
                         </div>
