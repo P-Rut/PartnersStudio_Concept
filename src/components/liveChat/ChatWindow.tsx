@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from "react"
 import Avatar from "boring-avatars"
 import Logo from "./Logo"
-import { PaperAirplaneIcon } from "@heroicons/react/24/outline"
+import { PaperAirplaneIcon, PaperClipIcon } from "@heroicons/react/24/outline"
 import { uniqBy } from "lodash"
 import { UserContext } from "./context/UserContext"
 import axios from "axios"
@@ -19,7 +19,7 @@ const ChatWindow = () => {
 
   useEffect(() => {
     connectToWebSocket()
-  }, [])
+  }, [selectedUser])
 
   function connectToWebSocket() {
     const webSocket = new WebSocket("ws://localhost:7007")
@@ -56,7 +56,7 @@ const ChatWindow = () => {
 
   function handleMessage(ev: any) {
     const messageData = JSON.parse(ev.data)
-    console.log(ev, messageData)
+    console.log({ ev, messageData })
     if ("online" in messageData) {
       showOnlineUsers(messageData.online)
     } else if ("text" in messageData) {
@@ -66,25 +66,45 @@ const ChatWindow = () => {
     }
   }
 
-  function sendMessage(ev: any) {
-    ev.preventDefault()
+  function sendMessage(ev: any, file = null) {
+    if (ev) ev.preventDefault()
     webSocket.send(
       JSON.stringify({
         recipient: selectedUser,
         text: messageText,
+        file,
       })
     )
-    setMessageText("")
-    setMessagesInsideChat((prev: any) => [
-      ...prev,
-      {
-        text: messageText,
-        sender: id,
-        recipient: selectedUser,
-        _id: Date.now(),
-      },
-    ])
+    if (file) {
+      axios.get("/messages/" + selectedUser).then((res) => {
+        setMessagesInsideChat(res.data)
+      })
+    } else {
+      setMessageText("")
+      setMessagesInsideChat((prev: any) => [
+        ...prev,
+        {
+          text: messageText,
+          sender: id,
+          recipient: selectedUser,
+          _id: Date.now(),
+        },
+      ])
+    }
   }
+
+  function sendFile(ev: any) {
+    const reader = new FileReader()
+    reader.readAsDataURL(ev.target.files[0])
+    reader.onload = () => {
+      const fileMessage: any = {
+        name: ev.target.files[0].name,
+        data: reader.result,
+      }
+      sendMessage(null, fileMessage)
+    }
+  }
+
   useEffect(() => {
     const chatWindowDiv = chatWindowRef.current
     if (chatWindowDiv) {
@@ -167,7 +187,7 @@ const ChatWindow = () => {
           </button>
         </div>
       </div>
-      <div className="flex flex-col  bg-indigo-200 w-2/3 p-2">
+      <div className="flex flex-col  bg-indigo-100 w-2/3 p-2">
         <div className="flex-grow">
           {!selectedUser && (
             <div className="flex items-center justify-center h-full">
@@ -190,6 +210,21 @@ const ChatWindow = () => {
                       }
                     >
                       {message.text}
+                      {message.file && (
+                        <div>
+                          <a
+                            className="border-b flex items-center gap-2"
+                            href={
+                              axios.defaults.baseURL +
+                              "/uploads/" +
+                              message.file
+                            }
+                          >
+                            <PaperClipIcon className="h-4 text-white" />
+                            {message.file}
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -206,6 +241,10 @@ const ChatWindow = () => {
               placeholder="Type your message here"
               className="p-2 border-indigo-800 flex-grow"
             />
+            <label className="bg-indigo-200 p-2 border cursor-pointer border-indigo-300">
+              <input type="file" className="hidden" onChange={sendFile} />
+              <PaperClipIcon className="h-6 text-indigo-900" />
+            </label>
             <button type="submit" className="bg-indigo-900 p-2">
               <PaperAirplaneIcon className="h-6 text-white" />
             </button>

@@ -8,6 +8,7 @@ const Message = require("./models/Message")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const websockets = require("ws")
+const fs = require("fs")
 
 dotenv.config()
 mongoose.connect(process.env.MONGO_URL, (err) => {
@@ -17,9 +18,9 @@ const jwtSecret = process.env.JWT_SECRET
 const bcryptSalt = bcrypt.genSaltSync(10)
 
 const app = express()
+app.use("/uploads", express.static(__dirname + "/uploads"))
 app.use(express.json())
 app.use(cookieParser())
-
 app.use(
   cors({
     credentials: true,
@@ -188,13 +189,26 @@ webSocketServer.on("connection", (connection, req) => {
   // sending message
   connection.on("message", async (message) => {
     const messageData = JSON.parse(message.toString())
-    const { recipient, text } = messageData
-    if (recipient && text) {
+    const { recipient, text, file } = messageData
+    let filename = null
+    if (file) {
+      const parts = file.name.split(".")
+      const ext = parts[parts.length - 1]
+      filename = Date.now() + "." + ext
+      const path = __dirname + "/uploads/" + filename
+      const bufferData = Buffer.from(file.data.split(",")[1], "base64")
+      fs.writeFile(path, bufferData, () => {
+        console.log("!File saved" + path)
+      })
+    }
+    if (recipient && (text || file)) {
       const messageDocument = await Message.create({
         sender: connection.userID,
         recipient,
         text,
+        file: file ? filename : null,
       })
+      console.log("message created")
       ;[...webSocketServer.clients]
         .filter((client) => client.userID === recipient)
         .forEach((client) =>
@@ -203,6 +217,7 @@ webSocketServer.on("connection", (connection, req) => {
               text,
               sender: connection.userID,
               recipient,
+              file: file ? filename : null,
               _id: messageDocument._id,
             })
           )
