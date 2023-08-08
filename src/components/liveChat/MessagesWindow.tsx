@@ -23,7 +23,7 @@ export default function MessagesWindow({
   }
 
   return (
-    <div className="flex flex-col  bg-indigo-100 w-2/3 p-2">
+    <div className="flex flex-col m-5 rounded border-black border w-2/3 p-2">
       <div className="flex-grow">
         {!selectedUser && (
           <div className="flex items-center justify-center h-full">
@@ -41,8 +41,8 @@ export default function MessagesWindow({
                   <div
                     className={
                       message.sender === id
-                        ? "place-self-end inline-block bg-indigo-800 mr-2 text-white p-3 ml-24  font-normal text-base float-right rounded-2xl rounded-tr-none"
-                        : " place-self-start inline-block bg-white text-gray-800 p-3 mr-24 font-normal text-base float-left rounded-2xl rounded-tl-none"
+                        ? "place-self-end inline-block bg-indigo-900 border border-gray-300 mr-2 text-white p-4 ml-24 font-normal text-base float-right rounded-2xl rounded-tr-none"
+                        : " place-self-start inline-block border border-gray-300 bg-gray-200  text-gray-900 p-4 mr-24 font-normal text-base float-left rounded-2xl rounded-tl-none"
                     }
                   >
                     {message.text}
@@ -85,13 +85,13 @@ export default function MessagesWindow({
             onChange={(ev) => setMessageText(ev.target.value)}
             type="text"
             placeholder="Type your message here"
-            className="p-2 border-indigo-800 flex-grow"
+            className="p-2 border-indigo-800 flex-grow rounded"
           />
-          <label className="bg-indigo-200 p-2 border cursor-pointer border-indigo-300">
+          <label className="bg-gray-300 p-2 border cursor-pointer rounded border-indigo-900">
             <input type="file" className="hidden" onChange={sendFile} />
             <PaperClipIcon className="h-6 text-indigo-900" />
           </label>
-          <button type="submit" className="bg-indigo-900 p-2">
+          <button type="submit" className="bg-indigo-900 rounded p-2">
             <PaperAirplaneIcon className="h-6 text-white" />
           </button>
         </form>
