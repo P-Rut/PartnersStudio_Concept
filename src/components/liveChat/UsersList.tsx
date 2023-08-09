@@ -16,30 +16,29 @@ export default function UsersList({
 
   return (
     <div className="w-1/3 m-5 rounded flex flex-col border border-black">
-      <div className="flex-grow">
+      <div className="flex-grow overflow-y-auto">
         <Logo />
-        <div>
-          {Object.keys(onlinePeoplewithoutOurUserName).map((userID) => (
-            <Users
-              key={userID}
-              online={true}
-              onClick={() => setSelectedUser(userID)}
-              id={userID}
-              username={onlinePeoplewithoutOurUserName[userID]}
-              selected={userID === selectedUser}
-            />
-          ))}
-          {Object.keys(offlineUsers).map((userID) => (
-            <Users
-              key={userID}
-              online={false}
-              onClick={() => setSelectedUser(userID)}
-              id={userID}
-              username={offlineUsers[userID].username}
-              selected={userID === selectedUser}
-            />
-          ))}
-        </div>
+
+        {Object.keys(onlinePeoplewithoutOurUserName).map((userID) => (
+          <Users
+            key={userID}
+            online={true}
+            onClick={() => setSelectedUser(userID)}
+            id={userID}
+            username={onlinePeoplewithoutOurUserName[userID]}
+            selected={userID === selectedUser}
+          />
+        ))}
+        {Object.keys(offlineUsers).map((userID) => (
+          <Users
+            key={userID}
+            online={false}
+            onClick={() => setSelectedUser(userID)}
+            id={userID}
+            username={offlineUsers[userID].username}
+            selected={userID === selectedUser}
+          />
+        ))}
       </div>
       <div className="flex flex-col items-center py-2 gap-2 border border-t border-b-0 border-l-0 border-r-0 border-black justify-center text-center capitalize">
         <span className="font-extralight">Logged in as:</span>

@@ -34,7 +34,7 @@ export default function MessagesWindow({
           <div className="relative h-full">
             <div
               ref={chatWindowRef}
-              className=" scroll-smooth overflow-y-scroll absolute top-0 bottom-4 left-0 right-0 max-w-4xl mx-auto space-y-2 grid grid-cols-1"
+              className=" scroll-smooth overflow-y-auto absolute top-0 bottom-4 left-0 right-0 max-w-4xl mx-auto space-y-2 grid grid-cols-1"
             >
               {messagesWithoutDuplicates.map((message: any) => (
                 <div key={message._id}>
