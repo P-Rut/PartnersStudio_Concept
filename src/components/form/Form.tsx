@@ -19,7 +19,7 @@ interface FormData {
   project_type: string
   project_level: string
   additional_info: string
-  contractor: boolean
+  contractor: boolean | undefined
   package: Packages | undefined
 }
 
@@ -88,6 +88,7 @@ const Form: React.FC = () => {
           Authorization: `Bearer ${token}`,
         },
       })
+      window.alert("Form has been submitted !")
       console.log("Inquiry", response.data)
     } catch (error) {
       console.log(error)
@@ -95,7 +96,6 @@ const Form: React.FC = () => {
       setLoading(false)
       setUploadPercentage(0)
     }
-    window.alert("Form submitted")
     reset()
   }
 

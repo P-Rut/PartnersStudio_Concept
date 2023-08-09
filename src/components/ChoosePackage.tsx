@@ -16,7 +16,7 @@ const ChoosePackage: React.FC = () => {
       <div className="bg-gray-50">
         <Navbar />
         <div className="h-[800px] grid grid-cols-3 grid-rows-3 gap-x-5 gap-y-10 pt-20 pb-10 px-10">
-          <div className="row-span-2 border  border-black">
+          <div className="row-span-2 border border-black ">
             <div className="flex justify-end">
               <input
                 type="radio"
