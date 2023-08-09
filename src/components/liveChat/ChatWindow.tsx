@@ -137,7 +137,6 @@ const ChatWindow = () => {
         username={username}
         logout={logout}
       />
-
       <MessagesWindow
         selectedUser={selectedUser}
         chatWindowRef={chatWindowRef}

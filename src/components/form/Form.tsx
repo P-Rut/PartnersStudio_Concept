@@ -5,6 +5,7 @@ import ChoosePackage from "../ChoosePackage"
 //@ts-ignore
 import { Packages } from "../../types"
 import axios from "axios"
+import { useEffect } from "react"
 
 interface FormData {
   name: string
@@ -30,7 +31,7 @@ const defaultData = {
   city: "",
   address: "",
   contact_preference: [],
-  photos: undefined,
+  photos: [],
   project_type: "",
   project_stage: "",
   additional_info: "",
@@ -42,8 +43,24 @@ const defaultData = {
 
 const Form: React.FC = () => {
   const FormMethods = useForm<FormData>({ defaultValues: defaultData })
-
   const { handleSubmit, reset } = FormMethods
+
+  function deleteStorage() {
+    localStorage.removeItem("formData")
+  }
+
+  useEffect(() => {
+    const savedFormData = localStorage.getItem("formData")
+    if (savedFormData) {
+      const parsedFormData = JSON.parse(savedFormData)
+      reset(parsedFormData)
+    }
+  }, [])
+
+  useEffect(() => {
+    const saveFormData = JSON.stringify(FormMethods.getValues())
+    localStorage.setItem("formData", saveFormData)
+  }, [FormMethods.watch()])
 
   const onFormSubmit = async (data: FormData) => {
     const token =
@@ -78,7 +95,8 @@ const Form: React.FC = () => {
     } catch (error) {
       console.log(error)
     }
-    reset()
+    deleteStorage()
+    reset(defaultData)
   }
 
   return (
