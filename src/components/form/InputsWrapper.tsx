@@ -42,7 +42,7 @@ const InputsWrapper: React.FC = () => {
         />
         <BasicInputs
           placeholder="Project Stage"
-          title="project_stage"
+          title="project_level"
           type="text"
         />
         <ConstructorInput />
