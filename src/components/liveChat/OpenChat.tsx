@@ -1,16 +1,16 @@
 import axios from "axios"
+import OpenRoutes from "./OpenRoutes"
 import { UserContextProvider } from "./context/ChatContext"
-import Routes from "./Routes"
 
-const Chat = () => {
+const OpenChat = () => {
   axios.defaults.baseURL = "http://localhost:7007"
   axios.defaults.withCredentials = true
 
   return (
     <UserContextProvider>
-      <Routes />
+      <OpenRoutes />
     </UserContextProvider>
   )
 }
 
-export default Chat
+export default OpenChat

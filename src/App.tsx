@@ -8,6 +8,7 @@ import Contact from "./components/Contact"
 import Chat from "./components/liveChat/Chat"
 import AdministrationPanel from "./components/administration/AdministrationPanel"
 import InquiryDetails from "./components/administration/InquiryDetails"
+import OpenChat from "./components/liveChat/OpenChat"
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/admin" element={<AdministrationPanel />} />
           <Route path="/admin/:id" element={<InquiryDetails />} />
         </Routes>
+        <OpenChat />
       </BrowserRouter>
     </div>
   )

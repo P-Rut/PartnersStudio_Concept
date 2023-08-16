@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState, useRef } from "react"
 import { uniqBy } from "lodash"
-import { UserContext } from "./context/UserContext"
+import { ChatContext } from "./context/ChatContext"
 import axios from "axios"
 import UsersList from "./UsersList"
 import MessagesWindow from "./MessagesWindow"
+import SupportChatBubble from "./SupportChatBubble"
 
 const ChatWindow = () => {
   const [webSocket, setWebSocket] = useState<any>()
@@ -12,7 +13,8 @@ const ChatWindow = () => {
   const [messageText, setMessageText] = useState("")
   const [messagesInsideChat, setMessagesInsideChat] = useState<any[]>([])
   const [offlineUsers, setOfflineUsers] = useState<any>({})
-  const { username, id, setUsername, setId }: any = useContext(UserContext)
+  const { username, id, setUsername, setId, open, identifier }: any =
+    useContext(ChatContext)
   const chatWindowRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
@@ -118,6 +120,7 @@ const ChatWindow = () => {
 
   useEffect(() => {
     if (selectedUser) {
+      console.log(selectedUser)
       axios.get(`/messages/${selectedUser}`).then((res) => {
         setMessagesInsideChat(res.data)
       })
@@ -127,26 +130,58 @@ const ChatWindow = () => {
   const messagesWithoutDuplicates = uniqBy(messagesInsideChat, "_id")
 
   return (
-    <div className="flex h-screen">
-      <UsersList
-        onlineUsers={onlineUsers}
-        setSelectedUser={setSelectedUser}
-        selectedUser={selectedUser}
-        offlineUsers={offlineUsers}
-        id={id}
-        username={username}
-        logout={logout}
-      />
-      <MessagesWindow
-        selectedUser={selectedUser}
-        chatWindowRef={chatWindowRef}
-        messagesWithoutDuplicates={messagesWithoutDuplicates}
-        id={id}
-        sendMessage={sendMessage}
-        messageText={messageText}
-        setMessageText={setMessageText}
-      />
-    </div>
+    <>
+      {!open && !identifier ? (
+        <div className="flex h-screen">
+          <UsersList
+            onlineUsers={onlineUsers}
+            setSelectedUser={setSelectedUser}
+            selectedUser={selectedUser}
+            offlineUsers={offlineUsers}
+            id={id}
+            username={username}
+            logout={logout}
+          />
+          <MessagesWindow
+            selectedUser={selectedUser}
+            chatWindowRef={chatWindowRef}
+            messagesWithoutDuplicates={messagesWithoutDuplicates}
+            id={id}
+            sendMessage={sendMessage}
+            messageText={messageText}
+            setMessageText={setMessageText}
+          />
+        </div>
+      ) : null}
+
+      <SupportChatBubble />
+
+      {!!open && !!identifier && (
+        <>
+          <div className="fixed bottom-20 right-5 flex flex-col h-4/6 w-1/4 items-center p-2 bg-white rounded-md border-2 border-indigo-900 transition">
+            <UsersList
+              onlineUsers={onlineUsers}
+              setSelectedUser={setSelectedUser}
+              selectedUser={selectedUser}
+              offlineUsers={offlineUsers}
+              id={id}
+              username={username}
+              logout={logout}
+            />
+            <MessagesWindow
+              selectedUser={selectedUser}
+              chatWindowRef={chatWindowRef}
+              messagesWithoutDuplicates={messagesWithoutDuplicates}
+              id={id}
+              sendMessage={sendMessage}
+              messageText={messageText}
+              setMessageText={setMessageText}
+            />
+          </div>
+          <SupportChatBubble />
+        </>
+      )}
+    </>
   )
 }
 

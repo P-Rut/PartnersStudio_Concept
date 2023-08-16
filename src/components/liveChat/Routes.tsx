@@ -1,17 +1,13 @@
 import RegisterAndLoginForm from "./RegisterAndLoginForm"
 import { useContext } from "react"
-import { UserContext } from "./context/UserContext"
+import { ChatContext } from "./context/ChatContext"
 import ChatWindow from "./ChatWindow"
 
 export default function Routes() {
-  const { username }: any = useContext(UserContext)
+  const { username }: any = useContext(ChatContext)
 
   if (username) {
-    return (
-      <>
-        <ChatWindow />
-      </>
-    )
+    return <ChatWindow />
   }
 
   return <RegisterAndLoginForm />

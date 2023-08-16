@@ -72,21 +72,71 @@ app.get("/profile", (req, res) => {
 
 app.post("/login", async (req, res) => {
   const { username, password } = req.body
-  const foundUser = await User.findOne({ username })
-  if (foundUser) {
-    const passwordOK = bcrypt.compareSync(password, foundUser.password)
-    if (passwordOK) {
+  console.log("login", req.body)
+  if (username && password) {
+    const foundUser = await User.findOne({ username })
+    if (foundUser) {
+      const passwordOK = bcrypt.compareSync(password, foundUser.password)
+      if (passwordOK) {
+        jwt.sign(
+          { userID: foundUser._id, username },
+          jwtSecret,
+          {},
+          (err, token) => {
+            res
+              .cookie("token", token, { sameSite: "none", secure: true })
+              .json({
+                id: foundUser._id,
+              })
+          }
+        )
+      }
+    } else {
+      res.status(401).json({ message: "Invalid username or password" })
+    }
+  }
+  if (username) {
+    const foundOpenUser = await User.findOne({ username })
+    if (foundOpenUser) {
       jwt.sign(
-        { userID: foundUser._id, username },
+        { userID: foundOpenUser._id, username },
         jwtSecret,
         {},
         (err, token) => {
           res.cookie("token", token, { sameSite: "none", secure: true }).json({
-            id: foundUser._id,
+            id: foundOpenUser._id,
           })
         }
       )
+    } else {
+      res.status(401).json({ message: "Invalid identifier" })
     }
+  }
+})
+
+app.post("/open", async (req, res) => {
+  const { username } = req.body
+  try {
+    const createOpenUser = await User.create({
+      username: username,
+    })
+    jwt.sign(
+      { userID: createOpenUser._id, username },
+      jwtSecret,
+      {},
+      (err, token) => {
+        if (err) throw err
+        res
+          .cookie("token", token, { sameSite: "none", secure: true })
+          .status(201)
+          .json({
+            id: createOpenUser._id,
+          })
+      }
+    )
+  } catch (err) {
+    if (err) throw err
+    res.status(500).json("error")
   }
 })
 
