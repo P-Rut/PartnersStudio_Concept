@@ -1,10 +1,8 @@
-import { useState } from "react"
 import Navbar from "./Navbar"
 import hero_logo from "../assets/Logo-white.png"
 import AboutUs from "./AboutUs"
 import HowItWorks from "./HowItWorks"
 import ProjectsCarousel from "./ProjectsCarousel"
-import RegisterAndLoginForm from "./liveChat/RegisterAndLoginForm"
 
 const HomePage: React.FC = () => {
   const background = {
@@ -15,7 +13,6 @@ const HomePage: React.FC = () => {
   return (
     <>
       <Navbar />
-      <RegisterAndLoginForm />
       <div className="h-[750px]">
         <div className="bg-cover bg-center h-full w-auto" style={background}>
           <div className="h-full w-full flex justify-center items-center bg-black/30">

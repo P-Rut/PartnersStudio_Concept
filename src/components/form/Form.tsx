@@ -39,7 +39,6 @@ const defaultData = {
   contractor: undefined,
   package: undefined,
 }
-// { phone: true, online_meeting: false} as Record<string, boolean>
 
 const Form: React.FC = () => {
   const FormMethods = useForm<FormData>({ defaultValues: defaultData })
@@ -72,7 +71,6 @@ const Form: React.FC = () => {
       formData.append("files", photo)
     )
 
-    // window.alert("Are you sure you want to submit this form ?")
     setLoading(true)
     try {
       const res = await axios({
@@ -135,7 +133,7 @@ const Form: React.FC = () => {
                   </button>
                 ) : (
                   <button
-                    className="transition-colors duration-300 w-full mb-5 tracking-widest text-2xl border border-black text-gray-50 p-2 hover:bg-indigo-100 hover:text-indigo-900 bg-indigo-800"
+                    className="transition-colors duration-300 w-full mb-5 tracking-widest text-2xl border border-black text-gray-50 p-2 hover:bg-indigo-100 hover:text-indigo-900 bg-indigo-900"
                     type="submit"
                   >
                     SUBMIT

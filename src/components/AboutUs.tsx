@@ -20,7 +20,7 @@ const AboutUs: React.FC<AboutUsProps> = ({
             <div className="flex items-end">
               <button
                 onClick={(e) => (window.location.href = "/team")}
-                className="text-2xl transition inlnie hover:scale-110 hover:text-indigo-800 font-thin underline decoration-indigo-800 underline-offset-8"
+                className="text-2xl transition inlnie hover:scale-110 hover:text-indigo-900 font-thin underline decoration-indigo-900 underline-offset-8"
               >
                 {buttonTitle}
               </button>

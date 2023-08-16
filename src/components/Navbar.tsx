@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
             type="button"
             className="flex-1 space-y-1.5"
           >
-            <Bars4Icon className="h-7 w-7 transition-all hover:scale-125  hover:text-indigo-800" />
+            <Bars4Icon className="h-7 w-7 transition-all hover:scale-125  hover:text-indigo-900" />
           </button>
 
           <div
@@ -83,7 +83,7 @@ const Navbar: React.FC = () => {
           </div>
           <span
             onClick={(e) => (window.location.href = "/offer")}
-            className="items-center flex flex-1 cursor-pointer transition-all transform hover:text-indigo-800 decoration-1 justify-end ml-auto  decoration-indigo-800 hover:text-xl underline-offset-4 underline font-light whitespace-nowrap"
+            className="items-center flex flex-1 cursor-pointer transition-all transform hover:text-indigo-900 decoration-1 justify-end ml-auto  decoration-indigo-800 hover:text-xl underline-offset-4 underline font-light whitespace-nowrap"
           >
             How it works ?
           </span>

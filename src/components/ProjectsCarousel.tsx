@@ -38,10 +38,6 @@ const ProjectsCarousel: React.FC = () => {
     setCurrentImg(newImg)
   }
 
-  // const goToProject = (projectIndex: any) => {
-  //   setCurrentImg(projectIndex)
-  // }
-
   return (
     <>
       <div className=" bg-gray-50">
@@ -61,19 +57,11 @@ const ProjectsCarousel: React.FC = () => {
             </div>
           </div>
           <div className="flex absolute justify-center aligng-center top-3/4 left-2/4">
-            <div className="text-2xl  text-indigo-800 hover:text-indigo-200 hover:scale-125 transition-all cursor-pointer">
+            <div className="text-2xl  text-indigo-900 hover:text-indigo-200 hover:scale-125 transition-all cursor-pointer">
               <AiOutlineArrowLeft onClick={prevImg} size={40} />
             </div>
-            {/* <div className="flex mx-2">
-            {projects.map((project, projectIndex) => (
-              <div
-                key={projectIndex}
-                onClick={() => goToProject(projectIndex)}
-                className="solid  cursor-pointer border mx-2 border-black h-8 w-8"
-              ></div>
-            ))}
-          </div> */}
-            <div className="text-2xl ml-10  text-indigo-800 hover:scale-125 transition-all  hover:text-indigo-200 cursor-pointer">
+
+            <div className="text-2xl ml-10  text-indigo-900 hover:scale-125 transition-all  hover:text-indigo-200 cursor-pointer">
               <AiOutlineArrowRight onClick={nextImg} size={40} className="" />
             </div>
           </div>

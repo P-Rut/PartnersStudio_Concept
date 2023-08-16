@@ -30,7 +30,7 @@ const Offer: React.FC = () => {
             <div className="space-y-3 py-5 px-5">
               <div className="flex items-center gap-5">
                 <div className="row-span-1">
-                  <PhotoIcon className="h-12 w-12 text-indigo-800" />
+                  <PhotoIcon className="h-12 w-12 text-indigo-900" />
                 </div>
                 <div>
                   <h1 className="text-3xl">Basic</h1>
@@ -55,7 +55,7 @@ const Offer: React.FC = () => {
             <div className="space-y-3 py-5 px-5">
               <div className="flex items-center gap-5">
                 <div className="row-span-1">
-                  <MapIcon className="h-12 w-12 text-indigo-800" />
+                  <MapIcon className="h-12 w-12 text-indigo-900" />
                 </div>
                 <div>
                   <h1 className="text-3xl">Plus</h1>
@@ -82,7 +82,7 @@ const Offer: React.FC = () => {
               <div className="flex items-center gap-5">
                 <div className="row-span-1">
                   <div className="row-span-1">
-                    <CubeIcon className=" h-12 w-12 text-indigo-800" />
+                    <CubeIcon className=" h-12 w-12 text-indigo-900" />
                   </div>
                 </div>
                 <div>
@@ -107,7 +107,7 @@ const Offer: React.FC = () => {
         <div className="col-span-3 h-12 flex justify-center items-center">
           <button
             onClick={(e) => (window.location.href = "/form")}
-            className="w-full tracking-wide text-2xl border transition-colors duration-300 border-black text-gray-50 p-2 hover:bg-indigo-100 hover:text-indigo-900 bg-indigo-800"
+            className="w-full tracking-wide text-2xl border transition-colors duration-300 border-black text-gray-50 p-2 hover:bg-indigo-100 hover:text-indigo-900 bg-indigo-900"
           >
             CHOOSE A PACKAGE
           </button>

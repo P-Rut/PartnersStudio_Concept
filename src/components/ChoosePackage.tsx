@@ -27,7 +27,7 @@ const ChoosePackage: React.FC = () => {
               />
               <label
                 htmlFor="basic"
-                className="inline-flex items-center px-4 py-2  border-gray-800 bg-gray-50 text-indigo-800  border border-r-0 border-t-0 cursor-pointer  peer-checked:border-blue-600 peer-checked:text-white peer-checked:bg-indigo-800 hover:text-gray-600 hover:bg-gray-100"
+                className="inline-flex items-center px-4 py-2  border-gray-800 bg-gray-50 text-indigo-900  border border-r-0 border-t-0 cursor-pointer  peer-checked:border-blue-900 peer-checked:text-white peer-checked:bg-indigo-900 hover:text-gray-600 hover:bg-gray-100"
               >
                 <div
                   aria-hidden="true"
@@ -41,7 +41,7 @@ const ChoosePackage: React.FC = () => {
               <div className="space-y-10 pb-5 px-5">
                 <div className="flex items-center gap-5">
                   <div className="row-span-1">
-                    <PhotoIcon className="h-14 w-14 text-indigo-800" />
+                    <PhotoIcon className="h-14 w-14 text-indigo-900" />
                   </div>
                   <div>
                     <h1 className="text-3xl">Basic</h1>
@@ -100,7 +100,7 @@ const ChoosePackage: React.FC = () => {
               />
               <label
                 htmlFor="plus"
-                className="inline-flex items-center px-4 py-2   border-gray-800 bg-gray-50 text-indigo-800  border border-r-0 border-t-0 cursor-pointer  peer-checked:border-blue-600 peer-checked:text-white peer-checked:bg-indigo-800 hover:text-gray-600 hover:bg-gray-100"
+                className="inline-flex items-center px-4 py-2   border-gray-800 bg-gray-50 text-indigo-900  border border-r-0 border-t-0 cursor-pointer  peer-checked:border-blue-900 peer-checked:text-white peer-checked:bg-indigo-900 hover:text-gray-600 hover:bg-gray-100"
               >
                 <div
                   aria-hidden="true"
@@ -114,7 +114,7 @@ const ChoosePackage: React.FC = () => {
               <div className="space-y-10 pb-5 px-5">
                 <div className="flex items-center gap-5">
                   <div className="row-span-1">
-                    <MapIcon className="h-14 w-14 text-indigo-800" />
+                    <MapIcon className="h-14 w-14 text-indigo-900" />
                   </div>
                   <div>
                     <h1 className="text-3xl">Plus</h1>
@@ -175,7 +175,7 @@ const ChoosePackage: React.FC = () => {
               />
               <label
                 htmlFor="exclusive"
-                className="inline-flex items-center px-4 py-2 text-indigo-800 bg-gray-50 border border-r-0 border-t-0 border-gray-400  cursor-pointer  peer-checked:border-blue-600 peer-checked:text-white peer-checked:bg-indigo-800 hover:text-gray-600 hover:bg-gray-100"
+                className="inline-flex items-center px-4 py-2 text-indigo-900 bg-gray-50 border border-r-0 border-t-0 border-gray-400  cursor-pointer  peer-checked:border-blue-900 peer-checked:text-white peer-checked:bg-indigo-900 hover:text-gray-600 hover:bg-gray-100"
               >
                 <div
                   aria-hidden="true"
@@ -190,7 +190,7 @@ const ChoosePackage: React.FC = () => {
                 <div className="flex items-center gap-5">
                   <div className="row-span-1">
                     <div className="row-span-1">
-                      <CubeIcon className=" h-14 w-14 text-indigo-800" />
+                      <CubeIcon className=" h-14 w-14 text-indigo-900" />
                     </div>
                   </div>
                   <div>

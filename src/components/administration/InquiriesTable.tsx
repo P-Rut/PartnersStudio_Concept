@@ -7,9 +7,6 @@ const InquiriesTable: React.FC = () => {
         <th>Email</th>
         <th>Phone</th>
         <th>City</th>
-        {/* <th className="p-3 ">Address</th>
-        <th className="p-3 ">Contact</th>
-        <th className="p-3 ">Stage</th> */}
         <th>Type</th>
         <th>Contructor</th>
         <th className="w-20">More</th>
