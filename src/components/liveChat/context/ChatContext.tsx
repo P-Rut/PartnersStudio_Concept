@@ -14,12 +14,16 @@ export function UserContextProvider({ children }: any) {
       .get("/profile")
       .then((res) => {
         setId(res.data.userID)
-        setUsername(res.data.username)
+        if (open) {
+          setIdentifier(res.data.username)
+        } else {
+          setUsername(res.data.username)
+        }
       })
       .catch((err) => {
         console.log(err)
       })
-  }, [])
+  }, [open])
   return (
     <ChatContext.Provider
       value={{
