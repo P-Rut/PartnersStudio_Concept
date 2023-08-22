@@ -6,7 +6,7 @@ import {
   ArrowUturnLeftIcon,
   FolderArrowDownIcon,
 } from "@heroicons/react/24/outline"
-
+import apiService from "../../services/apiServices"
 const InquiryDetails: React.FC = () => {
   const { id } = useParams()
 
@@ -15,18 +15,12 @@ const InquiryDetails: React.FC = () => {
   //Backend nie przesyła photos w przypadku api/inqiries/id
   //gdy przełacze url na /api/inquiries?populate=* wtedy przy fetchu dostaje array photosow z backenud
 
-  const getUrl = `${process.env.REACT_APP_URL}/api/inquiries/${id}`
-
   const backendUrl = "https://strapi-km.herokuapp.com"
 
   useEffect(() => {
     const fun = async () => {
       try {
-        const response = await axios.get(getUrl, {
-          headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
-          },
-        })
+        const response = await apiService.get(`/api/inquiries/${id}`)
         console.log(response.data)
         const detailsData = response.data
         setInquiryDetails(detailsData.data)

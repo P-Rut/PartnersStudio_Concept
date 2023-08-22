@@ -7,11 +7,11 @@ import Pagination from "./Pagination"
 import Inquiry from "./Inquiry"
 import InquiriesTable from "./InquiriesTable"
 import Spinner from "../../assets/spin.gif"
+import apiService from "../../services/apiServices.js"
 
 function AdministrationPanel() {
   const [inquiries, setInquiries] = useState<Inquiriy[]>([])
   const [isLoading, setIsLoading] = useState(false)
-  const getUrl = `${process.env.REACT_APP_URL}/api/inquiries?populate=*`
   const [currentPage, setCurrentPage] = useState(1)
   const InquiryPerPage = 5
   const indexOfLastInquiry = currentPage * InquiryPerPage
@@ -22,15 +22,10 @@ function AdministrationPanel() {
   )
 
   //Download Inquiry
-
   useEffect(() => {
     const fun = async () => {
       setIsLoading(true)
-      const response = await axios.get(getUrl, {
-        headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
-        },
-      })
+      const response = await apiService.get("/api/inquiries?populate=*")
 
       setIsLoading(false)
       const InquiriesData = response.data
@@ -46,12 +41,8 @@ function AdministrationPanel() {
     if (
       window.confirm("Are you sure you want to delete this client enquiry ?")
     ) {
-      axios
-        .delete(`${process.env.REACT_APP_URL}/api/inquiries/${id}`, {
-          headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
-          },
-        })
+      apiService
+        .delete(`/api/inquiries/${id}`)
         .then((res) => {
           window.alert("Enquiry has been removed")
           setInquiries(inquiries.filter((item) => item.id !== id))
