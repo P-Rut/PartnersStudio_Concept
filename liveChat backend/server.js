@@ -7,15 +7,14 @@ const jwt = require("jsonwebtoken")
 const websockets = require("ws")
 const fs = require("fs")
 const connectDB = require("./config/db")
+const helmet = require("helmet")
 
 dotenv.config()
 connectDB()
 const jwtSecret = process.env.JWT_SECRET
 
 const app = express()
-const server = app.listen(7007, () =>
-  console.log("Server is runing on port", 7007)
-)
+app.use(helmet())
 app.use("/uploads", express.static(__dirname + "/uploads"))
 app.use(express.json())
 app.use(cookieParser())
@@ -29,6 +28,13 @@ app.use("/", require("./routes/messagesRoutes"))
 app.use("/", require("./routes/userRoutes"))
 app.use("/", require("./routes/peopleRoutes"))
 
+app.get("/test", (req, res) => {
+  res.json("Hello test")
+})
+
+const server = app.listen(7007, () =>
+  console.log("Server is runing on port", 7007)
+)
 //websockets server
 const webSocketServer = new websockets.WebSocketServer({ server })
 webSocketServer.on("connection", (connection, req) => {
