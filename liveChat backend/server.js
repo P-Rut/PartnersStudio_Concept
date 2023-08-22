@@ -1,23 +1,21 @@
 const express = require("express")
 const dotenv = require("dotenv")
-const mongoose = require("mongoose")
 const cookieParser = require("cookie-parser")
 const cors = require("cors")
-const User = require("./models/User")
-const Message = require("./models/Message")
-const bcrypt = require("bcryptjs")
+const Message = require("./models/messageModel.js")
 const jwt = require("jsonwebtoken")
 const websockets = require("ws")
 const fs = require("fs")
+const connectDB = require("./config/db")
 
 dotenv.config()
-mongoose.connect(process.env.MONGO_URL, (err) => {
-  if (err) throw err
-})
+connectDB()
 const jwtSecret = process.env.JWT_SECRET
-const bcryptSalt = bcrypt.genSaltSync(10)
 
 const app = express()
+const server = app.listen(7007, () =>
+  console.log("Server is runing on port", 7007)
+)
 app.use("/uploads", express.static(__dirname + "/uploads"))
 app.use(express.json())
 app.use(cookieParser())
@@ -27,163 +25,11 @@ app.use(
     origin: process.env.CLIENT_URL,
   })
 )
-
-async function getUserDataFromToken(req) {
-  return new Promise((resolve, reject) => {
-    const token = req.cookies?.token
-    if (token) {
-      jwt.verify(token, jwtSecret, {}, (err, userData) => {
-        if (err) throw err
-        resolve(userData)
-      })
-    } else {
-      reject("No token !")
-    }
-  })
-}
-
-app.get("/test", (req, res) => {
-  res.json("test ok")
-})
-
-app.get("/messages/:userID", async (req, res) => {
-  const { userID } = req.params
-  const userData = await getUserDataFromToken(req)
-  const ourUserID = userData.userID
-  console.log(userID, ourUserID)
-  const messages = await Message.find({
-    sender: { $in: [userID, ourUserID] },
-    recipient: { $in: [userID, ourUserID] },
-  }).sort({ createdAt: 1 })
-  res.json(messages)
-})
-
-app.get("/profile", (req, res) => {
-  const token = req.cookies?.token
-  if (token) {
-    jwt.verify(token, jwtSecret, {}, (err, userData) => {
-      if (err) throw err
-      res.json(userData)
-    })
-  } else {
-    res.status(401).json("No token!")
-  }
-})
-
-app.post("/login", async (req, res) => {
-  const { username, password } = req.body
-  console.log("login", req.body)
-  if (username && password) {
-    const foundUser = await User.findOne({ username })
-    if (foundUser) {
-      const passwordOK = bcrypt.compareSync(password, foundUser.password)
-      if (passwordOK) {
-        jwt.sign(
-          { userID: foundUser._id, username },
-          jwtSecret,
-          {},
-          (err, token) => {
-            res
-              .cookie("token", token, { sameSite: "none", secure: true })
-              .json({
-                id: foundUser._id,
-              })
-          }
-        )
-      }
-    } else {
-      res.status(401).json({ message: "Invalid username or password" })
-    }
-  }
-  if (username) {
-    const foundOpenUser = await User.findOne({ username })
-    if (foundOpenUser) {
-      jwt.sign(
-        { userID: foundOpenUser._id, username },
-        jwtSecret,
-        {},
-        (err, token) => {
-          res.cookie("token", token, { sameSite: "none", secure: true }).json({
-            id: foundOpenUser._id,
-          })
-        }
-      )
-    } else {
-      res.status(401).json({ message: "Invalid identifier" })
-    }
-  }
-})
-
-app.post("/open", async (req, res) => {
-  const { username } = req.body
-  try {
-    const createOpenUser = await User.create({
-      username: username,
-    })
-    jwt.sign(
-      { userID: createOpenUser._id, username },
-      jwtSecret,
-      {},
-      (err, token) => {
-        if (err) throw err
-        res
-          .cookie("token", token, { sameSite: "none", secure: true })
-          .status(201)
-          .json({
-            id: createOpenUser._id,
-          })
-      }
-    )
-  } catch (err) {
-    if (err) throw err
-    res.status(500).json("error")
-  }
-})
-
-app.post("/logout", (req, res) => {
-  res.cookie("token", "", { sameSite: "none", secure: true }).json("ok")
-})
-
-app.post("/register", async (req, res) => {
-  const { username, password } = req.body
-  try {
-    const hashedPassword = bcrypt.hashSync(password, bcryptSalt)
-    const createdUser = await User.create({
-      username: username,
-      password: hashedPassword,
-    })
-    //creating encoded token with user id and username
-    jwt.sign(
-      { userID: createdUser._id, username },
-      jwtSecret,
-      {},
-      (err, token) => {
-        if (err) throw err
-        res
-          .cookie("token", token, { sameSite: "none", secure: true })
-          .status(201)
-          .json({
-            id: createdUser._id,
-          })
-      }
-    )
-  } catch (err) {
-    if (err) throw err
-    res.status(500).json("error")
-  }
-})
-
-app.get("/people", async (req, res) => {
-  const users = await User.find({}, { _id: 1, username: 1 })
-  res.json(users)
-})
-
-const server = app.listen(7007, () =>
-  console.log("Server is runing on port", 7007)
-)
+app.use("/", require("./routes/messagesRoutes"))
+app.use("/", require("./routes/userRoutes"))
+app.use("/", require("./routes/peopleRoutes"))
 
 //websockets server
-
 const webSocketServer = new websockets.WebSocketServer({ server })
 webSocketServer.on("connection", (connection, req) => {
   console.log("Connected to WebSocketServer !")
@@ -201,7 +47,6 @@ webSocketServer.on("connection", (connection, req) => {
   }
 
   connection.isAlive = true
-
   connection.timer = setInterval(() => {
     connection.ping()
     connection.deathTimer = setTimeout(() => {
@@ -258,7 +103,6 @@ webSocketServer.on("connection", (connection, req) => {
         text,
         file: file ? filename : null,
       })
-      console.log("message created")
       ;[...webSocketServer.clients]
         .filter((client) => client.userID === recipient)
         .forEach((client) =>
