@@ -6,6 +6,7 @@ import { ChatContext } from "./context/ChatContext"
 
 const OpenLoginToSupportChat = () => {
   const [username, setUsername] = useState("")
+  const [usernameExists, setUsernameExists] = useState(false)
 
   const {
     setIdentifier: setLoggedIdentifier,
@@ -16,10 +17,18 @@ const OpenLoginToSupportChat = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const url = "open"
-    const { data } = await axios.post(url, { username })
-    console.log(username)
-    setLoggedIdentifier(username)
-    setId(data.id)
+    try {
+      const response = await axios.post(url, { username })
+      if (response.status === 201) {
+        setUsernameExists(false)
+        setLoggedIdentifier(username)
+        setId(response.data.id)
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        setUsernameExists(true)
+      }
+    }
   }
 
   return (
@@ -38,8 +47,13 @@ const OpenLoginToSupportChat = () => {
               onChange={(e) => setUsername(e.target.value)}
               type="text"
               placeholder="Username"
-              className="block w-full mb-4"
+              className="block w-full"
             />
+            {usernameExists && (
+              <p className="text-red-500 mb-4 text-xs">
+                Username is taken. Try another.
+              </p>
+            )}
             <button className="text-white  bg-indigo-900 block w-full p-2 hover:opacity-50">
               Create
             </button>

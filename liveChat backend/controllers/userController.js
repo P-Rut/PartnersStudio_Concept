@@ -19,7 +19,9 @@ const registerUser = async (req, res) => {
       jwtSecret,
       {},
       (err, token) => {
-        if (err) throw err
+        if (err) {
+          return res.status(500).json({ message: "Error creating token" })
+        }
         res
           .cookie("token", token, { sameSite: "none", secure: true })
           .status(201)
@@ -29,8 +31,7 @@ const registerUser = async (req, res) => {
       }
     )
   } catch (err) {
-    if (err) throw err
-    res.status(500).json("error")
+    res.status(500).json({ message: "Error creating user" })
   }
 }
 
@@ -39,26 +40,36 @@ const loginUser = async (req, res) => {
   const { username, password } = req.body
   console.log("login", req.body)
   if (username && password) {
-    const foundUser = await User.findOne({ username })
-    if (foundUser) {
-      const passwordOK = bcrypt.compareSync(password, foundUser.password)
-      if (passwordOK) {
-        jwt.sign(
-          { userID: foundUser._id, username },
-          jwtSecret,
-          {},
-          (err, token) => {
-            res
-              .cookie("token", token, { sameSite: "none", secure: true })
-              .json({
-                id: foundUser._id,
-              })
-          }
-        )
+    try {
+      const foundUser = await User.findOne({ username })
+      if (!foundUser) {
+        return res.status(401).json({ message: "Invalid username" })
       }
-    } else {
-      res.status(401).json({ message: "Invalid username or password" })
+
+      const passwordOK = bcrypt.compareSync(password, foundUser.password)
+      if (!passwordOK) {
+        return res.status(401).json({ message: "Invalid password" })
+      }
+
+      jwt.sign(
+        { userID: foundUser._id, username },
+        jwtSecret,
+        {},
+        (err, token) => {
+          if (err) {
+            return res.status(500).json({ message: "Error creating token" })
+          }
+
+          res.cookie("token", token, { sameSite: "none", secure: true }).json({
+            id: foundUser._id,
+          })
+        }
+      )
+    } catch (err) {
+      res.status(500).json({ message: "Error" })
     }
+  } else {
+    res.status(400).json({ message: "Both username and password are required" })
   }
 }
 
@@ -66,6 +77,10 @@ const loginUser = async (req, res) => {
 const loginOpenUser = async (req, res) => {
   const { username } = req.body
   try {
+    const existingUser = await User.findOne({ username })
+    if (existingUser) {
+      return res.status(400).json({ message: "Username already exists" })
+    }
     const createOpenUser = await User.create({
       username: username,
     })
@@ -73,20 +88,21 @@ const loginOpenUser = async (req, res) => {
       { userID: createOpenUser._id, username },
       jwtSecret,
       {},
-      (err, token, next) => {
-        if (err) next(err)
-        else
-          res
-            .cookie("token", token, { sameSite: "none", secure: true })
-            .status(201)
-            .json({
-              id: createOpenUser._id,
-            })
+      (err, token) => {
+        if (err) {
+          return res.status(500).json({ message: "Error creating token" })
+        }
+
+        res
+          .cookie("token", token, { sameSite: "none", secure: true })
+          .status(201)
+          .json({
+            id: createOpenUser._id,
+          })
       }
     )
   } catch (err) {
-    if (err) throw err
-    res.status(500).json("error")
+    res.status(500).json({ message: "Error creating user" })
   }
 }
 
