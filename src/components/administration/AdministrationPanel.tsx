@@ -39,14 +39,12 @@ function AdministrationPanel() {
 
   const deleteInquiry = async (id: any) => {
     if (
-      window.confirm("Are you sure you want to delete this client enquiry ?")
+      window.confirm("Are you sure you want to delete this client's enquiry ?")
     ) {
       apiService
         .delete(`/api/inquiries/${id}`)
-        .then((res) => {
-          window.alert("Enquiry has been removed")
+        .then(() => {
           setInquiries(inquiries.filter((item) => item.id !== id))
-          console.log("deleted", res.data)
         })
         .catch((error) => {
           console.log(error)
