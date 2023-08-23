@@ -77,8 +77,8 @@ webSocketServer.on("connection", (connection, req) => {
     if (tokenCookieStirng) {
       const token = tokenCookieStirng.split("=")[1]
       if (token) {
-        jwt.verify(token, jwtSecret, {}, (err, userData) => {
-          if (err) throw err
+        jwt.verify(token, jwtSecret, {}, (err, userData, next) => {
+          if (err) next(err)
           const { userID, username } = userData
           connection.userID = userID
           connection.username = username

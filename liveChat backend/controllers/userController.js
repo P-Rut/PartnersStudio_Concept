@@ -90,14 +90,15 @@ const loginOpenUser = async (req, res) => {
       { userID: createOpenUser._id, username },
       jwtSecret,
       {},
-      (err, token) => {
-        if (err) throw err
-        res
-          .cookie("token", token, { sameSite: "none", secure: true })
-          .status(201)
-          .json({
-            id: createOpenUser._id,
-          })
+      (err, token, next) => {
+        if (err) next(err)
+        else
+          res
+            .cookie("token", token, { sameSite: "none", secure: true })
+            .status(201)
+            .json({
+              id: createOpenUser._id,
+            })
       }
     )
   } catch (err) {

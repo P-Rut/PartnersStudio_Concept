@@ -5,12 +5,12 @@ const User = require("../models/userModel")
 const profileData = (req, res) => {
   const token = req.cookies?.token
   if (token) {
-    jwt.verify(token, jwtSecret, {}, (err, userData) => {
-      if (err) throw err
-      res.json(userData)
+    jwt.verify(token, jwtSecret, {}, (err, userData, next) => {
+      if (err) next(err)
+      else res.json(userData)
     })
   } else {
-    res.status(401).json("No token!")
+    res.status(401).json({ error: "Unauthorized" })
   }
 }
 

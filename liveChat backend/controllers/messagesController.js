@@ -8,9 +8,9 @@ async function getUserDataFromToken(req) {
   return new Promise((resolve, reject) => {
     const token = req.cookies?.token
     if (token) {
-      jwt.verify(token, jwtSecret, {}, (err, userData) => {
-        if (err) throw err
-        resolve(userData)
+      jwt.verify(token, jwtSecret, {}, (err, userData, next) => {
+        if (err) next(err)
+        else resolve(userData)
       })
     } else {
       reject("No token !")
