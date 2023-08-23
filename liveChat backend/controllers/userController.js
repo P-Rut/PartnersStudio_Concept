@@ -60,23 +60,6 @@ const loginUser = async (req, res) => {
       res.status(401).json({ message: "Invalid username or password" })
     }
   }
-  if (username) {
-    const foundOpenUser = await User.findOne({ username })
-    if (foundOpenUser) {
-      jwt.sign(
-        { userID: foundOpenUser._id, username },
-        jwtSecret,
-        {},
-        (err, token) => {
-          res.cookie("token", token, { sameSite: "none", secure: true }).json({
-            id: foundOpenUser._id,
-          })
-        }
-      )
-    } else {
-      res.status(401).json({ message: "Invalid identifier" })
-    }
-  }
 }
 
 //Login/Create open user without password for support chat use as a regular client.
