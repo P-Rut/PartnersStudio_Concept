@@ -75,17 +75,23 @@ function AdministrationPanel() {
         <table className="table-fixed border w-full">
           <InquiriesTable />
           <tbody>
-            {currentInquiry.map(({ attributes, id }: Inquiriy) => {
-              return (
-                <React.Fragment key={id}>
-                  <Inquiry
-                    item={attributes}
-                    id={id}
-                    deleteInquiry={deleteInquiry}
-                  />
-                </React.Fragment>
-              )
-            })}
+            {currentInquiry.length === 0 ? (
+              <tr className="w-full absolute flex font-semibold justify-center content-center text-2xl mt-10 text-indigo-900">
+                <td>No inquiries</td>
+              </tr>
+            ) : (
+              currentInquiry.map(({ attributes, id }: Inquiriy) => {
+                return (
+                  <React.Fragment key={id}>
+                    <Inquiry
+                      item={attributes}
+                      id={id}
+                      deleteInquiry={deleteInquiry}
+                    />
+                  </React.Fragment>
+                )
+              })
+            )}
           </tbody>
         </table>
         <div className="flex items-center justify-center">
