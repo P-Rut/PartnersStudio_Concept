@@ -24,3 +24,5 @@ yarn-error.log*
 
 liveChat backend/uploads/*
 !liveChat backend/uploads/.keep
+
+.next/
