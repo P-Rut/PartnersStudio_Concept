@@ -18,20 +18,37 @@ const ChatWindow = () => {
   const chatWindowRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    connectToWebSocket()
-  }, [selectedUser])
-
-  function connectToWebSocket() {
-    const webSocket = new WebSocket("ws://localhost:7007")
-    setWebSocket(webSocket)
-    webSocket.addEventListener("message", handleMessage)
-    webSocket.addEventListener("close", () => {
+    const connectToWebSocket = () => {
+      const webSocket = new WebSocket("ws://localhost:7007")
+      setWebSocket(webSocket)
+      webSocket.addEventListener("message", handleMessage)
+      webSocket.addEventListener("close", handleClose)
+      return () => {
+        webSocket.removeEventListener("message", handleMessage)
+        webSocket.removeEventListener("close", handleClose)
+        webSocket.close()
+      }
+    }
+    const handleMessage = (ev: any) => {
+      const messageData = JSON.parse(ev.data)
+      console.log({ ev, messageData })
+      if ("online" in messageData) {
+        showOnlineUsers(messageData.online)
+      } else if ("text" in messageData) {
+        if (messageData.sender === selectedUser) {
+          setMessagesInsideChat((prev: any) => [...prev, { ...messageData }])
+        }
+      }
+    }
+    const handleClose = () => {
       setTimeout(() => {
         console.log("Disconnected ! Trying to reconnect...")
         connectToWebSocket()
       }, 1000)
-    })
-  }
+    }
+
+    connectToWebSocket()
+  }, [selectedUser])
 
   function showOnlineUsers(usersArray: any) {
     interface UsersType {
@@ -52,18 +69,6 @@ const ChatWindow = () => {
       setId(null)
       setUsername(null)
     })
-  }
-
-  function handleMessage(ev: any) {
-    const messageData = JSON.parse(ev.data)
-    console.log({ ev, messageData })
-    if ("online" in messageData) {
-      showOnlineUsers(messageData.online)
-    } else if ("text" in messageData) {
-      if (messageData.sender === selectedUser) {
-        setMessagesInsideChat((prev: any) => [...prev, { ...messageData }])
-      }
-    }
   }
 
   function sendMessage(ev: any, file = null) {
