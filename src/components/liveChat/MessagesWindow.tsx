@@ -108,18 +108,18 @@ export default function MessagesWindow({
       {open && (
         <>
           {!!selectedUser && (
-            <div className="h-full w-full grid content-end m-1">
+            <div className="h-full w-full grid content-end">
               <div
                 ref={chatWindowRef}
-                className="scroll-smooth absolute overflow-y-auto w-full top-20 bottom-10 left-0 right-0 max-w-4xl mx-auto space-y-1 grid grid-cols-1"
+                className="scroll-smooth absolute overflow-y-auto w-full top-20 bottom-12 left-0 right-0 max-w-4xl mx-auto space-y-1 grid grid-cols-1"
               >
                 {messagesWithoutDuplicates.map((message: any) => (
                   <div key={message._id}>
                     <div
                       className={
                         message.sender === id
-                          ? "place-self-end inline-block bg-indigo-900 border border-gray-300 text-white p-2 ml-24 text-sm float-right rounded-lg rounded-tr-none"
-                          : " place-self-start inline-block border border-gray-300 bg-gray-200 ml-2  text-gray-900 p-2 mr-24 text-sm float-left rounded-lg rounded-tl-none"
+                          ? "place-self-end inline-block bg-indigo-900 border border-gray-300 w-fit text-white p-2 ml-24 text-sm float-right rounded-lg rounded-tr-none"
+                          : " place-self-start inline-block border border-gray-300 bg-gray-200 w-fit  text-gray-900 p-2 mr-24 text-sm float-left rounded-lg rounded-tl-none"
                       }
                     >
                       {message.text}

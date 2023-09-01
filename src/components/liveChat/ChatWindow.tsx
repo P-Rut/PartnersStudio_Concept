@@ -163,7 +163,7 @@ const ChatWindow = () => {
 
       {!!open && !!identifier && (
         <>
-          <div className="fixed bottom-20 right-5 flex flex-col h-4/6 w-1/4 items-center p-2 bg-white rounded-md border-2 border-indigo-900 transition">
+          <div className="fixed bottom-20 flex flex-col right-5 h-4/5 w-[350px]  sm:h-2/4 sm:w-[290px]  items-center bg-white p-4 rounded-md border-2 border-indigo-900">
             <UsersList
               onlineUsers={onlineUsers}
               setSelectedUser={setSelectedUser}

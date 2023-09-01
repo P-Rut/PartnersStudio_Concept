@@ -6,14 +6,14 @@ const Contact: React.FC = () => {
       <div className="h-screen bg-gray-50">
         <Navbar />
         <div>
-          <div className="p-32 w-4/6">
+          <div className="pt-24 px-10 md:px-32 w-full md:w-4/6">
             <div>
-              <h1 className="text-5xl font-light mb-3">Contact</h1>
+              <h1 className="text-5xl font-light mb-2">Contact</h1>
               <p className="text-xl text-gray-400 font-extralight">
                 Please do not hesitate to contact us !
               </p>
             </div>
-            <div className="mt-10 grid gap-10">
+            <div className="mt-5 md:mt-10 grid gap-5 md:gap-10">
               <div>
                 <p className="text-xl text-gray-400 font-thin">
                   If you have questions about your project or our work status

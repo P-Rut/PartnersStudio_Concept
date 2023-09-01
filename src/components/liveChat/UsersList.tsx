@@ -81,7 +81,7 @@ export default function UsersList({
             <h1>Live Support Chat</h1>
           </div>
 
-          <div className="bg-white absolute top-10 flex items-center border-black border-b rounded-b rounded-md w-full left-0 text-black">
+          <div className="bg-white absolute p-1 z-10 top-10 flex items-center border-black border-b rounded-b rounded-md w-full left-0 text-black">
             <h1 className="text-xs ml-2">You are chatting with</h1>
             <h1 className="text-xs ml-1 py-2 font-medium">Support Team</h1>
           </div>
