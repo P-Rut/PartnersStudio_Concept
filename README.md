@@ -2,7 +2,10 @@
 
 PARTNERS STUDIO CONCEPT
 
-This website project is designed to provide potential clients with information about architectural studio services and showcase their portfolio of completed projects. Visitors to the site can explore past work and read a detailed description of the services studio offer. The website also includes a contact form that allows clients to easily submit project details, blueprints, and photo files directly from the site. Design studio team can then use this information to calculate a personalized offer based on the chosen plan and uploaded files on thier server.
+This website project is designed to provide potential clients glimpse about architectural studio services and past projects.
+Clients can choose from three different service plans when submitting project details through contact form, along with any relevant files like blueprints and photos or more precise descriptions of their needs. Then employess while using administration panel that recives this information form backend can create personalized offers and send them directly to clients via email. 
+Also this website same as administration panel features live chat support for real-time assistance between client's and employess.
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
