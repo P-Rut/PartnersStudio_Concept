@@ -1,6 +1,9 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
+const defaultTheme = require("tailwindcss/defaultTheme")
 
 module.exports = {
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -15,6 +18,9 @@ module.exports = {
         sans: ["Inter", defaultTheme.fontFamily.sans],
       },
     },
+    screens: {
+      sm: "850px",
+    },
   },
   plugins: [require("@tailwindcss/forms")],
-};
+}

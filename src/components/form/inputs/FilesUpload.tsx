@@ -7,7 +7,7 @@ const FilesUpload: React.FC = () => {
   } = useFormContext()
   return (
     <>
-      <div className="border-solid border mb-5 w-full border-black bg-gray-50">
+      <div className="border-solid border mb-5 w-full border-black tracking-tight sm:tracking-normal ">
         <label
           className="block text-xl font-thin ml-7 mt-5 mb-2 "
           htmlFor="files_upload"

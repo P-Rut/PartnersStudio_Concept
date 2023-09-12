@@ -25,8 +25,8 @@ const Offer: React.FC = () => {
             email.
           </p>
         </div>
-        <div className=" bg-gray-50 grid grid-cols-3 grid-rows-3 gap-x-5 gap-y-5 px-5 ">
-          <div className="row-span-1 md:row-span-3 col-span-3 md:col-span-1 border  border-black">
+        <div className="  grid grid-cols-3 grid-rows-3 gap-x-5 gap-y-5 px-5 ">
+          <div className="row-span-1 sm:row-span-3 col-span-3 sm:col-span-1 border  border-black">
             <div className="h-full grid grid-rows-2">
               <div className="space-y-3 py-5 px-5">
                 <div className="flex items-center gap-5">
@@ -51,7 +51,7 @@ const Offer: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="row-span-1 md:row-span-3 border col-span-3 md:col-span-1  border-black">
+          <div className="row-span-1 sm:row-span-3 border col-span-3 sm:col-span-1  border-black">
             <div className="h-full grid grid-rows-2">
               <div className="space-y-3 py-5 px-5">
                 <div className="flex items-center gap-5">
@@ -77,7 +77,7 @@ const Offer: React.FC = () => {
               </div>
             </div>
           </div>
-          <div className="row-span-1 md:row-span-3 border col-span-3 md:col-span-1  border-black">
+          <div className="row-span-1 sm:row-span-3 border col-span-3 sm:col-span-1  border-black">
             <div className="h-full grid grid-rows-2">
               <div className="space-y-3 py-5 px-5">
                 <div className="flex items-center gap-5">

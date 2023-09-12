@@ -116,30 +116,28 @@ const Form: React.FC = () => {
 
   return (
     <>
-      <div className="bg-gray-50">
+      <div className="">
         <Navbar />
         <FormProvider {...FormMethods}>
-          <form onSubmit={handleSubmit(onFormSubmit)}>
-            <div>
-              <ChoosePackage />
-              <InputsWrapper />
-              <div className="mx-10">
-                {loading ? (
-                  <button
-                    className="pointer-events-none transition-colors duration-300 w-full mb-5 tracking-widest text-2xl border border-black text-gray-50 p-2 hover:bg-indigo-100 hover:text-indigo-900 bg-indigo-800"
-                    type="submit"
-                  >
-                    <UploadProgress percentage={uploadPercentage} />
-                  </button>
-                ) : (
-                  <button
-                    className="transition-colors duration-300 w-full mb-5 tracking-widest text-2xl border border-black text-gray-50 p-2 hover:bg-indigo-100 hover:text-indigo-900 bg-indigo-900"
-                    type="submit"
-                  >
-                    SUBMIT
-                  </button>
-                )}
-              </div>
+          <form onSubmit={handleSubmit(onFormSubmit)} className="h-full">
+            <ChoosePackage />
+            <InputsWrapper />
+            <div className="mx-5 sm:mx-10">
+              {loading ? (
+                <button
+                  className="pointer-events-none transition-colors duration-300 w-full mb-5 tracking-widest text-2xl border border-black text-gray-50 p-2 hover:bg-indigo-100 hover:text-indigo-900 bg-indigo-800"
+                  type="submit"
+                >
+                  <UploadProgress percentage={uploadPercentage} />
+                </button>
+              ) : (
+                <button
+                  className="transition-colors duration-300 w-full mb-5 tracking-widest text-2xl border border-black text-gray-50 p-2 hover:bg-indigo-100 hover:text-indigo-900 bg-indigo-900"
+                  type="submit"
+                >
+                  SUBMIT
+                </button>
+              )}
             </div>
           </form>
         </FormProvider>

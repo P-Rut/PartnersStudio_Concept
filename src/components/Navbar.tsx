@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
   return (
     <>
       <nav
-        className={`transition ease-out duration-300 border-gray-900 w-full bg-gray-50 flex border-b fixed top-0 z-50 ${
+        className={` bg-white transition ease-out duration-300 border-gray-900 w-full  flex border-b fixed top-0 z-50 ${
           visable ? "" : "opacity-0 invisible"
         }`}
       >
@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
             type="button"
             className="flex-1 space-y-1.5"
           >
-            <Bars4Icon className="h-7 w-7 transition-all hover:scale-125  hover:text-indigo-900" />
+            <Bars4Icon className="h-7 w-7 transition-all hover:scale-125 duration-300  hover:text-indigo-900" />
           </button>
 
           <div
@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
               isOpen ? "" : "opacity-0 invisible"
             }`}
           >
-            <div className=" text-indigo-900 h-full bg-gray-50 absolute z-40 w-4/6 sm:w-2/6 py-3 px-5 sm:px-10 top-0 left-0">
+            <div className="bg-white text-indigo-900 h-full  absolute z-40 w-4/6 sm:w-2/6 py-3 px-5 sm:px-10 top-0 left-0">
               <XMarkIcon
                 onClick={() => setIsOpen((prev) => !prev)}
                 className="h-7 w-7 mb-10 cursor-pointer hover:scale-125 transition-all"
@@ -76,16 +76,16 @@ const Navbar: React.FC = () => {
               </ul>
             </div>
           </div>
-          <div className="sm:mx-36 invisible sm:visible flex transition-all hover:scale-110">
+          <div className="sm:mx-36 flex transition-all hover:scale-110">
             <button onClick={(e) => (window.location.href = "/")}>
               <img src={logo} className=" items-center h-9" alt="Logo" />
             </button>
           </div>
           <span
             onClick={(e) => (window.location.href = "/offer")}
-            className="items-center sm:visible flex flex-1 cursor-pointer transition-all transform hover:text-indigo-900 decoration-1 justify-end ml-auto  decoration-indigo-800 hover:text-xl underline-offset-4 underline font-light whitespace-nowrap"
+            className="items-center text-sm sm:text-base flex flex-1 cursor-pointer transition-all transform hover:text-indigo-900 decoration-1 justify-end ml-auto  decoration-indigo-800 hover:text-xl underline-offset-2 underline font-light whitespace-nowrap tracking-tighter sm:tracking-normal duration-300"
           >
-            How it works ?
+            How it works
           </span>
         </div>
       </nav>
