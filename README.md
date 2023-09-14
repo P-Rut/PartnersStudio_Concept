@@ -1,50 +1,62 @@
 ![Partners Studio Concept](./cover_.jpg)
 
-PARTNERS STUDIO CONCEPT
+# PARTNERS STUDIO CONCEPT
 
-This website project is designed to provide potential clients with information about architectural studio services and showcase their portfolio of completed projects. Visitors to the site can explore past work and read a detailed description of the services studio offer. The website also includes a contact form that allows clients to easily submit project details, blueprints, and photo files directly from the site. Design studio team can then use this information to calculate a personalized offer based on the chosen plan and uploaded files on thier server.
+This website project is designed to provide potential clients with information about architectural studio services and showcase their portfolio of completed projects. Visitors to the site can explore past work and read a detailed description of the services studio offer. The website also includes a contact form that allows clients to easily submit project details, blueprints, and photo files directly from the site. Design studio team can then use this information to calculate a personalized offer based on the chosen plan and uploaded files on thier server that are displayed on administration page.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### Available Scriptsq
+## Features
 
-In the project directory, you can run:
+Service Plans: Clients can choose from three different service plans when submitting project details through our contact form. They can also attach relevant files like blueprints, photos, or detailed project descriptions.
+
+Personalized Offers: Our employees, using the administration panel, receive and project inquiries. They can create personalized offers and send them directly to clients via email.
+
+Live Chat Support: We offer real-time chat support for instant assistance between clients and our staff.
+
+## Getting Started
+
+### Installation
+
+Clone the repository to your local machine.
+
+git clone https://github.com/your-username/partners-studio-concept.git
+cd partners-studio-concept
+
+Install the required dependencies.
+
+### `npm install`
+
+## Running the App
+
+In the project directory, run the following command to start the app in development mode:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3000](http://localhost:3000) to view the app in your browser.
+The page will automatically reload if you make any edits, and you'll see any lint errors in the console.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Accessing the Administration Panel
 
-### `npm test`
+The administration panel is accessible at http://localhost:3000/admin.
+Here, you can view a table of all inquiries submitted via the contact form.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Live Chat
 
-### `npm run build`
+For the Live Chat feature, follow these steps:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In the livechat backend directory.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Run the Live Chat server:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `npm start`
 
-### `npm run eject`
+Open two seperate browser windows. One with INCOGNITO MODE (details of logged in user are stored in cookie) and one in regular.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+In one window open the live chat bubble at [http://localhost:3000](http://localhost:3000) to access the chat from the client's view.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In second window alternatively, you can access the administration site of the chat at [http://localhost:3000/chat](http://localhost:3000/chat)to send messages and files between support and logged in user.
+Use the following login details to access the support account:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Username: support
+Password: 123
