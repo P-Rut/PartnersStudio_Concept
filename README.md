@@ -8,11 +8,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Features
 
-**Service Plans:** Clients can choose from three different service plans when submitting project details through our contact form. They can also attach relevant files like blueprints, photos, or detailed project descriptions.
+**Service Plans:** Clients can choose from three different service plans when submitting project details through contact form. They can also attach relevant files like blueprints, photos, or detailed project descriptions.
 
-**Personalized Offers:** Our employees, using the administration panel, receive and project inquiries. They can create personalized offers and send them directly to clients via email.
+**Personalized Offers:** Employees, using the administration panel, receive and project inquiries. They can create personalized offers and send them directly to clients via email.
 
-**Live Chat Support:** We offer real-time chat support for instant assistance between clients and our staff.
+**Live Chat Support:** Site offers real-time chat support for instant assistance between clients and employees.
 
 ## Getting Started
 
