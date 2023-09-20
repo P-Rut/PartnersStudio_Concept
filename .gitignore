@@ -26,3 +26,4 @@ liveChat backend/uploads/*
 !liveChat backend/uploads/.keep
 
 .next/
+.env
