@@ -142,12 +142,15 @@ const InquiryDetails: React.FC = () => {
                 )
               }
             )}
-            Display photos / nie wiem czemu ale przy uzyciu api/inquiries/id nie
-            przychodza z backendu photos tak samo jak phone value
-            <br />
-            <br />
-            Na dole jest przygotowany button pod stworzenie dwnload
-            wyswietalnych plikow
+            <div className="p-5 font-light">
+              Display photos <br />
+              Area prepared to dispaly subbmited photos from backend. <br />
+              There is a issue with get request photo/ id. <br />
+              After resolving problem from backend side photos will be displayed
+              and possible to download.
+              <br />
+              <br />
+            </div>
           </div>
         </div>
       )}

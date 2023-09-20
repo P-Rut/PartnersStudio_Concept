@@ -2,15 +2,15 @@
 
 # PARTNERS STUDIO CONCEPT
 
-This website project is designed to provide potential clients with information about architectural studio services and showcase their portfolio of completed projects. Visitors to the site can explore past work and read a detailed description of the services studio offer. The website also includes a contact form that allows clients to easily submit project details, blueprints, and photo files directly from the site. Design studio team can then use this information to calculate a personalized offer based on the chosen plan and uploaded files on thier server that are displayed on administration page.
+This website project is designed to provide potential clients with information about architectural studio services and showcase their portfolio of completed projects. Visitors can explore past work and read a detailed description of services that the studio offers. Website also includes a contact form that allows clients to easily submit project details, blueprints and photo files directly from the site. Design studio team can then use this information to calculate personalized offers based on chosen plan and uploaded files on thier server that are displayed on administration page.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Features
 
-**Service Plans:** Clients can choose from three different service plans when submitting project details through contact form. They can also attach relevant files like blueprints, photos, or detailed project descriptions.
+**Service Plans:** Clients can choose from three different service plans when submitting project details through contact form. They can also attach relevant files like blueprints, photos or detailed project descriptions.
 
-**Personalized Offers:** Employees, using the administration panel, receive and project inquiries. They can create personalized offers and send them directly to clients via email.
+**Personalized Offers:** Employees, using the administration panel, receives project inquiries. They can create personalized offers and send them directly to clients via email based on provided informations.
 
 **Live Chat Support:** Site offers real-time chat support for instant assistance between clients and employees.
 
@@ -39,17 +39,19 @@ The page will automatically reload if you make any edits, and you'll see any lin
 ### Accessing the Administration Panel
 
 The administration panel is accessible at http://localhost:3000/admin.
-Here, you can view a table of all inquiries submitted via the contact form.
+Here, you can view a table of all inquiries submitted via the contact form and open specific inquiry details.
 
 ## Live Chat
 
 For the Live Chat feature, follow these steps:
 
-In the livechat backend directory.
+<ins>In the livechat backend directory.</ins>
 
 Run the Live Chat server:
 
-### `npm start`
+### `node server.js`
+
+### `nodemon server.js`
 
 Open two seperate browser windows. One with INCOGNITO MODE (details of logged in user are stored in cookie) and one in regular.
 
@@ -60,3 +62,5 @@ Use the following login details to access the support account:
 
 Username: support
 Password: 123
+
+<ins>Registering user with different details will access liveChat but won't give you possibility to talk with logged user to support chat from client site unless you will log in with support username and password. Of course fell free to create two seperate users and talk between them... but remember chat data is stored in backend so whatever you send will be saved and displayed later 😏</ins>
