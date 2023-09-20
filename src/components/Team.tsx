@@ -24,9 +24,9 @@ const Team: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div className="py-20 px-40 grid grid-rows-5 gap-16 bg-gray-50">
+      <div className="py-20 sm:px-40 sm:grid sm:grid-rows-5 h-full sm:h-full text-sm sm:text-base gap-16  tracking-tighter sm:tracking-normal">
         {/* Founder */}
-        <div className="gap-8 h-32 flex">
+        <div className="gap-8 sm:h-36 h-42 flex mb-10 sm:mb-0 p-2 sm:p-0">
           <div>
             <div
               style={founderProfile}
@@ -45,24 +45,23 @@ const Team: React.FC = () => {
                 the architectural studio with a vision to create spaces that
                 inspire and delight people.
               </p>
-              <div className="flex">
-                <p className="font-light mr-1">Contact : </p>
+              <div className="flex-col sm:flex gap-2">
                 <p
                   onClick={() =>
                     (window.location.href =
                       "mailto:johnsmith@partnersstudio.com")
                   }
-                  className="cursor-pointer hover:text-indigo-300 mr-1 font-light underline underline-offset-4 decoration-indigo-800"
+                  className="cursor-pointer  hover:text-indigo-300 mr-1 font-light underline underline-offset-4 decoration-indigo-800"
                 >
                   johnsmith@partnersstudio.com
                 </p>
-                <p className="font-light">/ +1 (555) 123-4567</p>
+                <p className="font-light">+1 (555) 123-4567</p>
               </div>
             </div>
           </div>
         </div>
         {/* Head of Design */}
-        <div className="flex gap-8">
+        <div className="flex sm:h-36 h-42 gap-8 mb-10 sm:mb-0 p-2 sm:p-0">
           <div>
             <div
               style={designProfile}
@@ -82,24 +81,24 @@ const Team: React.FC = () => {
                 about creating spaces that are not only beautiful, but also
                 functional and sustainable.
               </p>
-              <div className="flex">
-                <p className="font-light mr-1">Contact : </p>
+              <div className="flex-col sm:flex gap-2">
                 <p
                   onClick={() =>
                     (window.location.href =
                       "mailto:sarahlee@architecturalstudio.com")
                   }
-                  className="cursor-pointer hover:text-indigo-300 mr-1 font-light underline underline-offset-4 decoration-indigo-800"
+                  className="cursor-pointer hover:text-indigo-300 mr-1  font-light underline underline-offset-4 decoration-indigo-800"
                 >
                   sarahlee@architecturalstudio.com
                 </p>
-                <p className="font-light">/ +1 (555) 234-5678</p>
+
+                <p className="font-light">+1 (555) 234-5678</p>
               </div>
             </div>
           </div>
         </div>
         {/* Director of Marketing & Business Development */}
-        <div className="flex gap-8">
+        <div className="flex sm:h-36 h-42 gap-8 mb-10 sm:mb-0 p-2 sm:p-0">
           <div>
             <div
               style={directorProfile}
@@ -108,10 +107,8 @@ const Team: React.FC = () => {
           </div>
           <div>
             <div className="grid content-between h-full">
-              <div className="flex">
-                <h1 className="font-light text-indigo-800 mr-1">
-                  Director of Marketing & Business Development
-                </h1>
+              <div className="flex ">
+                <h1 className="font-light text-indigo-800 mr-1">Marketing</h1>
                 <h1 className="font-light">- Michael Chen</h1>
               </div>
               <p className="font-light leading-6">
@@ -120,24 +117,23 @@ const Team: React.FC = () => {
                 marketing and is passionate about helping clients achieve their
                 goals.
               </p>
-              <div className="flex">
-                <p className="font-light mr-1">Contact : </p>
+              <div className="flex-col sm:flex gap-2">
                 <p
                   onClick={() =>
                     (window.location.href =
-                      "mailto:michaelchen@architecturalstudio.com")
+                      "mailto:m.chen@architecturalstudio.com")
                   }
                   className="cursor-pointer hover:text-indigo-300 mr-1 font-light underline underline-offset-4 decoration-indigo-800"
                 >
-                  michaelchen@architecturalstudio.com
+                  m.chen@architecturalstudio.com
                 </p>
-                <p className="font-light">/ +1 (555) 345-6789</p>
+                <p className="font-light">+1 (555) 345-6789</p>
               </div>
             </div>
           </div>
         </div>
         {/* Project Architect */}
-        <div className="flex gap-8">
+        <div className="flex sm:h-34 h-42 gap-8 mb-10 sm:mb-0 p-2 sm:p-0">
           <div>
             <div
               style={architectProfile}
@@ -158,8 +154,7 @@ const Team: React.FC = () => {
                 and translate them into practical and beautiful design
                 solutions.
               </p>
-              <div className="flex">
-                <p className="font-light mr-1">Contact : </p>
+              <div className="flex-col sm:flex gap-2">
                 <p
                   onClick={() =>
                     (window.location.href =
@@ -169,13 +164,13 @@ const Team: React.FC = () => {
                 >
                   davidsingh@partnersstudio.com
                 </p>
-                <p className="font-light">/ +1 (555) 456-7890</p>
+                <p className="font-light">+1 (555) 456-7890</p>
               </div>
             </div>
           </div>
         </div>
         {/* Junior Architect */}
-        <div className="flex gap-8 grow-0">
+        <div className="flex sm:h-32 h-42 gap-8 p-2 sm:p-0">
           <div>
             <div
               style={juniorProfile}
@@ -195,8 +190,7 @@ const Team: React.FC = () => {
                 passionate about sustainability and eco-friendly design. She is
                 always eager to learn and grow in her role.
               </p>
-              <div className="flex">
-                <p className="font-light mr-1">Contact : </p>
+              <div className="flex-col sm:flex gap-2">
                 <p
                   onClick={() =>
                     (window.location.href =
@@ -206,7 +200,7 @@ const Team: React.FC = () => {
                 >
                   emilymartinez@partnersstudio.com
                 </p>
-                <p className="font-light">/ +1 (555) 567-8901</p>
+                <p className="font-light">+1 (555) 567-8901</p>
               </div>
             </div>
           </div>

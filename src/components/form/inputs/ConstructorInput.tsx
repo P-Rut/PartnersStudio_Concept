@@ -4,7 +4,7 @@ const ConstructorInput: React.FC = () => {
   const { register } = useFormContext()
 
   return (
-    <div className="border-solid border w-full mb-5 bg-gray-50 border-black ">
+    <div className="border-solid border w-full mb-5  border-black tracking-tight sm:tracking-normal ">
       <h1 className="text-xl font-thin ml-7 mt-2">
         Do you intend to work with constructor ?
       </h1>

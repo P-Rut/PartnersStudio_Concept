@@ -6,7 +6,7 @@ import BasicInputs from "./inputs/BasicInput"
 
 const InputsWrapper: React.FC = () => {
   return (
-    <div className="grid grid-cols-2 gap-5 mx-10 bg-gray-50">
+    <div className="sm:grid sm:grid-cols-2 sm:gap-5 h-full sm:mt-10 sm:mx-10 mx-5 ">
       <div>
         <BasicInputs
           placeholder="Name"
@@ -42,7 +42,7 @@ const InputsWrapper: React.FC = () => {
         />
         <BasicInputs
           placeholder="Project Stage"
-          title="project_stage"
+          title="project_level"
           type="text"
         />
         <ConstructorInput />

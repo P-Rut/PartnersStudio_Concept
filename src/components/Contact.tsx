@@ -3,20 +3,20 @@ import Navbar from "./Navbar"
 const Contact: React.FC = () => {
   return (
     <>
-      <div className="h-screen bg-gray-50">
+      <div className="h-screen ">
         <Navbar />
         <div>
-          <div className="p-32 w-4/6">
+          <div className="pt-24 px-10 sm:px-32 w-full sm:w-4/6">
             <div>
-              <h1 className="text-5xl font-light mb-3">Contact</h1>
+              <h1 className="text-5xl font-light mb-2">Contact</h1>
               <p className="text-xl text-gray-400 font-extralight">
-                Please do not hesitate to contact us !
+                Please do not hesitate to contact us.
               </p>
             </div>
-            <div className="mt-10 grid gap-10">
+            <div className="mt-5 sm:mt-10 grid gap-5 sm:gap-10">
               <div>
                 <p className="text-xl text-gray-400 font-thin">
-                  If you have questions about your project or our work status
+                  If you have questions about your project or our work status,
                   you can contact as by email at
                 </p>
                 <p
@@ -36,8 +36,8 @@ const Contact: React.FC = () => {
               </div>
               <div>
                 <p className="text-xl text-gray-400 font-extralight">
-                  Also if you would like to contact directly with one of our
-                  employees you can do it by clicking
+                  Also, if you would like to contact directly with one of our
+                  employees, you can do it by clicking
                 </p>
                 <p
                   onClick={(e) => (window.location.href = "/team")}

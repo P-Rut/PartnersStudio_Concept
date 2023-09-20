@@ -3,9 +3,9 @@ import { useFormContext } from "react-hook-form"
 const FormOfContact: React.FC = () => {
   const { register } = useFormContext()
   return (
-    <div className="border-solid border w-full mb-5 border-black bg-gray-50">
-      <h1 className="text-xl font-thin ml-7 mt-2">
-        Best way for you to meet with us ?
+    <div className="border-solid border w-full mb-5 border-black ">
+      <h1 className="text-xl font-thin ml-7 mt-2 tracking-tight sm:tracking-normal">
+        Best way for you to meet with us?
       </h1>
 
       {/* CHECKBOXY */}

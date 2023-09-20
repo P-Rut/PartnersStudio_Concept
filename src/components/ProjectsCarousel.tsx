@@ -38,43 +38,40 @@ const ProjectsCarousel: React.FC = () => {
     setCurrentImg(newImg)
   }
 
-  // const goToProject = (projectIndex: any) => {
-  //   setCurrentImg(projectIndex)
-  // }
-
   return (
     <>
-      <div className=" bg-gray-50">
-        <div className="max-w-[1440px] h-[750px] py-10 px-20 w-full m-auto grid grid-cols-5 relative ">
+      <div className=" ">
+        <div className="sm:max-w-[1440px] sm:h-[750px] sm:px-20 sm:w-full h-[700px] sm:py-0 py-5 px-5 sm:m-auto sm:grid sm:grid-cols-5 sm:relative">
           <div
             style={{ backgroundImage: `url(${projects[currentImg].URL})` }}
-            className="col-span-2 h-full bg-center bg-cover duration-500"
-          ></div>
-          <div className="static col-span-3 py-40 ml-24">
-            <div className="py-5 duration-1000">
-              <h1 className="text-5xl font-light mb-10">
+            className="col-span-2 sm:row-span-3 sm:h-full h-2/4 bg-center bg-cover duration-500"
+          />
+          <div className="flex visible sm:invisible justify-center align-center top-[35%] h-50 w-50 relative">
+            <div className="text-2xl bg-white bg-opacity-50  text-indigo-900 h-fit hover:text-indigo-200 hover:scale-125 transition-all cursor-pointer">
+              <AiOutlineArrowLeft onClick={prevImg} size={50} />
+            </div>
+
+            <div className="text-2xl ml-10 bg-white bg-opacity-50 h-fit  text-indigo-900 hover:scale-125 transition-all  hover:text-indigo-200 cursor-pointer">
+              <AiOutlineArrowRight onClick={nextImg} size={50} className="" />
+            </div>
+          </div>
+          <div className="sm:col-span-3 sm:row-span-2 sm:ml-24">
+            <div>
+              <h1 className="sm:text-5xl font-light text-3xl sm:mb-5">
                 {projects[currentImg].header}
               </h1>
-              <p className="text-2xl font-extralight">
+              <p className="sm:text-2xl font-extralight text-xl mt-2">
                 {projects[currentImg].text}
               </p>
             </div>
           </div>
-          <div className="flex absolute justify-center aligng-center top-3/4 left-2/4">
-            <div className="text-2xl  text-indigo-800 hover:text-indigo-200 hover:scale-125 transition-all cursor-pointer">
-              <AiOutlineArrowLeft onClick={prevImg} size={40} />
+          <div className="invisible sm:visible flex justify-center align-center sm:top-[70%] h-50 w-50 sm:left-[65%] sm:absolute relative">
+            <div className="text-2xl bg-white bg-opacity-50  text-indigo-900 h-fit hover:text-indigo-200 hover:scale-125 transition-all cursor-pointer">
+              <AiOutlineArrowLeft onClick={prevImg} size={50} />
             </div>
-            {/* <div className="flex mx-2">
-            {projects.map((project, projectIndex) => (
-              <div
-                key={projectIndex}
-                onClick={() => goToProject(projectIndex)}
-                className="solid  cursor-pointer border mx-2 border-black h-8 w-8"
-              ></div>
-            ))}
-          </div> */}
-            <div className="text-2xl ml-10  text-indigo-800 hover:scale-125 transition-all  hover:text-indigo-200 cursor-pointer">
-              <AiOutlineArrowRight onClick={nextImg} size={40} className="" />
+
+            <div className="text-2xl ml-10 bg-white bg-opacity-50 h-fit  text-indigo-900 hover:scale-125 transition-all  hover:text-indigo-200 cursor-pointer">
+              <AiOutlineArrowRight onClick={nextImg} size={50} className="" />
             </div>
           </div>
         </div>

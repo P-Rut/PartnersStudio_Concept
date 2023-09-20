@@ -5,6 +5,8 @@ import ChoosePackage from "../ChoosePackage"
 //@ts-ignore
 import { Packages } from "../../types"
 import axios from "axios"
+import { useEffect, useState } from "react"
+import UploadProgress from "./UploadProgress"
 
 interface FormData {
   name: string
@@ -30,20 +32,36 @@ const defaultData = {
   city: "",
   address: "",
   contact_preference: [],
-  photos: undefined,
+  photos: [],
   project_type: "",
-  project_stage: "",
+  project_level: "",
   additional_info: "",
   contractor: undefined,
   package: undefined,
 }
 
-// { phone: true, online_meeting: false} as Record<string, boolean>
-
 const Form: React.FC = () => {
   const FormMethods = useForm<FormData>({ defaultValues: defaultData })
-
   const { handleSubmit, reset } = FormMethods
+  const [loading, setLoading] = useState(false)
+  const [uploadPercentage, setUploadPercentage] = useState(0)
+
+  function deleteStorage() {
+    localStorage.removeItem("formData")
+  }
+
+  useEffect(() => {
+    const savedFormData = localStorage.getItem("formData")
+    if (savedFormData) {
+      const parsedFormData = JSON.parse(savedFormData)
+      reset(parsedFormData)
+    }
+  }, [])
+
+  useEffect(() => {
+    const saveFormData = JSON.stringify(FormMethods.getValues())
+    localStorage.setItem("formData", saveFormData)
+  }, [FormMethods.watch()])
 
   const onFormSubmit = async (data: FormData) => {
     const token =
@@ -53,6 +71,7 @@ const Form: React.FC = () => {
       formData.append("files", photo)
     )
 
+    setLoading(true)
     try {
       const res = await axios({
         method: "POST",
@@ -61,9 +80,19 @@ const Form: React.FC = () => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        onUploadProgress: (progressEvent) => {
+          const { loaded, total }: any = progressEvent
+          let percent = Math.round((loaded * 100) / total)
+          setUploadPercentage(percent)
+        },
       })
+
       const photoIds: number[] = res.data.map((e: { id: number }) => e.id)
-      let dataCopy: InquiryPayload = { ...data, photos: photoIds }
+      let dataCopy: InquiryPayload = {
+        ...data,
+        photos: photoIds,
+      }
+      console.log(dataCopy)
 
       const response = await axios({
         method: "POST",
@@ -77,27 +106,38 @@ const Form: React.FC = () => {
       console.log("Inquiry", response.data)
     } catch (error) {
       console.log(error)
+    } finally {
+      setLoading(false)
+      setUploadPercentage(0)
     }
-    reset()
+    deleteStorage()
+    reset(defaultData)
   }
 
   return (
     <>
-      <div className="bg-gray-50">
+      <div className="">
         <Navbar />
         <FormProvider {...FormMethods}>
-          <form onSubmit={handleSubmit(onFormSubmit)}>
-            <div>
-              <ChoosePackage />
-              <InputsWrapper />
-              <div className="mx-10">
+          <form onSubmit={handleSubmit(onFormSubmit)} className="h-full">
+            <ChoosePackage />
+            <InputsWrapper />
+            <div className="mx-5 sm:mx-10">
+              {loading ? (
                 <button
-                  className="transition-colors duration-300 w-full mb-5 tracking-widest text-2xl border border-black text-gray-50 p-2 hover:bg-indigo-100 hover:text-indigo-900 bg-indigo-800"
+                  className="pointer-events-none transition-colors duration-300 w-full mb-5 tracking-widest text-2xl border border-black text-gray-50 p-2 hover:bg-indigo-100 hover:text-indigo-900 bg-indigo-800"
+                  type="submit"
+                >
+                  <UploadProgress percentage={uploadPercentage} />
+                </button>
+              ) : (
+                <button
+                  className="transition-colors duration-300 w-full mb-5 tracking-widest text-2xl border border-black text-gray-50 p-2 hover:bg-indigo-100 hover:text-indigo-900 bg-indigo-900"
                   type="submit"
                 >
                   SUBMIT
                 </button>
-              </div>
+              )}
             </div>
           </form>
         </FormProvider>
