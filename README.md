@@ -51,8 +51,6 @@ Run the Live Chat server:
 
 ### `node server.js`
 
-### `nodemon server.js`
-
 Open two seperate browser windows. One with INCOGNITO MODE (details of logged in user are stored in cookie) and one in regular.
 
 In one window open the live chat bubble at [http://localhost:3000](http://localhost:3000) to access the chat from the client's view.

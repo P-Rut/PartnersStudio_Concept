@@ -149,7 +149,6 @@ const InquiryDetails: React.FC = () => {
               After resolving problem from backend side photos will be displayed
               and possible to download.
               <br />
-              <br />
             </div>
           </div>
         </div>
